@@ -1,0 +1,47 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+export const CtaSection = () => {
+  return (
+    <section id="cta" className="py-32 px-8 max-w-[1600px] mx-auto">
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 40
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0
+        }}
+        viewport={{
+          once: true,
+          margin: '-100px'
+        }}
+        transition={{
+          duration: 0.8,
+          ease: [0.16, 1, 0.3, 1]
+        }}
+        className="bg-surface-900 rounded-[3rem] p-20 relative overflow-hidden text-center">
+        
+        {/* Background Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-emerald-500/20 rounded-full blur-[120px] -z-10"></div>
+
+        <div className="max-w-3xl mx-auto relative z-10">
+          <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+            Ready to build something{' '}
+            <span className="text-emerald-400">extraordinary?</span>
+          </h2>
+          <p className="text-xl text-surface-300 mb-12 leading-relaxed">
+            Let's discuss how Birdhouse Group can help transform your business
+            with world-class design and engineering.
+          </p>
+
+          <button className="group inline-flex items-center gap-2 bg-emerald-500 text-white px-10 py-5 rounded-full text-xl font-bold hover:bg-emerald-400 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/40 hover:-translate-y-1">
+            Start a Project
+            <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </div>
+      </motion.div>
+    </section>);
+
+};
