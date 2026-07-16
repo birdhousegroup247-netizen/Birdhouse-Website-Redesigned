@@ -6,7 +6,7 @@ export const ServicesList = () => {
   return (
     <div className="flex flex-col gap-40 pb-32">
       {/* Category 1: Strategy & Consulting (Split Screen) */}
-      <section className="px-8 max-w-[1600px] mx-auto w-full">
+      <section className="px-12 max-w-desktop mx-auto w-full">
         <div className="grid grid-cols-12 gap-16 items-center">
           <div className="col-span-5">
             <motion.div
@@ -32,31 +32,31 @@ export const ServicesList = () => {
                   01
                 </span>
                 <span className="w-8 h-[1px] bg-surface-300"></span>
-                <span className="text-surface-500 font-medium text-sm">
+                <span className="text-surface-500 dark:text-surface-400 font-medium text-sm">
                   Strategy & Consulting
                 </span>
               </div>
 
-              <h2 className="text-5xl font-extrabold text-surface-900 mb-8 leading-tight">
+              <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white mb-8 leading-tight">
                 Laying the foundation for scalable growth.
               </h2>
 
               <div className="space-y-10">
                 <div>
-                  <h3 className="text-2xl font-bold text-surface-900 mb-3">
+                  <h3 className="text-2xl font-bold text-surface-900 dark:text-white mb-3">
                     Product Strategy
                   </h3>
-                  <p className="text-surface-500 leading-relaxed text-lg">
+                  <p className="text-surface-500 dark:text-surface-400 leading-relaxed text-lg">
                     We align your business goals with user needs, defining a
                     clear roadmap that minimizes risk and maximizes market
                     impact before a single line of code is written.
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-surface-900 mb-3">
+                  <h3 className="text-2xl font-bold text-surface-900 dark:text-white mb-3">
                     Digital Transformation Consulting
                   </h3>
-                  <p className="text-surface-500 leading-relaxed text-lg">
+                  <p className="text-surface-500 dark:text-surface-400 leading-relaxed text-lg">
                     Modernize legacy systems and workflows. We guide enterprise
                     teams through complex technological shifts to improve
                     efficiency and agility.
@@ -92,13 +92,13 @@ export const ServicesList = () => {
               }}
               className="absolute bottom-10 left-10 glass-panel p-8 rounded-2xl max-w-sm">
               
-              <h4 className="text-sm font-bold text-surface-900 uppercase tracking-wider mb-2">
+              <h4 className="text-sm font-bold text-surface-900 dark:text-white uppercase tracking-wider mb-2">
                 Measurable Outcome
               </h4>
               <div className="text-4xl font-extrabold text-emerald-600 mb-2">
                 +40%
               </div>
-              <p className="text-surface-800 font-medium">
+              <p className="text-surface-800 dark:text-surface-100 font-medium">
                 Increase in operational efficiency through streamlined digital
                 workflows.
               </p>
@@ -108,7 +108,7 @@ export const ServicesList = () => {
       </section>
 
       {/* Category 2: Design & Experience (Bento Grid) */}
-      <section className="px-8 max-w-[1600px] mx-auto w-full">
+      <section className="px-12 max-w-desktop mx-auto w-full">
         <motion.div
           initial={{
             opacity: 0,
@@ -133,11 +133,11 @@ export const ServicesList = () => {
               02
             </span>
             <span className="w-8 h-[1px] bg-surface-300"></span>
-            <span className="text-surface-500 font-medium text-sm">
+            <span className="text-surface-500 dark:text-surface-400 font-medium text-sm">
               Design & Experience
             </span>
           </div>
-          <h2 className="text-5xl font-extrabold text-surface-900 leading-tight max-w-3xl">
+          <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white leading-tight max-w-3xl">
             Crafting intuitive interfaces that users love.
           </h2>
         </motion.div>
@@ -275,7 +275,7 @@ export const ServicesList = () => {
       </section>
 
       {/* Category 3: Engineering (Overlapping Mockups) */}
-      <section className="px-8 max-w-[1600px] mx-auto w-full">
+      <section className="px-12 max-w-desktop mx-auto w-full">
         <div className="bg-surface-50 rounded-[3rem] p-20 relative overflow-hidden">
           <div className="grid grid-cols-12 gap-16 items-center relative z-10">
             <div className="col-span-5">
@@ -446,7 +446,7 @@ export const ServicesList = () => {
       </section>
 
       {/* Category 4: Innovation & Growth (Split Screen Reversed) */}
-      <section className="px-8 max-w-[1600px] mx-auto w-full">
+      <section className="px-12 max-w-desktop mx-auto w-full">
         <div className="grid grid-cols-12 gap-16 items-center">
           <div className="col-span-7 relative h-[700px] rounded-[2.5rem] overflow-hidden group bg-surface-900 flex items-center justify-center">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-900/40 via-surface-900 to-surface-900"></div>
@@ -519,31 +519,31 @@ export const ServicesList = () => {
                   04
                 </span>
                 <span className="w-8 h-[1px] bg-surface-300"></span>
-                <span className="text-surface-500 font-medium text-sm">
+                <span className="text-surface-500 dark:text-surface-400 font-medium text-sm">
                   Innovation & Growth
                 </span>
               </div>
 
-              <h2 className="text-5xl font-extrabold text-surface-900 mb-8 leading-tight">
+              <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white mb-8 leading-tight">
                 Future-proofing your business.
               </h2>
 
               <div className="space-y-10">
                 <div>
-                  <h3 className="text-2xl font-bold text-surface-900 mb-3">
+                  <h3 className="text-2xl font-bold text-surface-900 dark:text-white mb-3">
                     AI Solutions & Automation
                   </h3>
-                  <p className="text-surface-500 leading-relaxed text-lg">
+                  <p className="text-surface-500 dark:text-surface-400 leading-relaxed text-lg">
                     Integrate cutting-edge LLMs and machine learning models into
                     your products to automate workflows, personalize user
                     experiences, and unlock new revenue streams.
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-surface-900 mb-3">
+                  <h3 className="text-2xl font-bold text-surface-900 dark:text-white mb-3">
                     Product Optimization & Growth
                   </h3>
-                  <p className="text-surface-500 leading-relaxed text-lg">
+                  <p className="text-surface-500 dark:text-surface-400 leading-relaxed text-lg">
                     Continuous iteration based on real user data. We implement
                     advanced analytics, A/B testing, and conversion rate
                     optimization to maximize ROI.

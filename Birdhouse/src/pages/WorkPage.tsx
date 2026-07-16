@@ -6,7 +6,7 @@ import { ProjectThree } from '../components/work/ProjectThree';
 import { CtaSection } from '../components/shared/CtaSection';
 export function WorkPage() {
   return (
-    <main className="bg-[#FAFAFA]">
+    <main className="bg-surface-secondary">
       <WorkHero />
       <ProjectOne />
       <ProjectTwo />

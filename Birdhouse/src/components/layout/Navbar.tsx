@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '../ui/Button';
+import { ThemeToggle } from '../ui/ThemeToggle';
 const NAV_LINKS = [
 { label: 'Home', to: '/' },
 { label: 'Work', to: '/work' },
-{ label: 'Services', to: '/services' }];
+{ label: 'Services', to: '/services' },
+{ label: 'Products', to: '/products' },
+{ label: 'Contact', to: '/contact' }];
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -58,7 +61,8 @@ export function Navbar() {
             )}
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
             <Button variant="primary" size="sm" onClick={scrollToCta}>
               Start a Project
             </Button>

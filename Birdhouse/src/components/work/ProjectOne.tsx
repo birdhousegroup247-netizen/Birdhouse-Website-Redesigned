@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { DesktopMockup, MobileMockup } from '../shared/Mockups';
 export const ProjectOne = () => {
   return (
-    <section id="work" className="py-32 px-8 max-w-[1600px] mx-auto">
+    <section id="work" className="py-32 px-12 max-w-desktop mx-auto">
       <div className="grid grid-cols-12 gap-16 items-center">
         {/* Content - Left Side */}
         <div className="col-span-5 flex flex-col justify-center">
@@ -30,19 +30,19 @@ export const ProjectOne = () => {
                 Fintech
               </span>
               <span className="w-8 h-[1px] bg-surface-300"></span>
-              <span className="text-surface-500 font-medium text-sm">2023</span>
+              <span className="text-surface-500 dark:text-surface-400 font-medium text-sm">2023</span>
             </div>
 
-            <h2 className="text-5xl font-extrabold text-surface-900 mb-8 leading-tight">
+            <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white mb-8 leading-tight">
               PayFlow Pro
             </h2>
 
             <div className="space-y-8">
               <div>
-                <h3 className="text-lg font-bold text-surface-900 mb-2">
+                <h3 className="text-lg font-bold text-surface-900 dark:text-white mb-2">
                   The Challenge
                 </h3>
-                <p className="text-surface-500 leading-relaxed">
+                <p className="text-surface-500 dark:text-surface-400 leading-relaxed">
                   Legacy financial dashboards were overwhelming users with dense
                   data, leading to high support tickets and low feature adoption
                   among small business owners.
@@ -50,10 +50,10 @@ export const ProjectOne = () => {
               </div>
 
               <div>
-                <h3 className="text-lg font-bold text-surface-900 mb-2">
+                <h3 className="text-lg font-bold text-surface-900 dark:text-white mb-2">
                   The Solution
                 </h3>
-                <p className="text-surface-500 leading-relaxed">
+                <p className="text-surface-500 dark:text-surface-400 leading-relaxed">
                   We redesigned the core platform with a focus on progressive
                   disclosure, introducing a modular dashboard that surfaces
                   critical insights while keeping complex tools accessible but
@@ -62,7 +62,7 @@ export const ProjectOne = () => {
               </div>
 
               <div className="pt-6 border-t border-surface-200">
-                <h3 className="text-sm font-bold text-surface-400 uppercase tracking-wider mb-4">
+                <h3 className="text-sm font-bold text-surface-400 dark:text-surface-300 uppercase tracking-wider mb-4">
                   Key Outcomes
                 </h3>
                 <div className="grid grid-cols-2 gap-6">
@@ -70,7 +70,7 @@ export const ProjectOne = () => {
                     <div className="text-3xl font-extrabold text-emerald-500 mb-1">
                       -42%
                     </div>
-                    <div className="text-sm font-medium text-surface-600">
+                    <div className="text-sm font-medium text-surface-600 dark:text-surface-300">
                       Support Tickets
                     </div>
                   </div>
@@ -78,7 +78,7 @@ export const ProjectOne = () => {
                     <div className="text-3xl font-extrabold text-emerald-500 mb-1">
                       +85%
                     </div>
-                    <div className="text-sm font-medium text-surface-600">
+                    <div className="text-sm font-medium text-surface-600 dark:text-surface-300">
                       Feature Adoption
                     </div>
                   </div>

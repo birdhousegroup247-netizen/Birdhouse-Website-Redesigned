@@ -36,7 +36,7 @@ const steps = [
 
 export const ServicesProcess = () => {
   return (
-    <section className="py-32 px-8 max-w-[1600px] mx-auto border-t border-surface-200">
+    <section className="py-32 px-12 max-w-desktop mx-auto border-t border-surface-200">
       <div className="flex flex-col items-center text-center mb-20">
         <motion.div
           initial={{
@@ -56,10 +56,10 @@ export const ServicesProcess = () => {
             ease: [0.16, 1, 0.3, 1]
           }}>
           
-          <h2 className="text-5xl font-extrabold text-surface-900 mb-6 leading-tight">
+          <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white mb-6 leading-tight">
             Our Collaborative Process
           </h2>
-          <p className="text-xl text-surface-500 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-surface-500 dark:text-surface-400 max-w-3xl mx-auto leading-relaxed">
             A transparent, iterative approach designed to minimize risk and
             deliver exceptional results on time and on budget.
           </p>
@@ -98,10 +98,10 @@ export const ServicesProcess = () => {
               <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-white"></div>
             </div>
 
-            <h3 className="text-2xl font-bold text-surface-900 mb-4 text-center">
+            <h3 className="text-2xl font-bold text-surface-900 dark:text-white mb-4 text-center">
               {step.title}
             </h3>
-            <p className="text-surface-500 leading-relaxed text-center mb-8">
+            <p className="text-surface-500 dark:text-surface-400 leading-relaxed text-center mb-8">
               {step.description}
             </p>
 

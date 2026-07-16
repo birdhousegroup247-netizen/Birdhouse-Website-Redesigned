@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { DesktopMockup, TabletMockup, MobileMockup } from '../shared/Mockups';
 export const ProjectTwo = () => {
   return (
-    <section className="py-32 px-8 max-w-[1600px] mx-auto">
+    <section className="py-32 px-12 max-w-desktop mx-auto">
       <div className="flex flex-col items-center text-center mb-20 max-w-3xl mx-auto">
         <motion.div
           initial={{
@@ -28,13 +28,13 @@ export const ProjectTwo = () => {
               Enterprise SaaS
             </span>
             <span className="w-8 h-[1px] bg-surface-300"></span>
-            <span className="text-surface-500 font-medium text-sm">2024</span>
+            <span className="text-surface-500 dark:text-surface-400 font-medium text-sm">2024</span>
           </div>
 
-          <h2 className="text-5xl font-extrabold text-surface-900 mb-6 leading-tight">
+          <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white mb-6 leading-tight">
             Nexus Workspace
           </h2>
-          <p className="text-xl text-surface-500 leading-relaxed">
+          <p className="text-xl text-surface-500 dark:text-surface-400 leading-relaxed">
             A unified collaboration platform designed to break down silos in
             enterprise teams. We delivered a scalable design system and a
             seamless cross-device experience.
@@ -152,10 +152,10 @@ export const ProjectTwo = () => {
             duration: 0.5
           }}>
           
-          <h3 className="text-lg font-bold text-surface-900 mb-3">
+          <h3 className="text-lg font-bold text-surface-900 dark:text-white mb-3">
             The Challenge
           </h3>
-          <p className="text-surface-500 leading-relaxed">
+          <p className="text-surface-500 dark:text-surface-400 leading-relaxed">
             Fragmented tools caused context switching and lost productivity for
             enterprise teams scaling beyond 500 employees.
           </p>
@@ -177,10 +177,10 @@ export const ProjectTwo = () => {
             delay: 0.1
           }}>
           
-          <h3 className="text-lg font-bold text-surface-900 mb-3">
+          <h3 className="text-lg font-bold text-surface-900 dark:text-white mb-3">
             The Solution
           </h3>
-          <p className="text-surface-500 leading-relaxed">
+          <p className="text-surface-500 dark:text-surface-400 leading-relaxed">
             A centralized workspace integrating chat, project management, and
             analytics into a single, lightning-fast interface.
           </p>
@@ -202,7 +202,7 @@ export const ProjectTwo = () => {
             delay: 0.2
           }}>
           
-          <h3 className="text-lg font-bold text-surface-900 mb-3">
+          <h3 className="text-lg font-bold text-surface-900 dark:text-white mb-3">
             Technologies
           </h3>
           <div className="flex flex-wrap gap-2">

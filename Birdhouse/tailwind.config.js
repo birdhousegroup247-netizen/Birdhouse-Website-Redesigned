@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
   './index.html',
   './src/**/*.{js,ts,jsx,tsx}'
@@ -30,10 +31,13 @@ export default {
         // Keys don't collide, so both halves keep working. 400/500/600/700 were
         // referenced by Part B but never defined — now filled in (zinc) so those
         // text/border classes render as originally intended.
+        // primary/secondary/tertiary are CSS-variable-backed so they flip with
+        // the `.dark` class; the numeric 50-900 scale stays static (used for
+        // intentional light/dark accent blocks that shouldn't invert with theme).
         surface: {
-          primary: '#FFFFFF',
-          secondary: '#F7F9F8',
-          tertiary: '#F0F2F1',
+          primary: 'var(--color-surface-primary)',
+          secondary: 'var(--color-surface-secondary)',
+          tertiary: 'var(--color-surface-tertiary)',
           50: '#fafafa',
           100: '#f4f4f5',
           200: '#e4e4e7',
@@ -46,9 +50,9 @@ export default {
           900: '#18181b',
         },
         text: {
-          primary: '#1A1A1A',
-          secondary: '#5F6368',
-          tertiary: '#8C9096',
+          primary: 'var(--color-text-primary)',
+          secondary: 'var(--color-text-secondary)',
+          tertiary: 'var(--color-text-tertiary)',
         }
       },
       fontFamily: {

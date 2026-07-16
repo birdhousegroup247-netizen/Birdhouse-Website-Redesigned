@@ -16,8 +16,8 @@ const COLUMNS: FooterColumn[] = [
   links: [
   { label: 'About', href: '#' },
   { label: 'Work', to: '/work' },
-  { label: 'Careers', href: '#' },
-  { label: 'Contact', href: '#' }]
+  { label: 'Careers', to: '/careers' },
+  { label: 'Contact', to: '/contact' }]
 
 },
 {
@@ -56,7 +56,7 @@ function FooterLinkItem({ link }: {link: FooterLink;}) {
 }
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-100 py-20">
+    <footer className="bg-surface-primary border-t border-gray-100 dark:border-surface-800 py-20">
       <div className="max-w-desktop mx-auto px-12">
         <div className="grid grid-cols-12 gap-12 mb-20">
           <div className="col-span-4">
@@ -100,8 +100,8 @@ export function Footer() {
           )}
         </div>
 
-        <div className="flex items-center justify-between pt-8 border-t border-gray-100 text-sm text-text-tertiary">
-          <p>© 2026 Birdhouse Group. All rights reserved.</p>
+        <div className="flex items-center justify-between pt-8 border-t border-gray-100 dark:border-surface-800 text-sm text-text-tertiary">
+          <p>© {new Date().getFullYear()} Birdhouse Group. All rights reserved.</p>
           <div className="flex gap-8">
             <a href="#" className="hover:text-text-primary transition-colors">
               Privacy Policy

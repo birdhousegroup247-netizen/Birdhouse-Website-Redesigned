@@ -5,7 +5,7 @@ import { ServicesProcess } from '../components/services/ServicesProcess';
 import { CtaSection } from '../components/shared/CtaSection';
 export function ServicesPage() {
   return (
-    <main className="bg-[#FAFAFA] pt-20">
+    <main className="bg-surface-secondary">
       <ServicesHero />
       <ServicesList />
       <ServicesProcess />

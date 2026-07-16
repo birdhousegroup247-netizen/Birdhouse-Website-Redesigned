@@ -9,11 +9,27 @@
 /* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
 
 @layer base {
+  :root {
+    --color-surface-primary: #FFFFFF;
+    --color-surface-secondary: #F7F9F8;
+    --color-surface-tertiary: #F0F2F1;
+    --color-text-primary: #1A1A1A;
+    --color-text-secondary: #5F6368;
+    --color-text-tertiary: #8C9096;
+  }
+  .dark {
+    --color-surface-primary: #0B0C0E;
+    --color-surface-secondary: #16181B;
+    --color-surface-tertiary: #1E2124;
+    --color-text-primary: #F5F5F5;
+    --color-text-secondary: #A1A1AA;
+    --color-text-tertiary: #71717A;
+  }
   html {
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-surface-primary text-text-primary font-sans antialiased selection:bg-brand-green selection:text-white;
+    @apply bg-surface-primary text-text-primary font-sans antialiased selection:bg-brand-green selection:text-white transition-colors duration-300;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-display tracking-tight text-text-primary;
@@ -21,10 +37,10 @@
 }
 @layer utilities {
   .glass-panel {
-    @apply bg-white/70 backdrop-blur-md border border-white/40 shadow-glass;
+    @apply bg-white/70 dark:bg-surface-800/60 backdrop-blur-md border border-white/40 dark:border-white/10 shadow-glass;
   }
   .glass-panel-hover {
-    @apply hover:bg-white/80 hover:shadow-glass-hover transition-all duration-500 ease-out;
+    @apply hover:bg-white/80 dark:hover:bg-surface-800/80 hover:shadow-glass-hover transition-all duration-500 ease-out;
   }
   .text-balance {
     text-wrap: balance;

@@ -34,7 +34,7 @@ export function Services() {
         <div className="grid grid-cols-4 gap-6 auto-rows-[240px]">
           {/* Large Tile */}
           <motion.div
-            className="col-span-2 row-span-2 bg-white rounded-3xl p-10 flex flex-col justify-between border border-gray-100 shadow-sm"
+            className="col-span-2 row-span-2 bg-white dark:bg-surface-800 rounded-3xl p-10 flex flex-col justify-between border border-gray-100 dark:border-surface-700 shadow-sm"
             initial={{
               opacity: 0,
               y: 20
@@ -122,7 +122,7 @@ export function Services() {
 
           {/* Small Tile 2 */}
           <motion.div
-            className="col-span-1 row-span-1 bg-white rounded-3xl p-8 flex flex-col justify-between border border-gray-100 shadow-sm"
+            className="col-span-1 row-span-1 bg-white dark:bg-surface-800 rounded-3xl p-8 flex flex-col justify-between border border-gray-100 dark:border-surface-700 shadow-sm"
             initial={{
               opacity: 0,
               y: 20

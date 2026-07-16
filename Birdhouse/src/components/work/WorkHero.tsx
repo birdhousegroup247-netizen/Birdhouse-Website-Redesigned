@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 export const WorkHero = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 px-8 overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 px-12 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-emerald-50 rounded-full blur-3xl -z-10 opacity-70"></div>
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-surface-100 rounded-full blur-3xl -z-10 opacity-70"></div>
@@ -46,7 +46,7 @@ export const WorkHero = () => {
             delay: 0.1,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="text-6xl md:text-7xl lg:text-[84px] font-extrabold tracking-tight text-surface-900 leading-[1.05] mb-8 text-balance">
+          className="text-6xl md:text-7xl lg:text-[84px] font-extrabold tracking-tight text-surface-900 dark:text-white leading-[1.05] mb-8 text-balance">
           
           Selected Work That Solves{' '}
           <span className="text-emerald-500">Real Business</span> Problems.
@@ -66,7 +66,7 @@ export const WorkHero = () => {
             delay: 0.2,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="text-xl md:text-2xl text-surface-500 max-w-3xl mx-auto mb-12 leading-relaxed text-balance font-medium">
+          className="text-xl md:text-2xl text-surface-500 dark:text-surface-400 max-w-3xl mx-auto mb-12 leading-relaxed text-balance font-medium">
           
           Explore how Birdhouse Group transforms ideas into intuitive digital
           products, modern websites, and scalable software.
@@ -105,7 +105,7 @@ export const WorkHero = () => {
               behavior: 'smooth'
             })
             }
-            className="px-8 py-4 rounded-full text-lg font-semibold text-surface-600 hover:text-surface-900 hover:bg-surface-100 transition-all duration-300">
+            className="px-8 py-4 rounded-full text-lg font-semibold text-surface-600 dark:text-surface-300 hover:text-surface-900 dark:hover:text-white hover:bg-surface-100 dark:hover:bg-surface-800 transition-all duration-300">
             
             View Case Studies
           </button>

@@ -12,7 +12,7 @@ const variants: Record<ButtonVariant, string> = {
   'bg-brand-green text-white hover:bg-brand-greenDark hover:shadow-lg hover:shadow-brand-green/20 hover:-translate-y-0.5',
   secondary: 'bg-surface-secondary text-text-primary hover:bg-surface-tertiary',
   outline:
-  'border border-gray-200 text-text-primary hover:border-brand-green hover:text-brand-green',
+  'border border-gray-200 dark:border-surface-700 text-text-primary hover:border-brand-green hover:text-brand-green',
   ghost:
   'text-text-secondary hover:text-text-primary hover:bg-surface-secondary',
   glass: 'glass-panel glass-panel-hover text-text-primary'

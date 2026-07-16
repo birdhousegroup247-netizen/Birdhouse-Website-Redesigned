@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { DesktopMockup, MobileMockup } from '../shared/Mockups';
 export const ProjectThree = () => {
   return (
-    <section className="py-32 px-8 max-w-[1600px] mx-auto">
+    <section className="py-32 px-12 max-w-desktop mx-auto">
       <div className="mb-16">
         <motion.div
           initial={{
@@ -28,11 +28,11 @@ export const ProjectThree = () => {
               E-Commerce / Lifestyle
             </span>
             <span className="w-8 h-[1px] bg-surface-300"></span>
-            <span className="text-surface-500 font-medium text-sm">2023</span>
+            <span className="text-surface-500 dark:text-surface-400 font-medium text-sm">2023</span>
           </div>
 
           <div className="flex justify-between items-end">
-            <h2 className="text-5xl font-extrabold text-surface-900 leading-tight max-w-2xl">
+            <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white leading-tight max-w-2xl">
               Aura Lifestyle
             </h2>
             <div className="flex flex-wrap gap-2 max-w-sm justify-end">
