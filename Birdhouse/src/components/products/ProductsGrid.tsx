@@ -1,39 +1,34 @@
 import React from 'react';
-import { BarChart3, Workflow, ShieldCheck, Rocket } from 'lucide-react';
 import { ProductCard } from '../ui/ProductCard';
 
 const PRODUCTS = [
 {
-  icon: BarChart3,
-  name: 'Pulse Analytics',
-  status: 'Live',
-  description:
-  'A lightweight, privacy-first analytics dashboard that gives product teams real-time insight without the bloat.',
-  accent: 'bg-emerald-500'
-},
-{
-  icon: Workflow,
-  name: 'Flowstack',
-  status: 'Live',
-  description:
-  'Visual workflow automation for internal ops teams — connect your tools and ship approvals in minutes, not days.',
-  accent: 'bg-surface-900'
-},
-{
-  icon: ShieldCheck,
-  name: 'Vault',
-  status: 'Beta',
-  description:
-  'A secure, audit-ready credential and secrets manager built for small engineering teams that outgrew spreadsheets.',
-  accent: 'bg-emerald-600'
-},
-{
-  icon: Rocket,
-  name: 'Launchpad',
+  iconSrc: '/images/products/waka2geda-icon.png',
+  name: 'Waka2Geda',
   status: 'Coming Soon',
   description:
-  'A starter kit and CLI that scaffolds production-ready React + Node applications with our internal best practices baked in.',
-  accent: 'bg-surface-700'
+  'A community-driven ride-sharing platform that helps people reduce transportation costs by sharing rides with others traveling in the same direction.'
+},
+{
+  iconSrc: '/images/products/birdhouse-crm-icon.png',
+  name: 'Birdhouse CRM',
+  status: 'Coming Soon',
+  description:
+  'An all-in-one customer relationship and business management platform designed to help organizations streamline their sales, operations, and client management processes.'
+},
+{
+  iconSrc: '/images/products/birdhouse-hrm-icon.png',
+  name: 'Birdhouse HRM',
+  status: 'Coming Soon',
+  description:
+  'An AI-powered Human Resource Management platform designed to simplify and automate every aspect of workforce management.'
+},
+{
+  iconSrc: '/images/products/birdhouse-academy-icon.png',
+  name: 'Birdhouse Academy',
+  status: 'Coming Soon',
+  description:
+  'A cloud-based (SaaS) school management platform designed to digitally transform the administration and learning experience of primary, junior, and secondary schools.'
 }];
 
 

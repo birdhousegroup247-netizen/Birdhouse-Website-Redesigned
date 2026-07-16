@@ -13,7 +13,7 @@ const INFO = [
 {
   icon: Clock,
   label: 'Response Time',
-  value: 'Within 1 business day'
+  value: 'Within 24 hours'
 }];
 
 
@@ -104,10 +104,10 @@ export const ContactForm = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 mt-12">
+          className="max-w-lg mx-auto grid grid-cols-2 gap-x-8 gap-y-6 mt-12">
 
           {INFO.map(({ icon: Icon, label, value }) =>
-          <div key={label} className="flex items-center gap-4">
+          <div key={label} className="flex items-center justify-center gap-4">
               <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
                 <Icon className="w-5 h-5 text-emerald-600" />
               </div>

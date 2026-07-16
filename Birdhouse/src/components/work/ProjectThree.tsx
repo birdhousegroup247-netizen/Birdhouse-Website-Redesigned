@@ -111,7 +111,7 @@ export const ProjectThree = () => {
           
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-700 via-emerald-900 to-emerald-950"></div>
           <div className="relative z-10">
-            <h3 className="text-2xl font-bold mb-3">Mobile-First Conversion</h3>
+            <h3 className="text-2xl font-bold mb-3 text-white">Mobile-First Conversion</h3>
             <p className="text-emerald-100/80 mb-8">
               Optimized checkout flow resulting in a 34% increase in mobile
               conversion rate.

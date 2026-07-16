@@ -102,7 +102,7 @@ export function ProjectInquiryBox() {
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Tell us about your project..."
             rows={1}
-            className="w-full resize-none outline-none text-base text-text-primary placeholder:text-text-tertiary px-2 pt-1" />
+            className="w-full resize-none outline-none bg-transparent text-base text-text-primary placeholder:text-text-tertiary px-2 pt-1" />
 
           {files.length > 0 &&
           <div className="flex flex-wrap gap-2 px-2 pt-2">

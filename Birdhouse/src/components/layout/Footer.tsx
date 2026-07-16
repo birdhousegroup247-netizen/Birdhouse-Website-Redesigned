@@ -60,13 +60,17 @@ export function Footer() {
       <div className="max-w-desktop mx-auto px-12">
         <div className="grid grid-cols-12 gap-12 mb-20">
           <div className="col-span-4">
-            <Link to="/" className="flex items-center gap-2 mb-8">
-              <div className="w-8 h-8 rounded-lg bg-brand-green flex items-center justify-center">
-                <div className="w-3 h-3 bg-white rounded-sm" />
-              </div>
-              <span className="font-bold text-xl tracking-tight">
-                Birdhouse
-              </span>
+            <Link to="/" className="flex items-center mb-8">
+              <img
+                src="/images/logo/logo-black.png"
+                alt="Birdhouse"
+                className="h-8 w-auto dark:hidden" />
+
+              <img
+                src="/images/logo/logo-white.png"
+                alt="Birdhouse"
+                className="h-8 w-auto hidden dark:block" />
+
             </Link>
             <p className="text-text-secondary mb-8 max-w-sm">
               A premium digital product design and software development studio

@@ -42,11 +42,17 @@ export function Navbar() {
         <div
           className={`flex items-center justify-between rounded-2xl px-8 py-4 transition-all duration-500 ${scrolled ? 'glass-panel' : 'bg-transparent'}`}>
 
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-brand-green flex items-center justify-center">
-              <div className="w-3 h-3 bg-white rounded-sm" />
-            </div>
-            <span className="font-bold text-xl tracking-tight">Birdhouse</span>
+          <Link to="/" className="flex items-center">
+            <img
+              src="/images/logo/logo-black.png"
+              alt="Birdhouse"
+              className="h-8 w-auto dark:hidden" />
+
+            <img
+              src="/images/logo/logo-white.png"
+              alt="Birdhouse"
+              className="h-8 w-auto hidden dark:block" />
+
           </Link>
 
           <div className="hidden md:flex items-center gap-10 text-sm font-medium text-text-secondary">

@@ -68,8 +68,8 @@ export const ServicesList = () => {
 
           <div className="col-span-7 relative h-[700px] rounded-[2.5rem] overflow-hidden group">
             <img
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1600"
-              alt="Team collaborating on strategy"
+              src="/images/birdhouse-services-hero-image.jpeg"
+              alt="Birdhouse team member working on a laptop"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
             
             <div className="absolute inset-0 bg-surface-900/20 group-hover:bg-surface-900/10 transition-colors duration-500"></div>
@@ -198,7 +198,7 @@ export const ServicesList = () => {
             
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-700 via-emerald-900 to-emerald-950"></div>
             <div className="relative z-10">
-              <h3 className="text-3xl font-bold mb-4">Website Design</h3>
+              <h3 className="text-3xl font-bold mb-4 text-white">Website Design</h3>
               <p className="text-emerald-100/80 text-lg mb-8">
                 Award-winning marketing sites that tell your brand's story and
                 drive measurable leads.

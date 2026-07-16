@@ -9,29 +9,6 @@ export const WorkHero = () => {
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-surface-100 rounded-full blur-3xl -z-10 opacity-70"></div>
 
       <div className="max-w-5xl mx-auto text-center z-10">
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 30
-          }}
-          animate={{
-            opacity: 1,
-            y: 0
-          }}
-          transition={{
-            duration: 0.8,
-            ease: [0.16, 1, 0.3, 1]
-          }}>
-          
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-600 text-sm font-semibold mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            Available for new opportunities
-          </div>
-        </motion.div>
-
         <motion.h1
           initial={{
             opacity: 0,

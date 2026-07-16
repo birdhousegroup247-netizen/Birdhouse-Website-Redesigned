@@ -87,7 +87,7 @@ export function Services() {
               <Code2 className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h3 className="text-2xl font-bold mb-2">Web Development</h3>
+              <h3 className="text-2xl font-bold mb-2 text-white">Web Development</h3>
               <p className="text-white/80">
                 Modern, performant web applications built with React and
                 Next.js.

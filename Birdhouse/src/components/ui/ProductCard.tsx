@@ -4,7 +4,8 @@ import { ArrowUpRight, LucideIcon } from 'lucide-react';
 import { Badge } from './Badge';
 
 interface ProductCardProps {
-  icon: LucideIcon;
+  icon?: LucideIcon;
+  iconSrc?: string;
   name: string;
   status: string;
   description: string;
@@ -13,6 +14,7 @@ interface ProductCardProps {
 
 export function ProductCard({
   icon: Icon,
+  iconSrc,
   name,
   status,
   description,
@@ -27,10 +29,16 @@ export function ProductCard({
       className="group bg-white dark:bg-surface-800 border border-surface-200 dark:border-surface-700 rounded-[2rem] p-10 flex flex-col hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 hover:shadow-xl hover:shadow-surface-900/5">
 
       <div className="flex items-center justify-between mb-8">
+        {iconSrc ?
+        <div className="w-14 h-14 rounded-2xl overflow-hidden">
+            <img src={iconSrc} alt="" className="w-full h-full object-cover" />
+          </div> :
+
         <div
-          className={`w-14 h-14 rounded-2xl ${accent} flex items-center justify-center`}>
-          <Icon className="w-6 h-6 text-white" />
-        </div>
+          className={`w-14 h-14 rounded-2xl ${accent} flex items-center justify-center overflow-hidden`}>
+            {Icon && <Icon className="w-6 h-6 text-white" />}
+          </div>
+        }
         <Badge variant="success">{status}</Badge>
       </div>
 
