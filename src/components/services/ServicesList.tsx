@@ -204,9 +204,9 @@ export const ServicesList = () => {
                 drive measurable leads.
               </p>
             </div>
-            <div className="relative z-10 mt-2 mx-auto w-full max-w-[160px] lg:mt-0 lg:mx-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-[-5%] lg:w-[300px] lg:max-w-none transition-transform duration-700 group-hover:-translate-y-6">
+            <div className="relative z-10 mt-4 mx-auto w-full max-w-[230px] sm:max-w-[280px] lg:mt-0 lg:mx-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-[-5%] lg:w-[300px] lg:max-w-none transition-transform duration-700 group-hover:-translate-y-6">
               <MobileMockup
-                className="h-[220px] sm:h-[280px] lg:h-[600px] shadow-2xl border-surface-800"
+                className="h-[320px] sm:h-[390px] lg:h-[600px] shadow-2xl border-surface-800"
                 type="marketing" />
 
             </div>
