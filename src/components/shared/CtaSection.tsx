@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 export const CtaSection = () => {
   return (
-    <section id="cta" className="py-32 px-12 max-w-desktop mx-auto">
+    <section id="cta" className="py-32 px-6 md:px-12 max-w-desktop mx-auto">
       <motion.div
         initial={{
           opacity: 0,

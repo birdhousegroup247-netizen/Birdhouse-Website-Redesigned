@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const ProductsHero = () => {
   return (
-    <section className="relative pt-32 pb-16 px-12 max-w-desktop mx-auto overflow-hidden">
+    <section className="relative pt-32 pb-16 px-6 md:px-12 max-w-desktop mx-auto overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-emerald-50 rounded-full blur-[120px] -z-10 opacity-60"></div>
 
       <div className="flex flex-col items-center text-center z-10 max-w-3xl mx-auto">

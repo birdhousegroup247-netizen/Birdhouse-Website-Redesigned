@@ -4,7 +4,7 @@ import { PenTool, Code2, Database, LayoutTemplate } from 'lucide-react';
 export function Services() {
   return (
     <section className="py-32 bg-surface-secondary">
-      <div className="max-w-desktop mx-auto px-12">
+      <div className="max-w-desktop mx-auto px-6 md:px-12">
         <motion.div
           className="mb-20"
           initial={{

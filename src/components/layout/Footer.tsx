@@ -57,7 +57,7 @@ function FooterLinkItem({ link }: {link: FooterLink;}) {
 export function Footer() {
   return (
     <footer className="bg-surface-primary border-t border-gray-100 dark:border-surface-800 py-20">
-      <div className="max-w-desktop mx-auto px-12">
+      <div className="max-w-desktop mx-auto px-6 md:px-12">
         <div className="grid grid-cols-12 gap-12 mb-20">
           <div className="col-span-4">
             <Link to="/" className="flex items-center mb-8">

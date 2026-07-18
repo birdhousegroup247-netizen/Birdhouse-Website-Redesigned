@@ -27,7 +27,7 @@ export function Hero() {
       {/* Particle Field Background */}
       <ParticleField />
 
-      <div className="max-w-desktop mx-auto px-12 relative z-10 w-full">
+      <div className="max-w-desktop mx-auto px-6 md:px-12 relative z-10 w-full">
         <motion.div
           className="flex flex-col items-center text-center max-w-4xl mx-auto"
           initial={{

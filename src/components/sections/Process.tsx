@@ -22,7 +22,7 @@ const STEPS = [
 
 export function Process() {
   return (
-    <section className="py-32 max-w-desktop mx-auto px-12 relative">
+    <section className="py-32 max-w-desktop mx-auto px-6 md:px-12 relative">
       <div className="grid grid-cols-12 gap-16">
         {/* Sticky Left Side */}
         <div className="col-span-5 relative">

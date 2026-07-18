@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '../ui/Button';
 export function FinalCTA() {
   return (
-    <section id="cta" className="py-32 max-w-desktop mx-auto px-12">
+    <section id="cta" className="py-32 max-w-desktop mx-auto px-6 md:px-12">
       <motion.div
         className="relative rounded-3xl overflow-hidden min-h-[500px] flex items-center"
         initial={{

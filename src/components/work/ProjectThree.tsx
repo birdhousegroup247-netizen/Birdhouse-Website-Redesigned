@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { DesktopMockup, MobileMockup } from '../shared/Mockups';
 export const ProjectThree = () => {
   return (
-    <section className="py-32 px-12 max-w-desktop mx-auto">
+    <section className="py-32 px-6 md:px-12 max-w-desktop mx-auto">
       <div className="mb-16">
         <motion.div
           initial={{

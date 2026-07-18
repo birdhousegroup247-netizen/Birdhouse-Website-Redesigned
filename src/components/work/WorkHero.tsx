@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 export const WorkHero = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 px-12 overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-20 px-6 md:px-12 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-emerald-50 rounded-full blur-3xl -z-10 opacity-70"></div>
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-surface-100 rounded-full blur-3xl -z-10 opacity-70"></div>

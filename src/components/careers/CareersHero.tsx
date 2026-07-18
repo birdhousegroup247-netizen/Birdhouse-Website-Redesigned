@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 export const CareersHero = () => {
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center pt-32 pb-20 px-12 overflow-hidden">
+    <section className="relative min-h-[70vh] flex items-center justify-center pt-32 pb-20 px-6 md:px-12 overflow-hidden">
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-emerald-50 rounded-full blur-[120px] -z-10 opacity-70"></div>
 
       <div className="max-w-3xl mx-auto text-center z-10">

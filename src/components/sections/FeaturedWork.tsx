@@ -7,7 +7,7 @@ import { Button } from '../ui/Button';
 export function FeaturedWork() {
   const navigate = useNavigate();
   return (
-    <section className="py-32 max-w-desktop mx-auto px-12">
+    <section className="py-32 max-w-desktop mx-auto px-6 md:px-12">
       <div className="flex items-end justify-between mb-20">
         <motion.div
           initial={{

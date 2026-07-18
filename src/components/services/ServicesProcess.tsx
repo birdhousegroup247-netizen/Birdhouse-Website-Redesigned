@@ -36,7 +36,7 @@ const steps = [
 
 export const ServicesProcess = () => {
   return (
-    <section className="py-32 px-12 max-w-desktop mx-auto border-t border-surface-200">
+    <section className="py-32 px-6 md:px-12 max-w-desktop mx-auto border-t border-surface-200">
       <div className="flex flex-col items-center text-center mb-20">
         <motion.div
           initial={{

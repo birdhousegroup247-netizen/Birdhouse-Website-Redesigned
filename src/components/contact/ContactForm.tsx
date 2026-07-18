@@ -33,7 +33,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <section className="px-12 max-w-desktop mx-auto pb-32">
+    <section className="px-6 md:px-12 max-w-desktop mx-auto pb-32">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

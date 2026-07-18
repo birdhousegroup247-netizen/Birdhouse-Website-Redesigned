@@ -4,7 +4,7 @@ import { ArrowRight, Calendar, BarChart3, Activity } from 'lucide-react';
 import { DesktopMockup, MobileMockup } from '../shared/Mockups';
 export const ServicesHero = () => {
   return (
-    <section className="relative pb-32 px-12 max-w-desktop mx-auto overflow-hidden">
+    <section className="relative pb-32 px-6 md:px-12 max-w-desktop mx-auto overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-emerald-50 rounded-full blur-[120px] -z-10 opacity-60"></div>
 

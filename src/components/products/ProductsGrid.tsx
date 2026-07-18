@@ -34,7 +34,7 @@ const PRODUCTS = [
 
 export const ProductsGrid = () => {
   return (
-    <section className="px-12 max-w-desktop mx-auto pb-32">
+    <section className="px-6 md:px-12 max-w-desktop mx-auto pb-32">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {PRODUCTS.map((product) =>
         <ProductCard key={product.name} {...product} />

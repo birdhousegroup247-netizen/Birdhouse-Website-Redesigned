@@ -11,7 +11,7 @@ export const CareersJoinSection = () => {
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60"></div>
 
-      <div className="relative z-10 max-w-3xl mx-auto text-center px-12">
+      <div className="relative z-10 max-w-3xl mx-auto text-center px-6 md:px-12">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

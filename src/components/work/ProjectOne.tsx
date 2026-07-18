@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { DesktopMockup, MobileMockup } from '../shared/Mockups';
 export const ProjectOne = () => {
   return (
-    <section id="work" className="py-32 px-12 max-w-desktop mx-auto">
+    <section id="work" className="py-32 px-6 md:px-12 max-w-desktop mx-auto">
       <div className="grid grid-cols-12 gap-16 items-center">
         {/* Content - Left Side */}
         <div className="col-span-5 flex flex-col justify-center">

@@ -16,7 +16,7 @@ export const OpenPositions = () => {
   return (
     <section
       id="open-positions"
-      className="py-32 px-12 max-w-desktop mx-auto">
+      className="py-32 px-6 md:px-12 max-w-desktop mx-auto">
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}

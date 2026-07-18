@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { DesktopMockup, TabletMockup, MobileMockup } from '../shared/Mockups';
 export const ProjectTwo = () => {
   return (
-    <section className="py-32 px-12 max-w-desktop mx-auto">
+    <section className="py-32 px-6 md:px-12 max-w-desktop mx-auto">
       <div className="flex flex-col items-center text-center mb-20 max-w-3xl mx-auto">
         <motion.div
           initial={{

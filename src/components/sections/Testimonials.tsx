@@ -4,7 +4,7 @@ import { TestimonialCard } from '../ui/TestimonialCard';
 export function Testimonials() {
   return (
     <section className="py-32 bg-surface-secondary overflow-hidden">
-      <div className="max-w-desktop mx-auto px-12">
+      <div className="max-w-desktop mx-auto px-6 md:px-12">
         <motion.div
           className="text-center mb-24"
           initial={{

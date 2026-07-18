@@ -6,7 +6,7 @@ export const ServicesList = () => {
   return (
     <div className="flex flex-col gap-40 pb-32">
       {/* Category 1: Strategy & Consulting (Split Screen) */}
-      <section className="px-12 max-w-desktop mx-auto w-full">
+      <section className="px-6 md:px-12 max-w-desktop mx-auto w-full">
         <div className="grid grid-cols-12 gap-16 items-center">
           <div className="col-span-5">
             <motion.div
@@ -108,7 +108,7 @@ export const ServicesList = () => {
       </section>
 
       {/* Category 2: Design & Experience (Bento Grid) */}
-      <section className="px-12 max-w-desktop mx-auto w-full">
+      <section className="px-6 md:px-12 max-w-desktop mx-auto w-full">
         <motion.div
           initial={{
             opacity: 0,
@@ -275,7 +275,7 @@ export const ServicesList = () => {
       </section>
 
       {/* Category 3: Engineering (Overlapping Mockups) */}
-      <section className="px-12 max-w-desktop mx-auto w-full">
+      <section className="px-6 md:px-12 max-w-desktop mx-auto w-full">
         <div className="bg-surface-50 rounded-[3rem] p-20 relative overflow-hidden">
           <div className="grid grid-cols-12 gap-16 items-center relative z-10">
             <div className="col-span-5">
@@ -446,7 +446,7 @@ export const ServicesList = () => {
       </section>
 
       {/* Category 4: Innovation & Growth (Split Screen Reversed) */}
-      <section className="px-12 max-w-desktop mx-auto w-full">
+      <section className="px-6 md:px-12 max-w-desktop mx-auto w-full">
         <div className="grid grid-cols-12 gap-16 items-center">
           <div className="col-span-7 relative h-[700px] rounded-[2.5rem] overflow-hidden group bg-surface-900 flex items-center justify-center">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-900/40 via-surface-900 to-surface-900"></div>
