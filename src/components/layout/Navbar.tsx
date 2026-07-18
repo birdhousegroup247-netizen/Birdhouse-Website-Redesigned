@@ -44,7 +44,7 @@ export function Navbar() {
       }}
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'py-4' : 'py-8'}`}>
 
-      <div className="max-w-desktop mx-auto px-4 sm:px-6 md:px-12">
+      <div className="max-w-desktop mx-auto px-6 md:px-12">
         <div
           className={`flex items-center justify-between rounded-2xl px-4 sm:px-6 md:px-8 py-4 transition-all duration-500 ${scrolled || menuOpen ? 'glass-panel' : 'bg-transparent'}`}>
 
