@@ -25,6 +25,7 @@ const COLUMNS: FooterColumn[] = [
 {
   heading: 'Services',
   links: [
+  { label: 'All Services', to: '/services' },
   { label: 'Product Design', to: '/services' },
   { label: 'Web Development', to: '/services' },
   { label: 'Mobile Apps', to: '/services' },
