@@ -117,7 +117,7 @@ export const ContactForm = () => {
                 <div className="text-sm text-surface-500 dark:text-surface-400 font-medium mb-1">
                   {label}
                 </div>
-                <div className="text-lg font-semibold text-surface-900 dark:text-white truncate">
+                <div className="text-lg font-semibold text-surface-900 dark:text-white break-words">
                   {value}
                 </div>
               </div>
