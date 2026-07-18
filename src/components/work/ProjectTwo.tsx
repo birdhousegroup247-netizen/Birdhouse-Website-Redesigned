@@ -73,7 +73,7 @@ export const ProjectTwo = () => {
           className="absolute left-[5%] top-[20%] w-[210px] sm:w-[280px] lg:w-[450px] z-10 transition-transform duration-700 group-hover:-translate-x-4 group-hover:-rotate-4">
           
           <TabletMockup
-            className="h-[600px] shadow-2xl border-surface-800"
+            className="h-[280px] sm:h-[375px] lg:h-[600px] shadow-2xl border-surface-800"
             type="dashboard" />
           
         </motion.div>
@@ -102,7 +102,7 @@ export const ProjectTwo = () => {
           className="absolute right-[10%] bottom-[15%] w-[130px] sm:w-[170px] lg:w-[280px] z-30 transition-transform duration-700 group-hover:translate-x-4 group-hover:rotate-4">
           
           <MobileMockup
-            className="h-[580px] shadow-2xl border-surface-800"
+            className="h-[270px] sm:h-[350px] lg:h-[580px] shadow-2xl border-surface-800"
             type="app" />
           
         </motion.div>
@@ -128,7 +128,7 @@ export const ProjectTwo = () => {
           className="absolute left-1/2 -translate-x-1/2 top-[10%] w-[420px] sm:w-[560px] lg:w-[900px] z-20 transition-transform duration-700 group-hover:-translate-y-4">
           
           <DesktopMockup
-            className="h-[600px] shadow-2xl border-surface-800"
+            className="h-[280px] sm:h-[375px] lg:h-[600px] shadow-2xl border-surface-800"
             type="dashboard" />
           
         </motion.div>

@@ -124,7 +124,7 @@ export const ProjectOne = () => {
             }}
             className="absolute right-[-10%] top-[15%] w-[360px] sm:w-[460px] lg:w-[800px] z-10 transition-transform duration-700 group-hover:-translate-y-4 group-hover:scale-[1.02]">
             
-            <DesktopMockup className="h-[500px] shadow-2xl" type="dashboard" />
+            <DesktopMockup className="h-[220px] sm:h-[290px] lg:h-[500px] shadow-2xl" type="dashboard" />
           </motion.div>
 
           <motion.div
@@ -147,7 +147,7 @@ export const ProjectOne = () => {
             }}
             className="absolute left-[10%] bottom-[10%] w-[130px] sm:w-[170px] lg:w-[280px] z-20 transition-transform duration-700 group-hover:-translate-y-8 group-hover:scale-[1.05]">
             
-            <MobileMockup className="h-[580px] shadow-2xl" type="app" />
+            <MobileMockup className="h-[270px] sm:h-[350px] lg:h-[580px] shadow-2xl" type="app" />
           </motion.div>
         </div>
       </div>

@@ -84,7 +84,7 @@ export const ProjectThree = () => {
             </p>
           </div>
           <div className="absolute right-[-5%] bottom-[-20%] w-[280px] sm:w-[400px] lg:w-[600px] transition-transform duration-700 group-hover:-translate-y-4 group-hover:-translate-x-4">
-            <DesktopMockup className="h-[400px] shadow-xl" type="marketing" />
+            <DesktopMockup className="h-[190px] sm:h-[270px] lg:h-[400px] shadow-xl" type="marketing" />
           </div>
         </motion.div>
 
@@ -119,7 +119,7 @@ export const ProjectThree = () => {
           </div>
           <div className="absolute left-1/2 -translate-x-1/2 bottom-[-10%] w-[170px] sm:w-[220px] lg:w-[260px] transition-transform duration-700 group-hover:-translate-y-6">
             <MobileMockup
-              className="h-[550px] shadow-2xl border-surface-800"
+              className="h-[210px] sm:h-[320px] lg:h-[550px] shadow-2xl border-surface-800"
               type="marketing" />
             
           </div>

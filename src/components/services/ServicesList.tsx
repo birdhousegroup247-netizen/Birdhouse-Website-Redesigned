@@ -172,7 +172,7 @@ export const ServicesList = () => {
               </p>
             </div>
             <div className="absolute right-[-10%] bottom-[-20%] w-[320px] sm:w-[460px] lg:w-[700px] transition-transform duration-700 group-hover:-translate-y-4 group-hover:-translate-x-4">
-              <DesktopMockup className="h-[450px] shadow-xl" type="dashboard" />
+              <DesktopMockup className="h-[210px] sm:h-[300px] lg:h-[450px] shadow-xl" type="dashboard" />
             </div>
           </motion.div>
 
@@ -204,9 +204,9 @@ export const ServicesList = () => {
                 drive measurable leads.
               </p>
             </div>
-            <div className="absolute left-1/2 -translate-x-1/2 bottom-[-5%] w-[200px] sm:w-[250px] lg:w-[300px] transition-transform duration-700 group-hover:-translate-y-6">
+            <div className="absolute left-1/2 -translate-x-1/2 bottom-[-5%] w-[130px] sm:w-[200px] lg:w-[300px] transition-transform duration-700 group-hover:-translate-y-6">
               <MobileMockup
-                className="h-[600px] shadow-2xl border-surface-800"
+                className="h-[260px] sm:h-[400px] lg:h-[600px] shadow-2xl border-surface-800"
                 type="marketing" />
               
             </div>
@@ -345,7 +345,7 @@ export const ServicesList = () => {
               </motion.div>
             </div>
 
-            <div className="lg:col-span-7 relative h-[360px] sm:h-[480px] lg:h-[800px] flex items-center justify-center group">
+            <div className="lg:col-span-7 relative h-[360px] sm:h-[480px] lg:h-[800px] overflow-hidden rounded-[2.5rem] flex items-center justify-center group">
               <motion.div
                 initial={{
                   opacity: 0,
@@ -366,7 +366,7 @@ export const ServicesList = () => {
                 className="absolute right-0 top-[10%] w-[360px] sm:w-[480px] lg:w-[800px] z-10 transition-transform duration-700 group-hover:-translate-y-4">
 
                 <DesktopMockup
-                  className="h-[550px] shadow-2xl"
+                  className="h-[250px] sm:h-[330px] lg:h-[550px] shadow-2xl"
                   type="dashboard" />
 
               </motion.div>
@@ -392,7 +392,7 @@ export const ServicesList = () => {
                 className="absolute left-[5%] bottom-[15%] w-[160px] sm:w-[220px] lg:w-[350px] z-20 transition-transform duration-700 group-hover:-translate-y-8">
 
                 <TabletMockup
-                  className="h-[500px] shadow-2xl"
+                  className="h-[230px] sm:h-[315px] lg:h-[500px] shadow-2xl"
                   type="dashboard" />
 
               </motion.div>
