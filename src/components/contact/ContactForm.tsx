@@ -104,18 +104,20 @@ export const ContactForm = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-lg mx-auto grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 mt-12">
+          className="max-w-lg mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
 
           {INFO.map(({ icon: Icon, label, value }) =>
-          <div key={label} className="flex items-center justify-center gap-4">
+          <div
+            key={label}
+            className="flex items-center gap-4 bg-surface-secondary/60 dark:bg-surface-800/60 rounded-2xl p-4">
               <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
                 <Icon className="w-5 h-5 text-emerald-600" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <div className="text-sm text-surface-500 dark:text-surface-400 font-medium mb-1">
                   {label}
                 </div>
-                <div className="text-lg font-semibold text-surface-900 dark:text-white">
+                <div className="text-lg font-semibold text-surface-900 dark:text-white truncate">
                   {value}
                 </div>
               </div>
