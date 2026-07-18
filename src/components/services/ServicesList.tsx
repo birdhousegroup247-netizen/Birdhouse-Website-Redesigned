@@ -160,9 +160,9 @@ export const ServicesList = () => {
             transition={{
               duration: 0.7
             }}
-            className="lg:col-span-8 lg:row-span-1 h-[340px] lg:h-auto bg-surface-100 rounded-[2rem] p-8 lg:p-12 relative overflow-hidden group">
+            className="lg:col-span-8 lg:row-span-1 lg:h-auto bg-surface-100 rounded-[2rem] p-8 lg:p-12 relative overflow-hidden group flex flex-col lg:block">
 
-            <div className="relative z-10 w-2/3 sm:w-1/2">
+            <div className="relative z-10 w-full lg:w-1/2">
               <h3 className="text-3xl font-bold text-surface-900 mb-4">
                 UI/UX & Product Design
               </h3>
@@ -171,8 +171,8 @@ export const ServicesList = () => {
                 stunning, highly accessible, and engineered for conversion.
               </p>
             </div>
-            <div className="absolute right-[-10%] bottom-[-20%] w-[320px] sm:w-[460px] lg:w-[700px] transition-transform duration-700 group-hover:-translate-y-4 group-hover:-translate-x-4">
-              <DesktopMockup className="h-[210px] sm:h-[300px] lg:h-[450px] shadow-xl" type="dashboard" />
+            <div className="relative mt-6 mx-auto w-full max-w-[260px] lg:mt-0 lg:mx-0 lg:absolute lg:right-[-10%] lg:bottom-[-20%] lg:w-[700px] lg:max-w-none transition-transform duration-700 group-hover:-translate-y-4 group-hover:-translate-x-4">
+              <DesktopMockup className="h-[180px] sm:h-[220px] lg:h-[450px] shadow-xl" type="dashboard" />
             </div>
           </motion.div>
 
@@ -194,7 +194,7 @@ export const ServicesList = () => {
               duration: 0.7,
               delay: 0.1
             }}
-            className="lg:col-span-4 lg:row-span-2 h-[380px] lg:h-auto bg-emerald-900 rounded-[2rem] p-8 lg:p-12 relative overflow-hidden group text-white">
+            className="lg:col-span-4 lg:row-span-2 lg:h-auto bg-emerald-900 rounded-[2rem] p-8 lg:p-12 relative overflow-hidden group text-white flex flex-col lg:block">
 
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-700 via-emerald-900 to-emerald-950"></div>
             <div className="relative z-10">
@@ -204,11 +204,11 @@ export const ServicesList = () => {
                 drive measurable leads.
               </p>
             </div>
-            <div className="absolute left-1/2 -translate-x-1/2 bottom-[-5%] w-[130px] sm:w-[200px] lg:w-[300px] transition-transform duration-700 group-hover:-translate-y-6">
+            <div className="relative z-10 mt-2 mx-auto w-full max-w-[160px] lg:mt-0 lg:mx-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-[-5%] lg:w-[300px] lg:max-w-none transition-transform duration-700 group-hover:-translate-y-6">
               <MobileMockup
-                className="h-[260px] sm:h-[400px] lg:h-[600px] shadow-2xl border-surface-800"
+                className="h-[220px] sm:h-[280px] lg:h-[600px] shadow-2xl border-surface-800"
                 type="marketing" />
-              
+
             </div>
           </motion.div>
 

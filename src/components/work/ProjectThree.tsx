@@ -71,10 +71,10 @@ export const ProjectThree = () => {
             duration: 0.7,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="lg:col-span-8 lg:row-span-1 h-[300px] lg:h-auto bg-surface-100 rounded-[2rem] p-8 lg:p-10 relative overflow-hidden group">
+          className="lg:col-span-8 lg:row-span-1 lg:h-auto bg-surface-100 rounded-[2rem] p-8 lg:p-10 relative overflow-hidden group flex flex-col lg:block">
 
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <div className="relative z-10 w-2/3">
+          <div className="relative z-10 w-full lg:w-2/3">
             <h3 className="text-2xl font-bold text-surface-900 mb-3">
               Immersive Shopping Experience
             </h3>
@@ -83,8 +83,8 @@ export const ProjectThree = () => {
               featuring cinematic product videos and seamless transitions.
             </p>
           </div>
-          <div className="absolute right-[-5%] bottom-[-20%] w-[280px] sm:w-[400px] lg:w-[600px] transition-transform duration-700 group-hover:-translate-y-4 group-hover:-translate-x-4">
-            <DesktopMockup className="h-[190px] sm:h-[270px] lg:h-[400px] shadow-xl" type="marketing" />
+          <div className="relative mt-6 mx-auto w-full max-w-[240px] lg:mt-0 lg:mx-0 lg:absolute lg:right-[-5%] lg:bottom-[-20%] lg:w-[600px] lg:max-w-none transition-transform duration-700 group-hover:-translate-y-4 group-hover:-translate-x-4">
+            <DesktopMockup className="h-[160px] sm:h-[200px] lg:h-[400px] shadow-xl" type="marketing" />
           </div>
         </motion.div>
 
@@ -107,7 +107,7 @@ export const ProjectThree = () => {
             delay: 0.1,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="lg:col-span-4 lg:row-span-2 h-[380px] lg:h-auto bg-emerald-900 rounded-[2rem] p-8 lg:p-10 relative overflow-hidden group text-white">
+          className="lg:col-span-4 lg:row-span-2 lg:h-auto bg-emerald-900 rounded-[2rem] p-8 lg:p-10 relative overflow-hidden group text-white flex flex-col lg:block">
 
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-700 via-emerald-900 to-emerald-950"></div>
           <div className="relative z-10">
@@ -117,11 +117,11 @@ export const ProjectThree = () => {
               conversion rate.
             </p>
           </div>
-          <div className="absolute left-1/2 -translate-x-1/2 bottom-[-10%] w-[170px] sm:w-[220px] lg:w-[260px] transition-transform duration-700 group-hover:-translate-y-6">
+          <div className="relative z-10 mt-2 mx-auto w-full max-w-[150px] lg:mt-0 lg:mx-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:bottom-[-10%] lg:w-[260px] lg:max-w-none transition-transform duration-700 group-hover:-translate-y-6">
             <MobileMockup
-              className="h-[210px] sm:h-[320px] lg:h-[550px] shadow-2xl border-surface-800"
+              className="h-[210px] sm:h-[270px] lg:h-[550px] shadow-2xl border-surface-800"
               type="marketing" />
-            
+
           </div>
         </motion.div>
 
