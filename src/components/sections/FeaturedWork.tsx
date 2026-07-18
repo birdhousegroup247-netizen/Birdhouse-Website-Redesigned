@@ -8,7 +8,7 @@ export function FeaturedWork() {
   const navigate = useNavigate();
   return (
     <section className="py-32 max-w-desktop mx-auto px-6 md:px-12">
-      <div className="flex items-end justify-between mb-20">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-8 mb-14 sm:mb-20">
         <motion.div
           initial={{
             opacity: 0,
@@ -37,7 +37,8 @@ export function FeaturedWork() {
         <Button
           variant="outline"
           icon={ArrowRight}
-          onClick={() => navigate('/work')}>
+          onClick={() => navigate('/work')}
+          className="self-start whitespace-nowrap">
           View All Work
         </Button>
       </div>
