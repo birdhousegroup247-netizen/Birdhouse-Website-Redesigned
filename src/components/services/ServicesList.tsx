@@ -7,8 +7,8 @@ export const ServicesList = () => {
     <div className="flex flex-col gap-40 pb-32">
       {/* Category 1: Strategy & Consulting (Split Screen) */}
       <section className="px-6 md:px-12 max-w-desktop mx-auto w-full">
-        <div className="grid grid-cols-12 gap-16 items-center">
-          <div className="col-span-5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <div className="lg:col-span-5">
             <motion.div
               initial={{
                 opacity: 0,
@@ -26,7 +26,7 @@ export const ServicesList = () => {
                 duration: 0.7,
                 ease: [0.16, 1, 0.3, 1]
               }}>
-              
+
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-emerald-500 font-bold tracking-wider uppercase text-sm">
                   01
@@ -66,12 +66,12 @@ export const ServicesList = () => {
             </motion.div>
           </div>
 
-          <div className="col-span-7 relative h-[700px] rounded-[2.5rem] overflow-hidden group">
+          <div className="lg:col-span-7 relative h-[340px] sm:h-[440px] lg:h-[700px] rounded-[2.5rem] overflow-hidden group">
             <img
               src="/images/birdhouse-services-hero-image.jpeg"
               alt="Birdhouse team member working on a laptop"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-            
+
             <div className="absolute inset-0 bg-surface-900/20 group-hover:bg-surface-900/10 transition-colors duration-500"></div>
 
             <motion.div
@@ -90,7 +90,7 @@ export const ServicesList = () => {
                 duration: 0.7,
                 delay: 0.3
               }}
-              className="absolute bottom-10 left-10 glass-panel p-8 rounded-2xl max-w-sm">
+              className="absolute bottom-4 left-4 right-4 sm:right-auto sm:bottom-10 sm:left-10 glass-panel p-5 sm:p-8 rounded-2xl sm:max-w-sm">
               
               <h4 className="text-sm font-bold text-surface-900 dark:text-white uppercase tracking-wider mb-2">
                 Measurable Outcome
@@ -142,7 +142,7 @@ export const ServicesList = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-12 grid-rows-2 gap-6 h-[900px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-2 gap-6 lg:h-[900px]">
           {/* Main Desktop Mockup */}
           <motion.div
             initial={{
@@ -160,9 +160,9 @@ export const ServicesList = () => {
             transition={{
               duration: 0.7
             }}
-            className="col-span-8 row-span-1 bg-surface-100 rounded-[2rem] p-12 relative overflow-hidden group">
-            
-            <div className="relative z-10 w-1/2">
+            className="lg:col-span-8 lg:row-span-1 h-[340px] lg:h-auto bg-surface-100 rounded-[2rem] p-8 lg:p-12 relative overflow-hidden group">
+
+            <div className="relative z-10 w-2/3 sm:w-1/2">
               <h3 className="text-3xl font-bold text-surface-900 mb-4">
                 UI/UX & Product Design
               </h3>
@@ -171,7 +171,7 @@ export const ServicesList = () => {
                 stunning, highly accessible, and engineered for conversion.
               </p>
             </div>
-            <div className="absolute right-[-10%] bottom-[-20%] w-[700px] transition-transform duration-700 group-hover:-translate-y-4 group-hover:-translate-x-4">
+            <div className="absolute right-[-10%] bottom-[-20%] w-[320px] sm:w-[460px] lg:w-[700px] transition-transform duration-700 group-hover:-translate-y-4 group-hover:-translate-x-4">
               <DesktopMockup className="h-[450px] shadow-xl" type="dashboard" />
             </div>
           </motion.div>
@@ -194,8 +194,8 @@ export const ServicesList = () => {
               duration: 0.7,
               delay: 0.1
             }}
-            className="col-span-4 row-span-2 bg-emerald-900 rounded-[2rem] p-12 relative overflow-hidden group text-white">
-            
+            className="lg:col-span-4 lg:row-span-2 h-[380px] lg:h-auto bg-emerald-900 rounded-[2rem] p-8 lg:p-12 relative overflow-hidden group text-white">
+
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-700 via-emerald-900 to-emerald-950"></div>
             <div className="relative z-10">
               <h3 className="text-3xl font-bold mb-4 text-white">Website Design</h3>
@@ -204,7 +204,7 @@ export const ServicesList = () => {
                 drive measurable leads.
               </p>
             </div>
-            <div className="absolute left-1/2 -translate-x-1/2 bottom-[-5%] w-[300px] transition-transform duration-700 group-hover:-translate-y-6">
+            <div className="absolute left-1/2 -translate-x-1/2 bottom-[-5%] w-[200px] sm:w-[250px] lg:w-[300px] transition-transform duration-700 group-hover:-translate-y-6">
               <MobileMockup
                 className="h-[600px] shadow-2xl border-surface-800"
                 type="marketing" />
@@ -230,9 +230,9 @@ export const ServicesList = () => {
               duration: 0.7,
               delay: 0.2
             }}
-            className="col-span-8 row-span-1 bg-white border border-surface-200 rounded-[2rem] p-12 flex flex-col justify-center group hover:border-emerald-200 transition-colors duration-300">
-            
-            <div className="grid grid-cols-2 gap-12 items-center">
+            className="lg:col-span-8 lg:row-span-1 bg-white border border-surface-200 rounded-[2rem] p-8 lg:p-12 flex flex-col justify-center group hover:border-emerald-200 transition-colors duration-300">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
                 <h3 className="text-3xl font-bold text-surface-900 mb-4">
                   Design Systems
@@ -276,9 +276,9 @@ export const ServicesList = () => {
 
       {/* Category 3: Engineering (Overlapping Mockups) */}
       <section className="px-6 md:px-12 max-w-desktop mx-auto w-full">
-        <div className="bg-surface-50 rounded-[3rem] p-20 relative overflow-hidden">
-          <div className="grid grid-cols-12 gap-16 items-center relative z-10">
-            <div className="col-span-5">
+        <div className="bg-surface-50 rounded-[3rem] p-8 sm:p-12 lg:p-20 relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center relative z-10">
+            <div className="lg:col-span-5">
               <motion.div
                 initial={{
                   opacity: 0,
@@ -345,7 +345,7 @@ export const ServicesList = () => {
               </motion.div>
             </div>
 
-            <div className="col-span-7 relative h-[800px] flex items-center justify-center group">
+            <div className="lg:col-span-7 relative h-[360px] sm:h-[480px] lg:h-[800px] flex items-center justify-center group">
               <motion.div
                 initial={{
                   opacity: 0,
@@ -363,12 +363,12 @@ export const ServicesList = () => {
                   duration: 0.9,
                   ease: [0.16, 1, 0.3, 1]
                 }}
-                className="absolute right-0 top-[10%] w-[800px] z-10 transition-transform duration-700 group-hover:-translate-y-4">
-                
+                className="absolute right-0 top-[10%] w-[360px] sm:w-[480px] lg:w-[800px] z-10 transition-transform duration-700 group-hover:-translate-y-4">
+
                 <DesktopMockup
                   className="h-[550px] shadow-2xl"
                   type="dashboard" />
-                
+
               </motion.div>
 
               <motion.div
@@ -389,12 +389,12 @@ export const ServicesList = () => {
                   delay: 0.2,
                   ease: [0.16, 1, 0.3, 1]
                 }}
-                className="absolute left-[5%] bottom-[15%] w-[350px] z-20 transition-transform duration-700 group-hover:-translate-y-8">
-                
+                className="absolute left-[5%] bottom-[15%] w-[160px] sm:w-[220px] lg:w-[350px] z-20 transition-transform duration-700 group-hover:-translate-y-8">
+
                 <TabletMockup
                   className="h-[500px] shadow-2xl"
                   type="dashboard" />
-                
+
               </motion.div>
 
               {/* Floating Code Snippet */}
@@ -414,7 +414,7 @@ export const ServicesList = () => {
                   duration: 0.5,
                   delay: 0.5
                 }}
-                className="absolute right-[10%] bottom-[25%] z-30 bg-surface-900 p-6 rounded-xl shadow-2xl w-72 border border-surface-800">
+                className="hidden sm:block absolute right-[10%] bottom-[25%] z-30 bg-surface-900 p-6 rounded-xl shadow-2xl w-72 border border-surface-800">
                 
                 <div className="flex gap-2 mb-4">
                   <div className="w-3 h-3 rounded-full bg-surface-700"></div>
@@ -447,12 +447,12 @@ export const ServicesList = () => {
 
       {/* Category 4: Innovation & Growth (Split Screen Reversed) */}
       <section className="px-6 md:px-12 max-w-desktop mx-auto w-full">
-        <div className="grid grid-cols-12 gap-16 items-center">
-          <div className="col-span-7 relative h-[700px] rounded-[2.5rem] overflow-hidden group bg-surface-900 flex items-center justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <div className="lg:col-span-7 relative h-[420px] sm:h-[560px] lg:h-[700px] rounded-[2.5rem] overflow-hidden group bg-surface-900 flex items-center justify-center">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-900/40 via-surface-900 to-surface-900"></div>
 
             {/* Abstract AI/Growth Visual */}
-            <div className="relative z-10 w-full h-full flex items-center justify-center p-20">
+            <div className="relative z-10 w-full h-full flex items-center justify-center p-6 sm:p-12 lg:p-20">
               <div className="w-full h-full border border-surface-800 rounded-2xl relative overflow-hidden flex items-end p-8">
                 <div className="absolute top-8 left-8">
                   <div className="text-surface-400 text-sm font-mono mb-2">
@@ -495,7 +495,7 @@ export const ServicesList = () => {
             </div>
           </div>
 
-          <div className="col-span-5">
+          <div className="lg:col-span-5">
             <motion.div
               initial={{
                 opacity: 0,
@@ -513,7 +513,7 @@ export const ServicesList = () => {
                 duration: 0.7,
                 ease: [0.16, 1, 0.3, 1]
               }}>
-              
+
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-emerald-500 font-bold tracking-wider uppercase text-sm">
                   04

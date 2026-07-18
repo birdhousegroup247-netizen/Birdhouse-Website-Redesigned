@@ -41,7 +41,7 @@ export const OpenPositions = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden bg-white dark:bg-surface-800 border border-surface-200 dark:border-surface-700 rounded-[2rem] p-10 flex items-center justify-between gap-8 hover:border-emerald-200 dark:hover:border-emerald-800 transition-colors duration-300">
+          className="relative overflow-hidden bg-white dark:bg-surface-800 border border-surface-200 dark:border-surface-700 rounded-[2rem] p-6 sm:p-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6 sm:gap-8 hover:border-emerald-200 dark:hover:border-emerald-800 transition-colors duration-300">
 
           <div
             className="absolute inset-0 opacity-[0.04] pointer-events-none"

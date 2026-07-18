@@ -104,7 +104,7 @@ export const ContactForm = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-lg mx-auto grid grid-cols-2 gap-x-8 gap-y-6 mt-12">
+          className="max-w-lg mx-auto grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 mt-12">
 
           {INFO.map(({ icon: Icon, label, value }) =>
           <div key={label} className="flex items-center justify-center gap-4">

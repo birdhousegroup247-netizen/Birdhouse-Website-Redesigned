@@ -31,7 +31,7 @@ export function FinalCTA() {
         <div className="absolute inset-0 bg-brand-green/90 mix-blend-multiply" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
 
-        <div className="relative z-10 p-16 lg:p-24">
+        <div className="relative z-10 p-6 sm:p-10 lg:p-24">
           <h2 className="text-5xl lg:text-6xl font-bold text-white mb-8 max-w-2xl leading-tight">
             Ready to build something extraordinary?
           </h2>

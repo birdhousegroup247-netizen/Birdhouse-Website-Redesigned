@@ -4,9 +4,9 @@ import { DesktopMockup, MobileMockup } from '../shared/Mockups';
 export const ProjectOne = () => {
   return (
     <section id="work" className="py-32 px-6 md:px-12 max-w-desktop mx-auto">
-      <div className="grid grid-cols-12 gap-16 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         {/* Content - Left Side */}
-        <div className="col-span-5 flex flex-col justify-center">
+        <div className="lg:col-span-5 flex flex-col justify-center">
           <motion.div
             initial={{
               opacity: 0,
@@ -102,7 +102,7 @@ export const ProjectOne = () => {
         </div>
 
         {/* Visuals - Right Side (Split Screen) */}
-        <div className="col-span-7 relative h-[800px] bg-surface-100 rounded-[2.5rem] overflow-hidden flex items-center justify-center group">
+        <div className="lg:col-span-7 relative h-[360px] sm:h-[460px] lg:h-[800px] bg-surface-100 rounded-[2.5rem] overflow-hidden flex items-center justify-center group">
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-surface-100 opacity-50"></div>
 
           <motion.div
@@ -122,7 +122,7 @@ export const ProjectOne = () => {
               duration: 0.9,
               ease: [0.16, 1, 0.3, 1]
             }}
-            className="absolute right-[-10%] top-[15%] w-[800px] z-10 transition-transform duration-700 group-hover:-translate-y-4 group-hover:scale-[1.02]">
+            className="absolute right-[-10%] top-[15%] w-[360px] sm:w-[460px] lg:w-[800px] z-10 transition-transform duration-700 group-hover:-translate-y-4 group-hover:scale-[1.02]">
             
             <DesktopMockup className="h-[500px] shadow-2xl" type="dashboard" />
           </motion.div>
@@ -145,7 +145,7 @@ export const ProjectOne = () => {
               delay: 0.2,
               ease: [0.16, 1, 0.3, 1]
             }}
-            className="absolute left-[10%] bottom-[10%] w-[280px] z-20 transition-transform duration-700 group-hover:-translate-y-8 group-hover:scale-[1.05]">
+            className="absolute left-[10%] bottom-[10%] w-[130px] sm:w-[170px] lg:w-[280px] z-20 transition-transform duration-700 group-hover:-translate-y-8 group-hover:scale-[1.05]">
             
             <MobileMockup className="h-[580px] shadow-2xl" type="app" />
           </motion.div>

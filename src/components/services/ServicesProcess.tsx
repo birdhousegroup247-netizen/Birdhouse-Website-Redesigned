@@ -66,9 +66,9 @@ export const ServicesProcess = () => {
         </motion.div>
       </div>
 
-      <div className="grid grid-cols-4 gap-8 relative">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8 gap-y-14 relative">
         {/* Connecting Line */}
-        <div className="absolute top-12 left-[12.5%] right-[12.5%] h-[2px] bg-surface-200 -z-10"></div>
+        <div className="hidden lg:block absolute top-12 left-[12.5%] right-[12.5%] h-[2px] bg-surface-200 -z-10"></div>
 
         {steps.map((step, index) =>
         <motion.div

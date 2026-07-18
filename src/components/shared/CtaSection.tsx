@@ -21,7 +21,7 @@ export const CtaSection = () => {
           duration: 0.8,
           ease: [0.16, 1, 0.3, 1]
         }}
-        className="bg-surface-900 rounded-[3rem] p-20 relative overflow-hidden text-center">
+        className="bg-surface-900 rounded-[3rem] p-8 sm:p-12 lg:p-20 relative overflow-hidden text-center">
         
         {/* Background Glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-emerald-500/20 rounded-full blur-[120px] -z-10"></div>

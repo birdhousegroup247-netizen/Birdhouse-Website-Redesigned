@@ -56,10 +56,10 @@ function FooterLinkItem({ link }: {link: FooterLink;}) {
 }
 export function Footer() {
   return (
-    <footer className="bg-surface-primary border-t border-gray-100 dark:border-surface-800 py-20">
+    <footer className="bg-surface-primary border-t border-gray-100 dark:border-surface-800 py-14 sm:py-20">
       <div className="max-w-desktop mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-12 gap-12 mb-20">
-          <div className="col-span-4">
+        <div className="grid grid-cols-2 sm:grid-cols-12 gap-x-6 gap-y-10 sm:gap-12 mb-14 sm:mb-20">
+          <div className="col-span-2 sm:col-span-4">
             <Link to="/" className="flex items-center mb-8">
               <img
                 src="/images/logo/logo-black.png"
@@ -90,7 +90,7 @@ export function Footer() {
           {COLUMNS.map((col, idx) =>
           <div
             key={col.heading}
-            className={`col-span-2 ${idx === 0 ? 'col-start-7' : ''}`}>
+            className={`col-span-1 sm:col-span-2 ${idx === 0 ? 'sm:col-start-7' : ''}`}>
 
               <h4 className="font-semibold mb-6">{col.heading}</h4>
               <ul className="space-y-4 text-text-secondary">
@@ -104,9 +104,9 @@ export function Footer() {
           )}
         </div>
 
-        <div className="flex items-center justify-between pt-8 border-t border-gray-100 dark:border-surface-800 text-sm text-text-tertiary">
+        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-0 sm:justify-between pt-8 border-t border-gray-100 dark:border-surface-800 text-sm text-text-tertiary text-center sm:text-left">
           <p>© {new Date().getFullYear()} Birdhouse Group. All rights reserved.</p>
-          <div className="flex gap-8">
+          <div className="flex gap-6 sm:gap-8">
             <a href="#" className="hover:text-text-primary transition-colors">
               Privacy Policy
             </a>

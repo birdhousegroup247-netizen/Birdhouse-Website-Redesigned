@@ -43,7 +43,7 @@ export const ProjectTwo = () => {
       </div>
 
       {/* Overlapping Mockups Layout */}
-      <div className="relative h-[900px] w-full bg-surface-900 rounded-[3rem] overflow-hidden flex items-center justify-center group">
+      <div className="relative h-[420px] sm:h-[560px] lg:h-[900px] w-full bg-surface-900 rounded-[3rem] overflow-hidden flex items-center justify-center group">
         {/* Decorative Background */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-emerald-900/40 rounded-full blur-[120px] opacity-50"></div>
@@ -70,7 +70,7 @@ export const ProjectTwo = () => {
             delay: 0.2,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="absolute left-[5%] top-[20%] w-[450px] z-10 transition-transform duration-700 group-hover:-translate-x-4 group-hover:-rotate-4">
+          className="absolute left-[5%] top-[20%] w-[210px] sm:w-[280px] lg:w-[450px] z-10 transition-transform duration-700 group-hover:-translate-x-4 group-hover:-rotate-4">
           
           <TabletMockup
             className="h-[600px] shadow-2xl border-surface-800"
@@ -99,7 +99,7 @@ export const ProjectTwo = () => {
             delay: 0.3,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="absolute right-[10%] bottom-[15%] w-[280px] z-30 transition-transform duration-700 group-hover:translate-x-4 group-hover:rotate-4">
+          className="absolute right-[10%] bottom-[15%] w-[130px] sm:w-[170px] lg:w-[280px] z-30 transition-transform duration-700 group-hover:translate-x-4 group-hover:rotate-4">
           
           <MobileMockup
             className="h-[580px] shadow-2xl border-surface-800"
@@ -125,7 +125,7 @@ export const ProjectTwo = () => {
             duration: 0.9,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="absolute left-1/2 -translate-x-1/2 top-[10%] w-[900px] z-20 transition-transform duration-700 group-hover:-translate-y-4">
+          className="absolute left-1/2 -translate-x-1/2 top-[10%] w-[420px] sm:w-[560px] lg:w-[900px] z-20 transition-transform duration-700 group-hover:-translate-y-4">
           
           <DesktopMockup
             className="h-[600px] shadow-2xl border-surface-800"
@@ -135,7 +135,7 @@ export const ProjectTwo = () => {
       </div>
 
       {/* Details Below */}
-      <div className="grid grid-cols-3 gap-12 mt-20">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-12 mt-16 sm:mt-20">
         <motion.div
           initial={{
             opacity: 0,

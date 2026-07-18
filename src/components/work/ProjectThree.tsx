@@ -31,11 +31,11 @@ export const ProjectThree = () => {
             <span className="text-surface-500 dark:text-surface-400 font-medium text-sm">2023</span>
           </div>
 
-          <div className="flex justify-between items-end">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
             <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white leading-tight max-w-2xl">
               Aura Lifestyle
             </h2>
-            <div className="flex flex-wrap gap-2 max-w-sm justify-end">
+            <div className="flex flex-wrap gap-2 max-w-sm sm:justify-end">
               {['Shopify Plus', 'Hydrogen', 'Tailwind CSS', 'Sanity CMS'].map(
                 (tech) =>
                 <span
@@ -52,7 +52,7 @@ export const ProjectThree = () => {
       </div>
 
       {/* Bento Grid Layout */}
-      <div className="grid grid-cols-12 grid-rows-2 gap-6 h-[900px]">
+      <div className="grid grid-cols-1 lg:grid-cols-12 lg:grid-rows-2 gap-6 lg:h-[900px]">
         {/* Main Desktop Feature - Top Left */}
         <motion.div
           initial={{
@@ -71,8 +71,8 @@ export const ProjectThree = () => {
             duration: 0.7,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="col-span-8 row-span-1 bg-surface-100 rounded-[2rem] p-10 relative overflow-hidden group">
-          
+          className="lg:col-span-8 lg:row-span-1 h-[300px] lg:h-auto bg-surface-100 rounded-[2rem] p-8 lg:p-10 relative overflow-hidden group">
+
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div className="relative z-10 w-2/3">
             <h3 className="text-2xl font-bold text-surface-900 mb-3">
@@ -83,7 +83,7 @@ export const ProjectThree = () => {
               featuring cinematic product videos and seamless transitions.
             </p>
           </div>
-          <div className="absolute right-[-5%] bottom-[-20%] w-[600px] transition-transform duration-700 group-hover:-translate-y-4 group-hover:-translate-x-4">
+          <div className="absolute right-[-5%] bottom-[-20%] w-[280px] sm:w-[400px] lg:w-[600px] transition-transform duration-700 group-hover:-translate-y-4 group-hover:-translate-x-4">
             <DesktopMockup className="h-[400px] shadow-xl" type="marketing" />
           </div>
         </motion.div>
@@ -107,8 +107,8 @@ export const ProjectThree = () => {
             delay: 0.1,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="col-span-4 row-span-2 bg-emerald-900 rounded-[2rem] p-10 relative overflow-hidden group text-white">
-          
+          className="lg:col-span-4 lg:row-span-2 h-[380px] lg:h-auto bg-emerald-900 rounded-[2rem] p-8 lg:p-10 relative overflow-hidden group text-white">
+
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-emerald-700 via-emerald-900 to-emerald-950"></div>
           <div className="relative z-10">
             <h3 className="text-2xl font-bold mb-3 text-white">Mobile-First Conversion</h3>
@@ -117,7 +117,7 @@ export const ProjectThree = () => {
               conversion rate.
             </p>
           </div>
-          <div className="absolute left-1/2 -translate-x-1/2 bottom-[-10%] w-[260px] transition-transform duration-700 group-hover:-translate-y-6">
+          <div className="absolute left-1/2 -translate-x-1/2 bottom-[-10%] w-[170px] sm:w-[220px] lg:w-[260px] transition-transform duration-700 group-hover:-translate-y-6">
             <MobileMockup
               className="h-[550px] shadow-2xl border-surface-800"
               type="marketing" />
@@ -144,7 +144,7 @@ export const ProjectThree = () => {
             delay: 0.2,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="col-span-4 row-span-1 bg-white border border-surface-200 rounded-[2rem] p-10 flex flex-col justify-center group hover:border-emerald-200 transition-colors duration-300">
+          className="lg:col-span-4 lg:row-span-1 bg-white border border-surface-200 rounded-[2rem] p-8 lg:p-10 flex flex-col justify-center group hover:border-emerald-200 transition-colors duration-300">
           
           <h3 className="text-sm font-bold text-surface-400 uppercase tracking-wider mb-8">
             Key Outcomes
@@ -188,7 +188,7 @@ export const ProjectThree = () => {
             delay: 0.3,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="col-span-4 row-span-1 bg-surface-50 rounded-[2rem] p-10 flex flex-col justify-center">
+          className="lg:col-span-4 lg:row-span-1 bg-surface-50 rounded-[2rem] p-8 lg:p-10 flex flex-col justify-center">
           
           <h3 className="text-xl font-bold text-surface-900 mb-4">
             The Solution

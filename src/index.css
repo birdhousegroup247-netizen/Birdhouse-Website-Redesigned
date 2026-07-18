@@ -28,6 +28,9 @@
   html {
     scroll-behavior: smooth;
   }
+  html, body {
+    @apply overflow-x-hidden max-w-[100vw];
+  }
   body {
     @apply bg-surface-primary text-text-primary font-sans antialiased selection:bg-brand-green selection:text-white transition-colors duration-300;
   }
