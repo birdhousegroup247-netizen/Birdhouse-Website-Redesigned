@@ -32,10 +32,10 @@ export function FinalCTA() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
 
         <div className="relative z-10 p-6 sm:p-10 lg:p-24">
-          <h2 className="text-5xl lg:text-6xl font-bold text-white mb-8 max-w-2xl leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-6 sm:mb-8 max-w-2xl leading-tight break-words">
             Ready to build something extraordinary?
           </h2>
-          <p className="text-white/80 text-xl mb-12 max-w-xl leading-relaxed">
+          <p className="text-white/80 text-base sm:text-lg lg:text-xl mb-8 sm:mb-12 max-w-xl leading-relaxed">
             Partner with us to design and develop your next digital product.
             Let's create an experience your users will love.
           </p>

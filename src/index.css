@@ -35,7 +35,7 @@
     @apply bg-surface-primary text-text-primary font-sans antialiased selection:bg-brand-green selection:text-white transition-colors duration-300;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight text-text-primary;
+    @apply font-display tracking-tight text-text-primary [overflow-wrap:break-word];
   }
 }
 @layer utilities {
