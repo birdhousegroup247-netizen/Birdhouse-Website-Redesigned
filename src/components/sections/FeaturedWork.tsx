@@ -42,29 +42,29 @@ export function FeaturedWork() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-12 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
         {/* Large Feature */}
-        <div className="col-span-8">
+        <div className="lg:col-span-8">
           <PortfolioCard
             image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
             category="Fintech"
             client="Stripe"
             title="Next-generation payment dashboard" />
-          
+
         </div>
 
         {/* Offset Smaller Feature */}
-        <div className="col-span-4 mt-32">
+        <div className="lg:col-span-4 lg:mt-32">
           <PortfolioCard
             image="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=2070&auto=format&fit=crop"
             category="Enterprise"
             client="Linear"
             title="Issue tracking for high-performing teams" />
-          
+
         </div>
 
         {/* Third Feature */}
-        <div className="col-span-6 col-start-2 mt-10">
+        <div className="lg:col-span-6 lg:col-start-2 lg:mt-10">
           <PortfolioCard
             image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"
             category="Healthcare"

@@ -106,9 +106,9 @@ export const ServicesHero = () => {
           delay: 0.4,
           ease: [0.16, 1, 0.3, 1]
         }}
-        className="relative h-[700px] w-full flex justify-center items-start mt-20">
-        
-        <div className="absolute top-0 w-[1000px] z-10">
+        className="relative h-[320px] sm:h-[460px] lg:h-[700px] w-full flex justify-center items-start mt-12 lg:mt-20">
+
+        <div className="absolute top-0 w-[300px] sm:w-[440px] lg:w-[1000px] z-10">
           <DesktopMockup
             className="h-[600px] shadow-2xl border-surface-200"
             type="dashboard" />

@@ -34,9 +34,9 @@ export function Testimonials() {
 
         <div className="relative">
           {/* Staggered Layout */}
-          <div className="grid grid-cols-12 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <motion.div
-              className="col-span-6 lg:col-span-5"
+              className="lg:col-span-5"
               initial={{
                 opacity: 0,
                 x: -30
@@ -63,7 +63,7 @@ export function Testimonials() {
             </motion.div>
 
             <motion.div
-              className="col-span-6 lg:col-span-5 lg:col-start-7 mt-24"
+              className="lg:col-span-5 lg:col-start-7 lg:mt-24"
               initial={{
                 opacity: 0,
                 x: 30

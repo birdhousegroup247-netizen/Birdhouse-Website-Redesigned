@@ -23,10 +23,10 @@ const STEPS = [
 export function Process() {
   return (
     <section className="py-32 max-w-desktop mx-auto px-6 md:px-12 relative">
-      <div className="grid grid-cols-12 gap-16">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
         {/* Sticky Left Side */}
-        <div className="col-span-5 relative">
-          <div className="sticky top-40">
+        <div className="lg:col-span-5 relative">
+          <div className="lg:sticky lg:top-40">
             <motion.h2
               className="text-5xl font-bold tracking-tight mb-6"
               initial={{
@@ -73,7 +73,7 @@ export function Process() {
         </div>
 
         {/* Scrolling Right Side */}
-        <div className="col-span-7 space-y-32">
+        <div className="lg:col-span-7 space-y-20 lg:space-y-32">
           {STEPS.map((step, idx) =>
           <motion.div
             key={step.num}
