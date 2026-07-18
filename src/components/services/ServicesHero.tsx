@@ -64,16 +64,16 @@ export const ServicesHero = () => {
             delay: 0.3,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="flex items-center justify-center gap-6">
-          
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+
           <button
             onClick={() =>
             document.getElementById('cta')?.scrollIntoView({
               behavior: 'smooth'
             })
             }
-            className="group flex items-center gap-2 bg-emerald-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-emerald-600 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5">
-            
+            className="group flex items-center justify-center gap-2 w-full sm:w-auto whitespace-nowrap bg-emerald-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-emerald-600 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5">
+
             Start a Project
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
@@ -83,8 +83,8 @@ export const ServicesHero = () => {
               behavior: 'smooth'
             })
             }
-            className="group flex items-center gap-2 bg-white dark:bg-surface-800 border-2 border-surface-200 dark:border-surface-700 text-surface-900 dark:text-white px-8 py-4 rounded-full text-lg font-semibold hover:border-emerald-500 hover:text-emerald-600 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5">
-            
+            className="group flex items-center justify-center gap-2 w-full sm:w-auto whitespace-nowrap bg-white dark:bg-surface-800 border-2 border-surface-200 dark:border-surface-700 text-surface-900 dark:text-white px-8 py-4 rounded-full text-lg font-semibold hover:border-emerald-500 hover:text-emerald-600 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5">
+
             <Calendar className="w-5 h-5" />
             Book a Consultation
           </button>
