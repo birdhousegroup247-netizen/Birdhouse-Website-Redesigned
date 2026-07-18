@@ -14,8 +14,10 @@ const COLUMNS: FooterColumn[] = [
 {
   heading: 'Studio',
   links: [
+  { label: 'Home', to: '/' },
   { label: 'About', href: '#' },
   { label: 'Work', to: '/work' },
+  { label: 'Products', to: '/products' },
   { label: 'Careers', to: '/careers' },
   { label: 'Contact', to: '/contact' }]
 
