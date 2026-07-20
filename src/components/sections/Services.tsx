@@ -34,7 +34,7 @@ export function Services() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:auto-rows-[240px]">
           {/* Large Tile */}
           <motion.div
-            className="sm:col-span-2 lg:row-span-2 bg-white dark:bg-surface-800 rounded-3xl p-8 lg:p-10 flex flex-col justify-between border border-gray-100 dark:border-surface-700 shadow-sm"
+            className="sm:col-span-2 lg:row-span-2 bg-white dark:bg-surface-800 rounded-3xl p-8 lg:p-10 flex flex-col justify-between gap-6 border border-gray-100 dark:border-surface-700 shadow-sm"
             initial={{
               opacity: 0,
               y: 20
@@ -66,7 +66,7 @@ export function Services() {
 
           {/* Medium Tile */}
           <motion.div
-            className="sm:col-span-2 bg-brand-green rounded-3xl p-8 flex flex-col justify-between text-white shadow-lg shadow-brand-green/20"
+            className="sm:col-span-2 bg-brand-green rounded-3xl p-8 flex flex-col justify-between gap-6 text-white shadow-lg shadow-brand-green/20"
             initial={{
               opacity: 0,
               y: 20
@@ -97,7 +97,7 @@ export function Services() {
 
           {/* Small Tile 1 */}
           <motion.div
-            className="col-span-1 row-span-1 glass-panel rounded-3xl p-8 flex flex-col justify-between"
+            className="col-span-1 row-span-1 glass-panel rounded-3xl p-8 flex flex-col justify-between gap-6"
             initial={{
               opacity: 0,
               y: 20
@@ -122,7 +122,7 @@ export function Services() {
 
           {/* Small Tile 2 */}
           <motion.div
-            className="col-span-1 row-span-1 bg-white dark:bg-surface-800 rounded-3xl p-8 flex flex-col justify-between border border-gray-100 dark:border-surface-700 shadow-sm"
+            className="col-span-1 row-span-1 bg-white dark:bg-surface-800 rounded-3xl p-8 flex flex-col justify-between gap-6 border border-gray-100 dark:border-surface-700 shadow-sm"
             initial={{
               opacity: 0,
               y: 20

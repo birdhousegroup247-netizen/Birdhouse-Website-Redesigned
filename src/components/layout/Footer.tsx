@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail } from 'lucide-react';
+import { Mail, Twitter, Linkedin, Dribbble, Instagram } from 'lucide-react';
 interface FooterLink {
   label: string;
   to?: string;
@@ -31,16 +31,13 @@ const COLUMNS: FooterColumn[] = [
   { label: 'Mobile Apps', to: '/services' },
   { label: 'Design Systems', to: '/services' }]
 
-},
-{
-  heading: 'Social',
-  links: [
-  { label: 'Twitter', href: '#' },
-  { label: 'LinkedIn', href: '#' },
-  { label: 'Dribbble', href: '#' },
-  { label: 'Instagram', href: '#' }]
-
 }];
+
+const SOCIAL_LINKS = [
+{ label: 'Twitter', icon: Twitter, href: '#' },
+{ label: 'LinkedIn', icon: Linkedin, href: '#' },
+{ label: 'Dribbble', icon: Dribbble, href: '#' },
+{ label: 'Instagram', icon: Instagram, href: '#' }];
 
 function FooterLinkItem({ link }: {link: FooterLink;}) {
   const className = 'hover:text-brand-green transition-colors';
@@ -105,6 +102,22 @@ export function Footer() {
               </ul>
             </div>
           )}
+
+          <div className="col-span-2 sm:col-span-2">
+            <h4 className="font-semibold mb-6">Social</h4>
+            <div className="flex items-center gap-3">
+              {SOCIAL_LINKS.map(({ label, icon: Icon, href }) =>
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                className="w-10 h-10 rounded-full border border-gray-200 dark:border-surface-700 flex items-center justify-center text-text-secondary hover:text-brand-green hover:border-brand-green transition-colors">
+
+                  <Icon className="w-4 h-4" />
+                </a>
+              )}
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-0 sm:justify-between pt-8 border-t border-gray-100 dark:border-surface-800 text-sm text-text-tertiary text-center sm:text-left">

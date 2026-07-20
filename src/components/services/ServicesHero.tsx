@@ -8,7 +8,7 @@ export const ServicesHero = () => {
       {/* Background Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-emerald-50 rounded-full blur-[120px] -z-10 opacity-60"></div>
 
-      <div className="min-h-[90vh] flex flex-col items-center justify-center text-center z-10 pt-32 pb-20">
+      <div className="min-h-[70vh] sm:min-h-[90vh] flex flex-col items-center justify-center text-center z-10 pt-28 sm:pt-32 pb-16 sm:pb-20">
         <motion.h1
           initial={{
             opacity: 0,
@@ -23,7 +23,7 @@ export const ServicesHero = () => {
             delay: 0.1,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="text-6xl md:text-7xl lg:text-[84px] font-extrabold tracking-tight text-surface-900 dark:text-white leading-[1.05] mb-8 text-balance max-w-5xl">
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-[84px] font-extrabold tracking-tight text-surface-900 dark:text-white leading-[1.05] mb-8 text-balance max-w-5xl">
 
           We Build Digital Experiences That Help{' '}
           <span className="text-emerald-500">Businesses Grow.</span>
@@ -43,8 +43,8 @@ export const ServicesHero = () => {
             delay: 0.2,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="text-xl md:text-2xl text-surface-500 dark:text-surface-400 max-w-3xl mx-auto mb-12 leading-relaxed text-balance font-medium">
-          
+          className="text-base sm:text-xl md:text-2xl text-surface-500 dark:text-surface-400 max-w-3xl mx-auto mb-12 leading-relaxed text-balance font-medium">
+
           From strategy and consulting to product design and software
           development, we partner with ambitious businesses to transform ideas
           into intuitive, scalable digital products.
