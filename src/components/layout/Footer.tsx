@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Twitter, Linkedin, Dribbble, Instagram } from 'lucide-react';
+import { Mail, X as XLogo, Linkedin, Dribbble, Instagram } from 'lucide-react';
 interface FooterLink {
   label: string;
   to?: string;
@@ -34,7 +34,7 @@ const COLUMNS: FooterColumn[] = [
 }];
 
 const SOCIAL_LINKS = [
-{ label: 'Twitter', icon: Twitter, href: '#' },
+{ label: 'X (Twitter)', icon: XLogo, href: '#' },
 { label: 'LinkedIn', icon: Linkedin, href: '#' },
 { label: 'Dribbble', icon: Dribbble, href: '#' },
 { label: 'Instagram', icon: Instagram, href: '#' }];
