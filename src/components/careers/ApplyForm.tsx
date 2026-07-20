@@ -4,7 +4,8 @@ import { useSearchParams } from 'react-router-dom';
 import { CheckCircle2, Paperclip, X } from 'lucide-react';
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
-import { uploadAllToCloudinary, isCloudinaryConfigured } from '../../lib/cloudinary';
+import { uploadAllToCloudinary } from '../../lib/cloudinary';
+import { submitForm } from '../../lib/submitForm';
 
 const MAX_FILE_SIZE_MB = 10;
 const ALLOWED_TYPES = [
@@ -54,10 +55,17 @@ export const ApplyForm = () => {
     setSubmitError('');
     setIsSubmitting(true);
     try {
-      if (isCloudinaryConfigured) {
-        // TODO: once a backend/email service exists, send the resulting
-        // resume URL plus the form fields and role there.
-        await uploadAllToCloudinary([resume]);
+      const [uploaded] = await uploadAllToCloudinary([resume]);
+      try {
+        await submitForm(
+          'job-application',
+          { role, name: form.name, email: form.email, phone: form.phone, portfolio: form.portfolio, message: form.message },
+          [uploaded.url]
+        );
+      } catch (notifyErr) {
+        // The application itself (and resume upload) succeeded; a failed
+        // notification email shouldn't block the applicant's success state.
+        console.error('Failed to send job application notification email:', notifyErr);
       }
       setSubmitted(true);
     } catch (err) {

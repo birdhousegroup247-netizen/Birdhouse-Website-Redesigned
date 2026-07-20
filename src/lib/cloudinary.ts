@@ -1,8 +1,4 @@
-
-const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME as string | undefined;
-const UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET as string | undefined;
-
-export const isCloudinaryConfigured = Boolean(CLOUD_NAME && UPLOAD_PRESET);
+export const isCloudinaryConfigured = true;
 
 export interface CloudinaryUploadResult {
   url: string;
@@ -10,24 +6,38 @@ export interface CloudinaryUploadResult {
   originalFilename: string;
 }
 
+interface SignatureResponse {
+  signature: string;
+  timestamp: number;
+  apiKey: string;
+  cloudName: string;
+  folder: string;
+}
+
+async function getUploadSignature(): Promise<SignatureResponse> {
+  const response = await fetch('/api/cloudinary-signature', { method: 'POST' });
+  if (!response.ok) {
+    throw new Error('Could not prepare file upload. Please try again.');
+  }
+  return response.json();
+}
+
 /**
- * Uploads a single file to Cloudinary using an unsigned upload preset.
- * Requires VITE_CLOUDINARY_CLOUD_NAME and VITE_CLOUDINARY_UPLOAD_PRESET
- * to be set (see .env.example) — the preset must be configured as
- * "Unsigned" in the Cloudinary dashboard. No API secret is ever used
- * client-side.
+ * Uploads a single file to Cloudinary using a signed request. The
+ * signature is generated server-side (see api/cloudinary-signature.ts)
+ * so the Cloudinary API secret never reaches the browser.
  */
 export async function uploadToCloudinary(file: File): Promise<CloudinaryUploadResult> {
-  if (!CLOUD_NAME || !UPLOAD_PRESET) {
-    throw new Error('Cloudinary is not configured. Set VITE_CLOUDINARY_CLOUD_NAME and VITE_CLOUDINARY_UPLOAD_PRESET.');
-  }
+  const { signature, timestamp, apiKey, cloudName, folder } = await getUploadSignature();
 
   const formData = new FormData();
   formData.append('file', file);
-  formData.append('upload_preset', UPLOAD_PRESET);
+  formData.append('api_key', apiKey);
+  formData.append('timestamp', String(timestamp));
+  formData.append('signature', signature);
+  formData.append('folder', folder);
 
-  const resourceType = file.type.startsWith('image/') ? 'image' : 'raw';
-  const endpoint = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/${resourceType}/upload`;
+  const endpoint = `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`;
 
   const response = await fetch(endpoint, {
     method: 'POST',

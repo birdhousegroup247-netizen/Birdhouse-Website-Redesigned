@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, Clock, CheckCircle2 } from 'lucide-react';
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
+import { submitForm } from '../../lib/submitForm';
 
 const INFO = [
 {
@@ -20,6 +21,8 @@ const INFO = [
 export const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const handleChange = (
   field: keyof typeof form) =>
@@ -27,9 +30,18 @@ export const ContactForm = () => {
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitError('');
+    setIsSubmitting(true);
+    try {
+      await submitForm('contact', form);
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -92,8 +104,11 @@ export const ContactForm = () => {
                 className="w-full px-5 py-4 rounded-xl bg-surface-secondary border border-transparent focus:bg-white dark:focus:bg-surface-800 focus:border-brand-green focus:ring-4 focus:ring-brand-green/10 transition-all outline-none text-text-primary placeholder:text-text-tertiary resize-none" />
 
               </div>
-              <Button type="submit" size="lg" className="self-start">
-                Send Message
+              {submitError &&
+            <p className="text-sm text-red-500">{submitError}</p>
+            }
+              <Button type="submit" size="lg" disabled={isSubmitting} className="self-start">
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </Button>
             </form>
           }

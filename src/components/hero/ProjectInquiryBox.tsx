@@ -3,7 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUp, Plus, CheckCircle2, X } from 'lucide-react';
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
-import { uploadAllToCloudinary, isCloudinaryConfigured } from '../../lib/cloudinary';
+import { uploadAllToCloudinary } from '../../lib/cloudinary';
+import { submitForm } from '../../lib/submitForm';
 
 type Step = 'prompt' | 'details' | 'success';
 
@@ -87,15 +88,22 @@ export function ProjectInquiryBox() {
     setSubmitError('');
     setIsSubmitting(true);
     try {
-      if (files.length > 0 && isCloudinaryConfigured) {
-        // TODO: once a backend/email service exists, send these URLs
-        // plus the form fields there instead of just discarding them.
-        await uploadAllToCloudinary(files);
+      const uploaded = files.length > 0 ? await uploadAllToCloudinary(files) : [];
+      try {
+        await submitForm(
+          'project-inquiry',
+          { name, email, phone, category, message },
+          uploaded.map((f) => f.url)
+        );
+      } catch (notifyErr) {
+        // The submission itself (and any files) succeeded; a failed
+        // notification email shouldn't block the user's success state.
+        console.error('Failed to send project inquiry notification email:', notifyErr);
       }
       setStep('success');
     } catch (err) {
       setSubmitError(
-        err instanceof Error ? err.message : 'Something went wrong sending your files. Please try again.'
+        err instanceof Error ? err.message : 'Something went wrong sending your project. Please try again.'
       );
     } finally {
       setIsSubmitting(false);
