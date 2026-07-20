@@ -23,7 +23,7 @@ export function Hero() {
     return () => clearInterval(typingInterval);
   }, []);
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-10 overflow-hidden">
+    <section className="relative min-h-[85vh] sm:min-h-screen flex items-center pt-24 pb-10 overflow-hidden">
       {/* Particle Field Background */}
       <ParticleField />
 
@@ -43,7 +43,7 @@ export function Hero() {
             ease: [0.16, 1, 0.3, 1]
           }}>
 
-          <h1 className="text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-6 whitespace-pre-line text-text-primary min-h-[160px] lg:min-h-[240px]">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-4 sm:mb-6 whitespace-pre-line text-text-primary min-h-[100px] sm:min-h-[140px] lg:min-h-[240px]">
             {typedText}
             <span
               className={`inline-block w-1 h-[1em] bg-brand-green ml-2 align-middle transition-opacity duration-300 ${showCursor ? 'opacity-100' : 'opacity-0'}`} />
@@ -51,7 +51,7 @@ export function Hero() {
           </h1>
 
           <motion.p
-            className="text-lg text-text-secondary leading-relaxed max-w-xl mb-6"
+            className="text-base sm:text-lg text-text-secondary leading-relaxed max-w-xl mb-6"
             initial={{
               opacity: 0
             }}
