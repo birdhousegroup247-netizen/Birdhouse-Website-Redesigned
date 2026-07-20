@@ -8,6 +8,7 @@ import { ServicesPage } from './pages/ServicesPage';
 import { ProductsPage } from './pages/ProductsPage';
 import { ContactPage } from './pages/ContactPage';
 import { CareersPage } from './pages/CareersPage';
+import { JobApplicationPage } from './pages/JobApplicationPage';
 import { ThemeProvider } from './theme/ThemeContext';
 
 // Reset scroll to top whenever the route changes.
@@ -34,6 +35,7 @@ export function App() {
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/careers" element={<CareersPage />} />
+            <Route path="/careers/apply" element={<JobApplicationPage />} />
           </Routes>
 
           <Footer />

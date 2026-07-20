@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowUp, Plus, CheckCircle2, X } from 'lucide-react';
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
+import { uploadAllToCloudinary, isCloudinaryConfigured } from '../../lib/cloudinary';
 
 type Step = 'prompt' | 'details' | 'success';
 
@@ -37,6 +38,8 @@ export function ProjectInquiryBox() {
   const [category, setCategory] = useState('');
   const [files, setFiles] = useState<File[]>([]);
   const [fileError, setFileError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,10 +81,25 @@ export function ProjectInquiryBox() {
     setStep('details');
   };
 
-  const handleDetailsSubmit = (e: React.FormEvent) => {
+  const handleDetailsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !email.trim() || !category) return;
-    setStep('success');
+    setSubmitError('');
+    setIsSubmitting(true);
+    try {
+      if (files.length > 0 && isCloudinaryConfigured) {
+        // TODO: once a backend/email service exists, send these URLs
+        // plus the form fields there instead of just discarding them.
+        await uploadAllToCloudinary(files);
+      }
+      setStep('success');
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error ? err.message : 'Something went wrong sending your files. Please try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -214,15 +232,20 @@ export function ProjectInquiryBox() {
               </select>
             </div>
           </div>
+          {submitError &&
+          <p className="text-sm text-red-500">{submitError}</p>
+          }
+
           <div className="flex items-center justify-between pt-2">
             <button
               type="button"
               onClick={() => setStep('prompt')}
-              className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">
+              disabled={isSubmitting}
+              className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors disabled:opacity-40">
               Back
             </button>
-            <Button type="submit" size="md">
-              Send
+            <Button type="submit" size="md" disabled={isSubmitting}>
+              {isSubmitting ? 'Sending...' : 'Send'}
             </Button>
           </div>
         </motion.form>

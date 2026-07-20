@@ -63,7 +63,7 @@ export const OpenPositions = () => {
 
           <div className="relative z-10 flex flex-col items-center gap-3 shrink-0">
             <Link
-              to="/contact"
+              to={`/careers/apply?role=${encodeURIComponent(role.title)}`}
               className="bg-emerald-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-emerald-600 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5">
 
               Apply Now
