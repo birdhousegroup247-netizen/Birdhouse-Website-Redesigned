@@ -23,7 +23,7 @@ export function Hero() {
     return () => clearInterval(typingInterval);
   }, []);
   return (
-    <section className="relative min-h-[70vh] sm:min-h-screen flex items-center pt-24 pb-10 overflow-hidden">
+    <section className="relative min-h-[70vh] sm:min-h-screen flex items-center pt-36 sm:pt-24 pb-10 overflow-hidden">
       {/* Particle Field Background */}
       <ParticleField />
 
