@@ -32,7 +32,7 @@ export const ProjectThree = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
-            <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white leading-tight max-w-2xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-surface-900 dark:text-white leading-tight max-w-2xl">
               Aura Lifestyle
             </h2>
             <div className="flex flex-wrap gap-2 max-w-sm sm:justify-end">

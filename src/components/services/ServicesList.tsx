@@ -37,7 +37,7 @@ export const ServicesList = () => {
                 </span>
               </div>
 
-              <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white mb-8 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-surface-900 dark:text-white mb-6 sm:mb-8 leading-tight">
                 Laying the foundation for scalable growth.
               </h2>
 
@@ -137,7 +137,7 @@ export const ServicesList = () => {
               Design & Experience
             </span>
           </div>
-          <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white leading-tight max-w-3xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-surface-900 dark:text-white leading-tight max-w-3xl">
             Crafting intuitive interfaces that users love.
           </h2>
         </motion.div>
@@ -307,7 +307,7 @@ export const ServicesList = () => {
                   </span>
                 </div>
 
-                <h2 className="text-5xl font-extrabold text-surface-900 mb-12 leading-tight">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-surface-900 mb-8 sm:mb-12 leading-tight">
                   Robust software built for scale.
                 </h2>
 
@@ -524,7 +524,7 @@ export const ServicesList = () => {
                 </span>
               </div>
 
-              <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white mb-8 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-surface-900 dark:text-white mb-6 sm:mb-8 leading-tight">
                 Future-proofing your business.
               </h2>
 

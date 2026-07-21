@@ -86,7 +86,7 @@ export function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="mailto:birdhousegroup247@gmail.com"
                 aria-label="Email us"
                 className="w-10 h-10 rounded-full bg-surface-secondary flex items-center justify-center text-text-secondary hover:bg-brand-green hover:text-white transition-colors">
 

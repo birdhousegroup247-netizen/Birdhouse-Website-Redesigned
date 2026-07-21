@@ -31,10 +31,10 @@ export const ProjectTwo = () => {
             <span className="text-surface-500 dark:text-surface-400 font-medium text-sm">2024</span>
           </div>
 
-          <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-surface-900 dark:text-white mb-4 sm:mb-6 leading-tight">
             Nexus Workspace
           </h2>
-          <p className="text-xl text-surface-500 dark:text-surface-400 leading-relaxed">
+          <p className="text-base sm:text-xl text-surface-500 dark:text-surface-400 leading-relaxed">
             A unified collaboration platform designed to break down silos in
             enterprise teams. We delivered a scalable design system and a
             seamless cross-device experience.

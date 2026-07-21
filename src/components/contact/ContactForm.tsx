@@ -9,7 +9,7 @@ const INFO = [
 {
   icon: Mail,
   label: 'Email',
-  value: 'hello@birdhousegroup.com'
+  value: 'birdhousegroup247@gmail.com'
 },
 {
   icon: Clock,

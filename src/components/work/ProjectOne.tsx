@@ -33,7 +33,7 @@ export const ProjectOne = () => {
               <span className="text-surface-500 dark:text-surface-400 font-medium text-sm">2023</span>
             </div>
 
-            <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white mb-8 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-surface-900 dark:text-white mb-6 sm:mb-8 leading-tight">
               PayFlow Pro
             </h2>
 

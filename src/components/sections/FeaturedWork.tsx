@@ -26,7 +26,7 @@ export function FeaturedWork() {
             ease: [0.16, 1, 0.3, 1]
           }}>
           
-          <h2 className="text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 sm:mb-6">
             Selected Work
           </h2>
           <p className="text-xl text-text-secondary max-w-2xl">

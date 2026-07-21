@@ -25,10 +25,10 @@ export const OpenPositions = () => {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="mb-16">
 
-        <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white mb-4 leading-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-surface-900 dark:text-white mb-4 leading-tight">
           Open Positions
         </h2>
-        <p className="text-xl text-surface-500 dark:text-surface-400">
+        <p className="text-base sm:text-xl text-surface-500 dark:text-surface-400">
           Come join the team!
         </p>
       </motion.div>

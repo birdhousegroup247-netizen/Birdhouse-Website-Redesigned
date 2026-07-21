@@ -28,7 +28,7 @@ export function Process() {
         <div className="lg:col-span-5 relative">
           <div className="lg:sticky lg:top-40">
             <motion.h2
-              className="text-5xl font-bold tracking-tight mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 sm:mb-6"
               initial={{
                 opacity: 0,
                 y: 20

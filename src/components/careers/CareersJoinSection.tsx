@@ -27,7 +27,7 @@ export const CareersJoinSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 via-emerald-400 to-white">
+          className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 bg-clip-text text-transparent bg-gradient-to-r from-emerald-300 via-emerald-400 to-white">
 
           Join a team that builds the work that matters.
         </motion.h2>

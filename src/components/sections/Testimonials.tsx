@@ -6,7 +6,7 @@ export function Testimonials() {
     <section className="py-32 bg-surface-secondary overflow-hidden">
       <div className="max-w-desktop mx-auto px-6 md:px-12">
         <motion.div
-          className="text-center mb-24"
+          className="text-center mb-14 sm:mb-24"
           initial={{
             opacity: 0,
             y: 20
@@ -23,10 +23,10 @@ export function Testimonials() {
             ease: [0.16, 1, 0.3, 1]
           }}>
           
-          <h2 className="text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 sm:mb-6">
             Client Stories
           </h2>
-          <p className="text-xl text-text-secondary max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-text-secondary max-w-2xl mx-auto">
             Don't just take our word for it. Hear from the teams we've partnered
             with.
           </p>

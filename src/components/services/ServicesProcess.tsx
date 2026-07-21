@@ -56,10 +56,10 @@ export const ServicesProcess = () => {
             ease: [0.16, 1, 0.3, 1]
           }}>
           
-          <h2 className="text-5xl font-extrabold text-surface-900 dark:text-white mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-surface-900 dark:text-white mb-4 sm:mb-6 leading-tight">
             Our Collaborative Process
           </h2>
-          <p className="text-xl text-surface-500 dark:text-surface-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl text-surface-500 dark:text-surface-400 max-w-3xl mx-auto leading-relaxed">
             A transparent, iterative approach designed to minimize risk and
             deliver exceptional results on time and on budget.
           </p>
