@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { Badge } from './Badge';
 interface PortfolioCardProps {
@@ -7,20 +8,24 @@ interface PortfolioCardProps {
   category: string;
   title: string;
   client: string;
+  to: string;
 }
 export function PortfolioCard({
   image,
   category,
   title,
-  client
+  client,
+  to
 }: PortfolioCardProps) {
   return (
     <motion.div
       whileHover={{
         y: -10
       }}
-      className="group cursor-pointer">
-      
+      className="group">
+
+      <Link to={to} className="cursor-pointer">
+
       <div className="relative overflow-hidden rounded-2xl aspect-[4/3] mb-6">
         <img
           src={image}
@@ -46,6 +51,7 @@ export function PortfolioCard({
       <h3 className="text-2xl font-semibold text-text-primary group-hover:text-brand-green transition-colors">
         {title}
       </h3>
+      </Link>
     </motion.div>);
 
 }

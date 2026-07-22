@@ -1,4 +1,5 @@
 export interface Project {
+  slug: string;
   client: string;
   category: string;
   year: string;
@@ -12,6 +13,7 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
 {
+  slug: 'britelite-innovations',
   client: 'Britelite Innovations',
   category: 'EdTech / Training',
   year: '2024',
@@ -25,6 +27,7 @@ export const PROJECTS: Project[] = [
   images: ['/images/work/britelite-innovations.png']
 },
 {
+  slug: 'nextcrib',
   client: 'NextCrib',
   category: 'PropTech / Real Estate',
   year: '2024',
@@ -38,6 +41,7 @@ export const PROJECTS: Project[] = [
   images: ['/images/work/nextcrib.png']
 },
 {
+  slug: 'amanda-malls',
   client: 'Amanda Malls',
   category: 'E-Commerce',
   year: '2023',
@@ -51,6 +55,7 @@ export const PROJECTS: Project[] = [
   images: ['/images/work/amanda-malls.png']
 },
 {
+  slug: 'nexus-ai-summit',
   client: 'Nexus AI Summit',
   category: 'Events / Conference',
   year: '2025',
@@ -64,6 +69,7 @@ export const PROJECTS: Project[] = [
   images: ['/images/work/nexus-ai-summit.png', '/images/work/nexus-ai-summit-mobile.png']
 },
 {
+  slug: 'statisda',
   client: 'Statisda',
   category: 'SaaS / Productivity',
   year: '2024',
@@ -77,6 +83,7 @@ export const PROJECTS: Project[] = [
   images: ['/images/work/statisda.png']
 },
 {
+  slug: 'udemy-inter-school',
   client: 'Udemy Inter. School',
   category: 'EdTech / School Management',
   year: '2023',
@@ -88,4 +95,18 @@ export const PROJECTS: Project[] = [
   highlights: ['Searchable data tables', 'CSV export', 'Unified admin workflow'],
   tech: ['React', 'Tailwind CSS', 'PostgreSQL'],
   images: ['/images/work/udemy-inter-school.png']
+},
+{
+  slug: 'vyberate',
+  client: 'Vyberate',
+  category: 'Fintech / Currency Exchange',
+  year: '2025',
+  title: 'Secure peer-to-peer currency exchange',
+  challenge:
+  'Vyberate needed both a trustworthy consumer app for peer-to-peer currency exchange between traders, and a robust internal system to monitor escrowed funds, verify users, and resolve disputes at scale.',
+  solution:
+  'We built a dual-surface product: a mobile wallet app showing live exchange offers, verified-trader badges, and escrow-protected balances, paired with an admin dashboard giving operations teams full visibility into active escrows, pending releases, and disputes from one screen.',
+  highlights: ['Escrow-protected transactions', 'Live exchange offer marketplace', 'Full admin oversight dashboard'],
+  tech: ['React', 'Tailwind CSS', 'Node.js'],
+  images: ['/images/work/vyberate.png']
 }];

@@ -4,6 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { PortfolioCard } from '../ui/PortfolioCard';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '../ui/Button';
+import { PROJECTS } from '../../data/projects';
+
+const FEATURED_SLUGS = ['nextcrib', 'amanda-malls', 'nexus-ai-summit'];
+const [featuredLarge, featuredSmall, featuredThird] = FEATURED_SLUGS.map(
+  (slug) => PROJECTS.find((p) => p.slug === slug)!
+);
+
 export function FeaturedWork() {
   const navigate = useNavigate();
   return (
@@ -47,31 +54,34 @@ export function FeaturedWork() {
         {/* Large Feature */}
         <div className="lg:col-span-8">
           <PortfolioCard
-            image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
-            category="Fintech"
-            client="Stripe"
-            title="Next-generation payment dashboard" />
+            image={featuredLarge.images[0]}
+            category={featuredLarge.category}
+            client={featuredLarge.client}
+            title={featuredLarge.title}
+            to={`/work#${featuredLarge.slug}`} />
 
         </div>
 
         {/* Offset Smaller Feature */}
         <div className="lg:col-span-4 lg:mt-32">
           <PortfolioCard
-            image="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=2070&auto=format&fit=crop"
-            category="Enterprise"
-            client="Linear"
-            title="Issue tracking for high-performing teams" />
+            image={featuredSmall.images[0]}
+            category={featuredSmall.category}
+            client={featuredSmall.client}
+            title={featuredSmall.title}
+            to={`/work#${featuredSmall.slug}`} />
 
         </div>
 
         {/* Third Feature */}
         <div className="lg:col-span-6 lg:col-start-2 lg:mt-10">
           <PortfolioCard
-            image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop"
-            category="Healthcare"
-            client="Oura"
-            title="Health data visualization platform" />
-          
+            image={featuredThird.images[0]}
+            category={featuredThird.category}
+            client={featuredThird.client}
+            title={featuredThird.title}
+            to={`/work#${featuredThird.slug}`} />
+
         </div>
       </div>
     </section>);

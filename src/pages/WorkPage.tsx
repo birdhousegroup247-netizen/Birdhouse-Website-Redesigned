@@ -8,7 +8,7 @@ export function WorkPage() {
     <main className="bg-surface-secondary">
       <WorkHero />
       {PROJECTS.map((project, i) =>
-      <ProjectCase key={project.client} project={project} reverse={i % 2 === 1} first={i === 0} />
+      <ProjectCase key={project.slug} project={project} reverse={i % 2 === 1} />
       )}
       <CtaSection />
     </main>);

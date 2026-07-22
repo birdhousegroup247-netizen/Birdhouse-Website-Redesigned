@@ -4,14 +4,12 @@ import { Project } from '../../data/projects';
 
 export function ProjectCase({
   project,
-  reverse,
-  first
+  reverse
 
 
-
-}: {project: Project;reverse: boolean;first?: boolean;}) {
+}: {project: Project;reverse: boolean;}) {
   return (
-    <section id={first ? 'work' : undefined} className="py-20 lg:py-28 px-6 md:px-12 max-w-desktop mx-auto">
+    <section id={project.slug} className="py-20 lg:py-28 px-6 md:px-12 max-w-desktop mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -87,12 +85,16 @@ export function ProjectCase({
           className={`lg:col-span-7 flex flex-col gap-4 ${reverse ? 'lg:order-1' : ''}`}>
 
           {project.images.map((src) =>
-          <img
+          <div
             key={src}
-            src={src}
-            alt={`${project.client} project screenshot`}
-            className="w-full h-auto rounded-2xl shadow-xl border border-surface-200 dark:border-surface-700" />
+            className="group relative overflow-hidden rounded-2xl shadow-xl border border-surface-200 dark:border-surface-700">
 
+              <img
+              src={src}
+              alt={`${project.client} project screenshot`}
+              className="w-full h-auto transition-transform duration-700 group-hover:scale-105" />
+
+            </div>
           )}
         </motion.div>
       </div>
