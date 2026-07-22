@@ -1,4 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import nodemailer from 'nodemailer';
 
 type FormType = 'contact' | 'project-inquiry' | 'job-application';
 
@@ -28,11 +29,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  const resendApiKey = process.env.RESEND_API_KEY;
+  const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com';
+  const smtpPort = Number(process.env.SMTP_PORT || 465);
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASS;
   const notifyTo = process.env.NOTIFY_EMAIL_TO;
-  const fromAddress = process.env.NOTIFY_EMAIL_FROM || 'Birdhouse Website <onboarding@resend.dev>';
+  const fromAddress = process.env.NOTIFY_EMAIL_FROM || smtpUser;
 
-  if (!resendApiKey || !notifyTo) {
+  if (!smtpUser || !smtpPass || !notifyTo) {
     res.status(500).json({ error: 'Email notifications are not configured on the server.' });
     return;
   }
@@ -58,25 +62,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const html = `<table>${rows}</table>${filesHtml}`;
 
   try {
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${resendApiKey}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from: fromAddress,
-        to: notifyTo,
-        subject: SUBJECTS[formType],
-        html
-      })
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpPort === 465,
+      auth: { user: smtpUser, pass: smtpPass }
     });
 
-    if (!response.ok) {
-      const detail = await response.json().catch(() => null);
-      res.status(502).json({ error: detail?.message || 'Failed to send notification email.' });
-      return;
-    }
+    await transporter.sendMail({
+      from: fromAddress,
+      to: notifyTo,
+      subject: SUBJECTS[formType],
+      html
+    });
 
     res.status(200).json({ success: true });
   } catch (err) {
