@@ -1,16 +1,15 @@
 import React from 'react';
 import { WorkHero } from '../components/work/WorkHero';
-import { ProjectOne } from '../components/work/ProjectOne';
-import { ProjectTwo } from '../components/work/ProjectTwo';
-import { ProjectThree } from '../components/work/ProjectThree';
+import { ProjectCase } from '../components/work/ProjectCase';
 import { CtaSection } from '../components/shared/CtaSection';
+import { PROJECTS } from '../data/projects';
 export function WorkPage() {
   return (
     <main className="bg-surface-secondary">
       <WorkHero />
-      <ProjectOne />
-      <ProjectTwo />
-      <ProjectThree />
+      {PROJECTS.map((project, i) =>
+      <ProjectCase key={project.client} project={project} reverse={i % 2 === 1} first={i === 0} />
+      )}
       <CtaSection />
     </main>);
 
