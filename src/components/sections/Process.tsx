@@ -5,7 +5,7 @@ const STEPS = [
   num: '01',
   title: 'Discover',
   desc: 'We dive deep into your business goals, user needs, and technical constraints to define a clear product strategy.',
-  img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop'
+  img: '/images/birdhouse-team.webp'
 },
 {
   num: '02',

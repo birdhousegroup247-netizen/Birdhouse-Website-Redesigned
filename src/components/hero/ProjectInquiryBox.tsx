@@ -5,17 +5,9 @@ import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
 import { uploadAllToCloudinary } from '../../lib/cloudinary';
 import { submitForm } from '../../lib/submitForm';
+import { PROJECT_CATEGORIES } from '../../data/categories';
 
 type Step = 'prompt' | 'details' | 'success';
-
-const CATEGORIES = [
-'Web Application',
-'Mobile Application',
-'E-commerce Platform',
-'SaaS Product',
-'MVP Development',
-'Custom Solution',
-'Consultation'];
 
 const MAX_FILES = 5;
 const MAX_FILE_SIZE_MB = 10;
@@ -232,7 +224,7 @@ export function ProjectInquiryBox() {
                 className="w-full px-5 py-4 rounded-xl bg-surface-secondary border border-transparent focus:bg-white dark:focus:bg-surface-800 focus:border-brand-green focus:ring-4 focus:ring-brand-green/10 transition-all outline-none text-text-primary">
 
                 <option value="">Select an option...</option>
-                {CATEGORIES.map((c) =>
+                {PROJECT_CATEGORIES.map((c) =>
                 <option key={c} value={c}>
                     {c}
                   </option>

@@ -1,7 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import nodemailer from 'nodemailer';
-
-type FormType = 'contact' | 'project-inquiry' | 'job-application';
+import { buildNotificationEmail, buildAutoReplyEmail, FormType } from './_lib/email';
 
 interface SubmissionPayload {
   formType: FormType;
@@ -9,19 +8,7 @@ interface SubmissionPayload {
   fileUrls?: string[];
 }
 
-const SUBJECTS: Record<FormType, string> = {
-  contact: 'New contact form submission',
-  'project-inquiry': 'New project inquiry',
-  'job-application': 'New job application'
-};
-
-function escapeHtml(value: string): string {
-  return value.
-  replace(/&/g, '&amp;').
-  replace(/</g, '&lt;').
-  replace(/>/g, '&gt;').
-  replace(/"/g, '&quot;');
-}
+const VALID_FORM_TYPES: FormType[] = ['contact', 'project-inquiry', 'job-application'];
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
@@ -43,41 +30,36 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const { formType, fields, fileUrls } = (req.body || {}) as Partial<SubmissionPayload>;
 
-  if (!formType || !fields || !SUBJECTS[formType]) {
+  if (!formType || !fields || !VALID_FORM_TYPES.includes(formType)) {
     res.status(400).json({ error: 'Missing or invalid form data.' });
     return;
   }
 
-  const rows = Object.entries(fields).
-  map(
-    ([key, value]) =>
-    `<tr><td style="padding:4px 12px 4px 0;font-weight:600;vertical-align:top;">${escapeHtml(key)}</td><td style="padding:4px 0;white-space:pre-wrap;">${escapeHtml(value || '-')}</td></tr>`
-  ).
-  join('');
-
-  const filesHtml = fileUrls?.length ?
-  `<p><strong>Attachments:</strong></p><ul>${fileUrls.map((url) => `<li><a href="${url}">${escapeHtml(url)}</a></li>`).join('')}</ul>` :
-  '';
-
-  const html = `<table>${rows}</table>${filesHtml}`;
+  const transporter = nodemailer.createTransport({
+    host: smtpHost,
+    port: smtpPort,
+    secure: smtpPort === 465,
+    auth: { user: smtpUser, pass: smtpPass }
+  });
 
   try {
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpPort === 465,
-      auth: { user: smtpUser, pass: smtpPass }
-    });
-
-    await transporter.sendMail({
-      from: fromAddress,
-      to: notifyTo,
-      subject: SUBJECTS[formType],
-      html
-    });
-
-    res.status(200).json({ success: true });
+    const { subject, html } = buildNotificationEmail(formType, fields, fileUrls);
+    await transporter.sendMail({ from: fromAddress, to: notifyTo, subject, html });
   } catch (err) {
     res.status(502).json({ error: err instanceof Error ? err.message : 'Failed to send notification email.' });
+    return;
   }
+
+  if (fields.email) {
+    try {
+      const { subject, html } = buildAutoReplyEmail(formType, fields.name);
+      await transporter.sendMail({ from: fromAddress, to: fields.email, subject, html });
+    } catch (err) {
+      // The critical notification already succeeded; a failed auto-reply
+      // shouldn't fail the whole submission for the person filling the form.
+      console.error('Failed to send auto-reply email:', err);
+    }
+  }
+
+  res.status(200).json({ success: true });
 }

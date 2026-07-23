@@ -5,7 +5,7 @@ export const CareersJoinSection = () => {
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
       <img
-        src="/images/careers-hero-1.jpg"
+        src="/images/careers-hero-1.webp"
         alt=""
         className="absolute inset-0 w-full h-full object-cover" />
 

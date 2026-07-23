@@ -68,7 +68,7 @@ export const ServicesList = () => {
 
           <div className="lg:col-span-7 relative h-[340px] sm:h-[440px] lg:h-[700px] rounded-[2.5rem] overflow-hidden group">
             <img
-              src="/images/birdhouse-services-hero-image.jpeg"
+              src="/images/birdhouse-services-hero-image.webp"
               alt="Birdhouse team member working on a laptop"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
 

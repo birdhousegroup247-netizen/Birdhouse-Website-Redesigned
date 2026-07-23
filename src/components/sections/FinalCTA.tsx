@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '../ui/Button';
 export function FinalCTA() {
+  const navigate = useNavigate();
   return (
     <section id="cta" className="py-32 max-w-desktop mx-auto px-6 md:px-12">
       <motion.div
@@ -39,7 +41,7 @@ export function FinalCTA() {
             Partner with us to design and develop your next digital product.
             Let's create an experience your users will love.
           </p>
-          <Button variant="glass" size="lg" icon={ArrowRight}>
+          <Button variant="glass" size="lg" icon={ArrowRight} onClick={() => navigate('/get-started')}>
             Get in touch
           </Button>
         </div>

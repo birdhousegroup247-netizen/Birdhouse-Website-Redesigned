@@ -24,7 +24,7 @@ export const PROJECTS: Project[] = [
   'We designed a structured marketing site anchored by a confident hero statement, with dedicated Vision and Mission framing and a three-column services breakdown so prospective students can quickly find the right offering, backed by a course showcase to drive registrations.',
   highlights: ['Clear service segmentation', 'Course discovery section', 'Conversion-focused hero'],
   tech: ['React', 'Tailwind CSS', 'Framer Motion'],
-  images: ['/images/work/britelite-innovations.png']
+  images: ['/images/work/britelite-innovations.webp']
 },
 {
   slug: 'nextcrib',
@@ -38,7 +38,7 @@ export const PROJECTS: Project[] = [
   'We built a dark, editorial-style sidebar layout paired with a rich filtering search bar embedded directly in the hero, and a recommended-listings grid that surfaces high-quality photography first, giving the product a premium, boutique feel.',
   highlights: ['Advanced filter search', 'Localized currency support', 'Editorial-style listing cards'],
   tech: ['React', 'Tailwind CSS', 'Node.js'],
-  images: ['/images/work/nextcrib.png']
+  images: ['/images/work/nextcrib.webp']
 },
 {
   slug: 'amanda-malls',
@@ -52,7 +52,7 @@ export const PROJECTS: Project[] = [
   'We designed a full-bleed editorial hero for each category, paired with a clean shop-by-category grid and dual CTAs so merchandising teams can promote timely offers without disrupting the everyday browsing experience.',
   highlights: ['Category-first navigation', 'Flash-deals merchandising', 'Editorial hero imagery'],
   tech: ['Next.js', 'Tailwind CSS', 'Shopify'],
-  images: ['/images/work/amanda-malls.png']
+  images: ['/images/work/amanda-malls.webp']
 },
 {
   slug: 'nexus-ai-summit',
@@ -66,7 +66,7 @@ export const PROJECTS: Project[] = [
   'We built a high-contrast dark theme anchored by an oversized type treatment and a floating geometric mark for visual identity, with a responsive layout that carries the same energy from desktop through to mobile without losing hierarchy.',
   highlights: ['Bold typographic identity', 'Sponsor showcase', 'Fully responsive agenda layout'],
   tech: ['React', 'Tailwind CSS', 'Framer Motion'],
-  images: ['/images/work/nexus-ai-summit.png', '/images/work/nexus-ai-summit-mobile.png']
+  images: ['/images/work/nexus-ai-summit.webp', '/images/work/nexus-ai-summit-mobile.webp']
 },
 {
   slug: 'statisda',
@@ -80,7 +80,7 @@ export const PROJECTS: Project[] = [
   'We paired a confident hero statement with a live product preview docked directly beneath the fold, letting visitors see the real Kanban board in context immediately, backed by a trusted-by logo strip to build credibility.',
   highlights: ['Embedded live product preview', 'Trust-building social proof', 'Clear onboarding CTA'],
   tech: ['React', 'Tailwind CSS', 'PostgreSQL'],
-  images: ['/images/work/statisda.png']
+  images: ['/images/work/statisda.webp']
 },
 {
   slug: 'udemy-inter-school',
@@ -94,7 +94,7 @@ export const PROJECTS: Project[] = [
   "We designed a dense but scannable data table with instant search and filtering, CSV export for reporting, and a persistent sidebar covering the school's full administrative workflow from one place.",
   highlights: ['Searchable data tables', 'CSV export', 'Unified admin workflow'],
   tech: ['React', 'Tailwind CSS', 'PostgreSQL'],
-  images: ['/images/work/udemy-inter-school.png']
+  images: ['/images/work/udemy-inter-school.webp']
 },
 {
   slug: 'vyberate',
@@ -108,5 +108,5 @@ export const PROJECTS: Project[] = [
   'We built a dual-surface product: a mobile wallet app showing live exchange offers, verified-trader badges, and escrow-protected balances, paired with an admin dashboard giving operations teams full visibility into active escrows, pending releases, and disputes from one screen.',
   highlights: ['Escrow-protected transactions', 'Live exchange offer marketplace', 'Full admin oversight dashboard'],
   tech: ['React', 'Tailwind CSS', 'Node.js'],
-  images: ['/images/work/vyberate.png']
+  images: ['/images/work/vyberate.webp']
 }];

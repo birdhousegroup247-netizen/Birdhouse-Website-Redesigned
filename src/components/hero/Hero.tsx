@@ -84,13 +84,7 @@ export function Hero() {
               delay: 1.8
             }}>
 
-            <Button
-              size="lg"
-              onClick={() =>
-              document.getElementById('cta')?.scrollIntoView({
-                behavior: 'smooth'
-              })
-              }>
+            <Button size="lg" onClick={() => navigate('/get-started')}>
               Start a Project
             </Button>
             <Button

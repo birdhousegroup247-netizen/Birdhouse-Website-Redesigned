@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Calendar, BarChart3, Activity } from 'lucide-react';
 import { DesktopMockup, MobileMockup } from '../shared/Mockups';
 export const ServicesHero = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative pb-32 px-6 md:px-12 max-w-desktop mx-auto overflow-hidden">
       {/* Background Elements */}
@@ -67,11 +69,7 @@ export const ServicesHero = () => {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
 
           <button
-            onClick={() =>
-            document.getElementById('cta')?.scrollIntoView({
-              behavior: 'smooth'
-            })
-            }
+            onClick={() => navigate('/get-started')}
             className="group flex items-center justify-center gap-2 w-full sm:w-auto whitespace-nowrap bg-emerald-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-emerald-600 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5">
 
             Start a Project

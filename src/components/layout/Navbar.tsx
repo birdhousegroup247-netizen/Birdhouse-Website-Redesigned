@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { ThemeToggle } from '../ui/ThemeToggle';
@@ -15,6 +15,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     handleScroll();
@@ -24,9 +25,9 @@ export function Navbar() {
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
-  const scrollToCta = () => {
+  const goToGetStarted = () => {
     setMenuOpen(false);
-    document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+    navigate('/get-started');
   };
   const isActive = (to: string) =>
   to === '/' ? pathname === '/' : pathname.startsWith(to);
@@ -75,7 +76,7 @@ export function Navbar() {
 
           <div className="flex items-center gap-3 sm:gap-4">
             <ThemeToggle />
-            <Button variant="primary" size="sm" onClick={scrollToCta} className="hidden sm:inline-flex">
+            <Button variant="primary" size="sm" onClick={goToGetStarted} className="hidden sm:inline-flex">
               Start a Project
             </Button>
             <button
@@ -109,7 +110,7 @@ export function Navbar() {
                 {link.label}
               </Link>
             )}
-            <Button variant="primary" size="sm" onClick={scrollToCta} className="w-full sm:hidden">
+            <Button variant="primary" size="sm" onClick={goToGetStarted} className="w-full sm:hidden">
               Start a Project
             </Button>
           </motion.div>

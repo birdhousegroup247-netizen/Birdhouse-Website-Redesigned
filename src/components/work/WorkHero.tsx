@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 export const WorkHero = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative min-h-[70vh] sm:min-h-[90vh] flex items-center justify-center pt-28 sm:pt-32 pb-16 sm:pb-20 px-6 md:px-12 overflow-hidden">
       {/* Background Elements */}
@@ -66,13 +68,9 @@ export const WorkHero = () => {
           className="flex flex-col sm:flex-row items-center justify-center gap-4">
           
           <button
-            onClick={() =>
-            document.getElementById('cta')?.scrollIntoView({
-              behavior: 'smooth'
-            })
-            }
+            onClick={() => navigate('/get-started')}
             className="group flex items-center gap-2 bg-emerald-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-emerald-600 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5">
-            
+
             Start a Project
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>

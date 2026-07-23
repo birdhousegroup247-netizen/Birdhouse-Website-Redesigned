@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 export const CtaSection = () => {
+  const navigate = useNavigate();
   return (
     <section id="cta" className="py-32 px-6 md:px-12 max-w-desktop mx-auto">
       <motion.div
@@ -36,7 +38,9 @@ export const CtaSection = () => {
             with world-class design and engineering.
           </p>
 
-          <button className="group inline-flex items-center gap-2 bg-emerald-500 text-white px-6 sm:px-10 py-4 sm:py-5 rounded-full text-base sm:text-xl font-bold hover:bg-emerald-400 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/40 hover:-translate-y-1 w-full sm:w-auto justify-center">
+          <button
+            onClick={() => navigate('/get-started')}
+            className="group inline-flex items-center gap-2 bg-emerald-500 text-white px-6 sm:px-10 py-4 sm:py-5 rounded-full text-base sm:text-xl font-bold hover:bg-emerald-400 transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/40 hover:-translate-y-1 w-full sm:w-auto justify-center">
             Start a Project
             <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </button>
