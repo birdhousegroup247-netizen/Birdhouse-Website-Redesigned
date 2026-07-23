@@ -9,6 +9,7 @@ export interface Project {
   highlights: string[];
   tech: string[];
   images: string[];
+  liveUrl?: string;
 }
 
 export const PROJECTS: Project[] = [
@@ -24,7 +25,8 @@ export const PROJECTS: Project[] = [
   'We designed a structured marketing site anchored by a confident hero statement, with dedicated Vision and Mission framing and a three-column services breakdown so prospective students can quickly find the right offering, backed by a course showcase to drive registrations.',
   highlights: ['Clear service segmentation', 'Course discovery section', 'Conversion-focused hero'],
   tech: ['React', 'Tailwind CSS', 'Framer Motion'],
-  images: ['/images/work/britelite-innovations.webp']
+  images: ['/images/work/britelite-innovations.webp'],
+  liveUrl: 'https://briteliteinnovations.com/'
 },
 {
   slug: 'nextcrib',

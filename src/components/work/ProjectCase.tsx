@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import { Project } from '../../data/projects';
 
 export function ProjectCase({
@@ -75,6 +76,18 @@ export function ProjectCase({
               </span>
             )}
           </div>
+
+          {project.liveUrl &&
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 mt-6 text-sm font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors w-fit">
+
+              Visit Live Site
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          }
         </motion.div>
 
         <motion.div
