@@ -17,7 +17,7 @@ const STEPS = [
   num: '03',
   title: 'Build',
   desc: 'We develop scalable, performant software using modern technologies, ensuring a seamless experience across all devices.',
-  img: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=2070&auto=format&fit=crop'
+  img: '/images/birdhouse-systems.webp'
 }];
 
 export function Process() {

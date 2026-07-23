@@ -1,6 +1,5 @@
 export type FormType = 'contact' | 'project-inquiry' | 'job-application';
 
-const BRAND_GREEN = '#0F9D58';
 const BRAND_GREEN_DARK = '#0B7A44';
 
 const NOTIFY_SUBJECTS: Record<FormType, string> = {
@@ -44,8 +43,12 @@ function emailShell(bodyHtml: string): string {
     <td align="center">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background-color:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e5e7eb;">
         <tr>
-          <td style="background-color:#111111;padding:24px 32px;">
-            <span style="font-size:20px;font-weight:800;color:#ffffff;letter-spacing:-0.02em;">Birdhouse <span style="color:${BRAND_GREEN};">Group</span></span>
+          <td style="background-color:#18181B;padding:24px 32px;">
+            <img
+              src="https://birdhousegroup.org/images/logo/logo-white.png"
+              alt="Birdhouse Group"
+              width="140"
+              style="display:block;width:140px;height:auto;border:0;outline:none;text-decoration:none;" />
           </td>
         </tr>
         <tr>
