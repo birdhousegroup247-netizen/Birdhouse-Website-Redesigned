@@ -6,7 +6,7 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { PROJECTS } from '../../data/projects';
 
-const FEATURED_SLUGS = ['nextcrib', 'amanda-malls', 'nexus-ai-summit'];
+const FEATURED_SLUGS = ['britelite-innovations', 'amanda-malls', 'nexus-ai-summit'];
 const [featuredLarge, featuredSmall, featuredThird] = FEATURED_SLUGS.map(
   (slug) => PROJECTS.find((p) => p.slug === slug)!
 );
