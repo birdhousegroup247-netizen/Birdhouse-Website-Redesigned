@@ -1,5 +1,6 @@
 export type FormType = 'contact' | 'project-inquiry' | 'job-application';
 
+const BRAND_GREEN = '#0F9D58';
 const BRAND_GREEN_DARK = '#0B7A44';
 
 const NOTIFY_SUBJECTS: Record<FormType, string> = {
@@ -15,17 +16,18 @@ const NOTIFY_HEADINGS: Record<FormType, string> = {
 };
 
 const AUTO_REPLY_SUBJECTS: Record<FormType, string> = {
-  contact: "We've received your message — Birdhouse Group",
-  'project-inquiry': "We've received your project — Birdhouse Group",
-  'job-application': "We've received your application — Birdhouse Group"
+  contact: "We've received your request — Birdhouse Group",
+  'project-inquiry': "We've received your request — Birdhouse Group",
+  'job-application': "We've received your request — Birdhouse Group"
 };
 
 const AUTO_REPLY_MESSAGES: Record<FormType, string> = {
-  contact: "Thanks for reaching out. We've received your message and will get back to you within 24 hours.",
+  contact:
+  "Thank you for reaching out, your message has been received and we will respond in a short while. Please be patient with us as our response could come within 7-24hrs.",
   'project-inquiry':
-  "Thanks for telling us about your project. We've received the details and will be in touch shortly to discuss next steps.",
+  "Thank you for telling us about your project, the details have been received and we will respond in a short while. Please be patient with us as our response could come within 7-24hrs.",
   'job-application':
-  "Thanks for applying. We've received your application and will review it shortly — we'll reach out if there's a good fit."
+  "Thank you for applying, your application has been received and we will review it in a short while. Please be patient with us as our response could come within 7-24hrs."
 };
 
 export function escapeHtml(value: string): string {
@@ -98,11 +100,76 @@ fileUrls?: string[])
 }
 
 export function buildAutoReplyEmail(formType: FormType, name?: string): {subject: string;html: string;} {
-  const firstName = name?.trim().split(' ')[0] || 'there';
-  const body = `
-    <h1 style="margin:0 0 16px;font-size:20px;color:#111111;">Hi ${escapeHtml(firstName)},</h1>
-    <p style="margin:0 0 16px;">${AUTO_REPLY_MESSAGES[formType]}</p>
-    <p style="margin:0;">— The Birdhouse Group Team</p>`;
+  const firstName = escapeHtml(name?.trim().split(' ')[0] || 'there');
+  const year = new Date().getFullYear();
 
-  return { subject: AUTO_REPLY_SUBJECTS[formType], html: emailShell(body) };
+  const html = `
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#E7EFF1;padding:40px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <tr>
+    <td align="center">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;">
+        <tr>
+          <td align="center" style="padding-bottom:28px;">
+            <img
+              src="https://birdhousegroup.org/images/logo/logo-black.png"
+              alt="Birdhouse Group"
+              width="160"
+              style="display:block;width:160px;height:auto;border:0;outline:none;text-decoration:none;" />
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding-bottom:32px;">
+            <p style="margin:0;font-size:26px;line-height:1.4;color:#18181b;">
+              Hi <strong>${firstName}</strong>,<br />
+              <strong>we've received your request!</strong>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:24px;">
+              <tr>
+                <td align="center" style="padding:40px 32px;">
+                  <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 24px;">
+                    <tr>
+                      <td width="56" height="56" bgcolor="${BRAND_GREEN}" style="border-radius:14px;width:56px;height:56px;text-align:center;vertical-align:middle;font-size:24px;line-height:56px;color:#ffffff;">&#10003;</td>
+                    </tr>
+                  </table>
+                  <p style="margin:0 0 20px;color:#52525b;font-size:15px;line-height:1.6;">
+                    ${AUTO_REPLY_MESSAGES[formType]}
+                  </p>
+                  <hr style="border:none;border-top:1px solid #e5e7eb;margin:0 0 20px;" />
+                  <p style="margin:0 0 28px;color:#52525b;font-size:15px;line-height:1.6;">
+                    You can still scan through our website if there are other services that you'd require, including consultation services.
+                  </p>
+                  <a
+                    href="https://birdhousegroup.org/"
+                    style="display:inline-block;background-color:${BRAND_GREEN};color:#ffffff;font-weight:700;font-size:15px;padding:14px 36px;border-radius:999px;text-decoration:none;">
+                    Visit Website
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding:32px 0 8px;">
+            <img src="https://birdhousegroup.org/images/email/social-x.png" width="36" height="36" alt="X" style="display:inline-block;width:36px;height:36px;margin:0 6px;border:0;vertical-align:middle;" />
+            <img src="https://birdhousegroup.org/images/email/social-linkedin.png" width="36" height="36" alt="LinkedIn" style="display:inline-block;width:36px;height:36px;margin:0 6px;border:0;vertical-align:middle;" />
+            <img src="https://birdhousegroup.org/images/email/social-instagram.png" width="36" height="36" alt="Instagram" style="display:inline-block;width:36px;height:36px;margin:0 6px;border:0;vertical-align:middle;" />
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="color:#71717a;font-size:12px;line-height:1.8;padding-top:8px;">
+            Copyright &copy; ${year}<br />
+            <strong style="color:#18181b;">Birdhouse Group</strong><br />
+            Empowering Businesses with solutions that solve real world problems...
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>`;
+
+  return { subject: AUTO_REPLY_SUBJECTS[formType], html };
 }
