@@ -10,6 +10,10 @@ interface SubmissionPayload {
 
 const VALID_FORM_TYPES: FormType[] = ['contact', 'project-inquiry', 'job-application'];
 
+export const config = {
+  maxDuration: 30
+};
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     if (req.method !== 'POST') {
@@ -40,7 +44,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       host: smtpHost,
       port: smtpPort,
       secure: smtpPort === 465,
-      auth: { user: smtpUser, pass: smtpPass }
+      auth: { user: smtpUser, pass: smtpPass },
+      connectionTimeout: 8000,
+      greetingTimeout: 8000,
+      socketTimeout: 8000
     });
 
     try {
