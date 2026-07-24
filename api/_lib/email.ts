@@ -132,7 +132,9 @@ export function buildAutoReplyEmail(formType: FormType, name?: string): {subject
                 <td align="center" style="padding:40px 32px;">
                   <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto 24px;">
                     <tr>
-                      <td width="56" height="56" bgcolor="${BRAND_GREEN}" style="border-radius:14px;width:56px;height:56px;text-align:center;vertical-align:middle;font-size:24px;line-height:56px;color:#ffffff;">&#10003;</td>
+                      <td width="56" height="56">
+                        <img src="https://birdhousegroup.org/images/email/received-icon.png" width="56" height="56" alt="" style="display:block;width:56px;height:56px;border:0;" />
+                      </td>
                     </tr>
                   </table>
                   <p style="margin:0 0 20px;color:#52525b;font-size:15px;line-height:1.6;">
