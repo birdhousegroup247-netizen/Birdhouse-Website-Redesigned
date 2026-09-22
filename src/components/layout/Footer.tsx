@@ -82,7 +82,7 @@ export function Footer() {
             </Link>
             <p className="text-text-secondary mb-8 max-w-sm">
               A premium digital product design and software development studio
-              based in San Francisco.
+              based in Lagos, Nigeria.
             </p>
             <div className="flex gap-4">
               <a
