@@ -3,9 +3,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 
 const SESSION_KEY = 'birdhouse-promotional-popup-seen';
+const DISPLAY_HISTORY_KEY = 'birdhouse-promotional-popup-displays';
 const SHOW_DELAY_MS = 1500;
+const MINIMUM_REPEAT_DELAY_MS = 30 * 60 * 1000;
+const DISPLAY_WINDOW_MS = 24 * 60 * 60 * 1000;
+const MAX_DISPLAYS_PER_WINDOW = 2;
 
-function hasSeenPopup() {
+function hasSeenPopupThisSession() {
   try {
     return sessionStorage.getItem(SESSION_KEY) === 'true';
   } catch {
@@ -13,11 +17,52 @@ function hasSeenPopup() {
   }
 }
 
-function rememberPopup() {
+function rememberPopupThisSession() {
   try {
     sessionStorage.setItem(SESSION_KEY, 'true');
   } catch {
     // The popup can still be dismissed when session storage is unavailable.
+  }
+}
+
+function getRecentDisplayTimes(now: number) {
+  try {
+    const stored = JSON.parse(localStorage.getItem(DISPLAY_HISTORY_KEY) || '[]');
+    if (!Array.isArray(stored)) return [];
+
+    return stored.filter(
+      (timestamp): timestamp is number =>
+      typeof timestamp === 'number' &&
+      Number.isFinite(timestamp) &&
+      timestamp <= now &&
+      timestamp > now - DISPLAY_WINDOW_MS
+    );
+  } catch {
+    return [];
+  }
+}
+
+function isEligibleForPopup(now: number) {
+  if (hasSeenPopupThisSession()) return false;
+
+  const recentDisplays = getRecentDisplayTimes(now);
+  if (recentDisplays.length >= MAX_DISPLAYS_PER_WINDOW) return false;
+  if (recentDisplays.length === 0) return true;
+
+  return now - Math.max(...recentDisplays) >= MINIMUM_REPEAT_DELAY_MS;
+}
+
+function recordPopupDisplay(now: number) {
+  rememberPopupThisSession();
+
+  try {
+    const recentDisplays = getRecentDisplayTimes(now);
+    localStorage.setItem(
+      DISPLAY_HISTORY_KEY,
+      JSON.stringify([...recentDisplays, now])
+    );
+  } catch {
+    // The per-session guard still prevents repeated displays on refresh.
   }
 }
 
@@ -26,10 +71,13 @@ export function PromotionalPopup() {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (hasSeenPopup()) return;
+    if (!isEligibleForPopup(Date.now())) return;
 
     const timeoutId = window.setTimeout(() => {
-      rememberPopup();
+      const now = Date.now();
+      if (!isEligibleForPopup(now)) return;
+
+      recordPopupDisplay(now);
       setIsOpen(true);
     }, SHOW_DELAY_MS);
 
@@ -46,7 +94,7 @@ export function PromotionalPopup() {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        rememberPopup();
+        rememberPopupThisSession();
         setIsOpen(false);
       } else if (event.key === 'Tab') {
         event.preventDefault();
@@ -63,7 +111,7 @@ export function PromotionalPopup() {
   }, [isOpen]);
 
   const handleClose = () => {
-    rememberPopup();
+    rememberPopupThisSession();
     setIsOpen(false);
   };
 
