@@ -1,17 +1,19 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { toPng } from 'html-to-image';
 import { ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 type AnswerKey =
-  'businessType' |
-  'teamSize' |
-  'operationalChallenge' |
-  'websiteState' |
-  'customerManagement' |
-  'hrManagement' |
-  'timeDrain' |
-  'improvementPriority';
+  'industry' |
+  'size' |
+  'challenge' |
+  'website' |
+  'sales' |
+  'hr' |
+  'time' |
+  'improve';
 
 interface Question {
   key: AnswerKey;
@@ -31,7 +33,7 @@ const STEPS: AssessmentStep[] = [
     intro: 'Choose the answer that best describes your business.',
     questions: [
       {
-        key: 'businessType',
+        key: 'industry',
         label: 'What kind of business do you run?',
         options: [
           'Professional services',
@@ -44,7 +46,7 @@ const STEPS: AssessmentStep[] = [
         ]
       },
       {
-        key: 'teamSize',
+        key: 'size',
         label: 'How many people are on your team?',
         options: ['Just me', '2–10', '11–50', '51–200', '201+']
       }
@@ -55,7 +57,7 @@ const STEPS: AssessmentStep[] = [
     intro: 'Choose the answer that best describes your business.',
     questions: [
       {
-        key: 'operationalChallenge',
+        key: 'challenge',
         label: 'What is your biggest operational challenge?',
         options: [
           'Manual work & repetitive tasks',
@@ -66,10 +68,10 @@ const STEPS: AssessmentStep[] = [
         ]
       },
       {
-        key: 'websiteState',
+        key: 'website',
         label: 'How would you describe your website?',
         options: [
-          "We don't have one",
+          'We don’t have one',
           'Outdated or difficult to use',
           'Looks good, but few enquiries',
           'Works well'
@@ -82,12 +84,12 @@ const STEPS: AssessmentStep[] = [
     intro: 'Choose the answer that best describes your business.',
     questions: [
       {
-        key: 'customerManagement',
+        key: 'sales',
         label: 'How do you manage customers and sales?',
         options: ['Spreadsheets & WhatsApp', 'A CRM that needs improvement', 'A well-connected CRM']
       },
       {
-        key: 'hrManagement',
+        key: 'hr',
         label: 'How do you manage HR and internal processes?',
         options: ['Paper or spreadsheets', 'Several disconnected tools', 'An integrated HR system']
       }
@@ -98,7 +100,7 @@ const STEPS: AssessmentStep[] = [
     intro: 'Choose the answer that best describes your business.',
     questions: [
       {
-        key: 'timeDrain',
+        key: 'time',
         label: 'What takes up the most time?',
         options: [
           'Data entry & reporting',
@@ -109,7 +111,7 @@ const STEPS: AssessmentStep[] = [
         ]
       },
       {
-        key: 'improvementPriority',
+        key: 'improve',
         label: 'What would you most like to improve?',
         options: [
           'Automate operations',
@@ -130,46 +132,130 @@ const STEPS: AssessmentStep[] = [
 ];
 
 const INITIAL_ANSWERS: Record<AnswerKey, string> = {
-  businessType: '',
-  teamSize: '',
-  operationalChallenge: '',
-  websiteState: '',
-  customerManagement: '',
-  hrManagement: '',
-  timeDrain: '',
-  improvementPriority: ''
+  industry: '',
+  size: '',
+  challenge: '',
+  website: '',
+  sales: '',
+  hr: '',
+  time: '',
+  improve: ''
 };
 
-const INITIAL_DETAILS = {
-  fullName: '',
-  workEmail: '',
-  companyName: '',
+const INITIAL_CONTACT = {
+  name: '',
+  email: '',
+  company: '',
   phone: ''
 };
+
+const SERVICES = [
+  'Business Process Automation',
+  'Custom Software Development',
+  'Website Design and Development',
+  'CRM Solutions',
+  'HRM Solutions',
+  'UI/UX Design'
+] as const;
+
+type ServiceName = typeof SERVICES[number];
+
+const REASONS: Record<ServiceName, string> = {
+  'Business Process Automation':
+  'Reduce repetitive work and connect the everyday processes that slow your team down.',
+  'Custom Software Development':
+  'Connect your operations with software designed around your business workflows.',
+  'Website Design and Development':
+  'Build a credible, modern website that makes it easier for customers to take action.',
+  'CRM Solutions': 'Bring leads, customer records and follow-ups into one organised place.',
+  'HRM Solutions': 'Simplify employee records, leave, payroll and people operations.',
+  'UI/UX Design': 'Make your digital experiences clearer, easier to use and more effective.'
+};
+
+function getRecommendations(answers: Record<AnswerKey, string>) {
+  const scores = [0, 0, 0, 0, 0, 0];
+
+  if (
+    answers.challenge === 'Manual work & repetitive tasks' ||
+    answers.time === 'Data entry & reporting'
+  ) {
+    scores[0] += 3;
+  }
+
+  if (
+    answers.challenge === 'Disconnected tools' ||
+    answers.time === 'Managing disconnected systems'
+  ) {
+    scores[1] += 3;
+    scores[0] += 1;
+  }
+
+  if (answers.website && answers.website !== 'Works well') {
+    scores[2] += 3;
+    if (answers.website === 'Looks good, but few enquiries') scores[5] += 2;
+  }
+
+  if (answers.sales && answers.sales !== 'A well-connected CRM') scores[3] += 3;
+  if (answers.hr && answers.hr !== 'An integrated HR system') scores[4] += 3;
+
+  if (
+    answers.challenge === 'Employee administration' ||
+    answers.time === 'HR & payroll'
+  ) {
+    scores[4] += 2;
+  }
+
+  if (
+    answers.challenge === 'Lost leads & customer follow-ups' ||
+    answers.time === 'Sales follow-ups'
+  ) {
+    scores[3] += 2;
+  }
+
+  const improvement = [
+    'Automate operations',
+    'Build custom software',
+    'Improve our website',
+    'Organise customer data',
+    'Simplify HR',
+    'Improve user experience'
+  ].indexOf(answers.improve);
+
+  if (improvement >= 0) scores[improvement] += 5;
+
+  return SERVICES.
+  map((name, index) => ({ name, score: scores[index] })).
+  sort((a, b) => b.score - a.score).
+  filter((recommendation) => recommendation.score > 0).
+  slice(0, 3);
+}
 
 const controlClass =
   'w-full rounded-xl border border-zinc-700 bg-[#0a0c0d] px-5 py-4 font-semibold text-zinc-100 outline-none transition-colors placeholder:text-zinc-600 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10';
 
 export function AssessmentForm() {
+  const resultsCardRef = useRef<HTMLDivElement>(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState(INITIAL_ANSWERS);
-  const [details, setDetails] = useState(INITIAL_DETAILS);
+  const [contact, setContact] = useState(INITIAL_CONTACT);
   const [consent, setConsent] = useState(false);
-  const [statusMessage, setStatusMessage] = useState('');
+  const [done, setDone] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState('');
 
   const step = STEPS[currentStep];
   const isDetailsStep = currentStep === STEPS.length - 1;
+  const recommendations = getRecommendations(answers);
   const questionsComplete = step.questions.every((question) => answers[question.key] !== '');
   const detailsComplete =
-  details.fullName.trim() !== '' &&
-  details.workEmail.trim() !== '' &&
-  details.companyName.trim() !== '' &&
+  contact.name.trim() !== '' &&
+  contact.email.trim() !== '' &&
+  contact.company.trim() !== '' &&
   consent;
   const canAdvance = isDetailsStep ? detailsComplete : questionsComplete;
 
   const moveToStep = (nextStep: number) => {
     setCurrentStep(nextStep);
-    setStatusMessage('');
     window.requestAnimationFrame(() => {
       document.getElementById('assessment-step-heading')?.focus();
     });
@@ -184,10 +270,140 @@ export function AssessmentForm() {
       return;
     }
 
-    setStatusMessage(
-      'Your answers remain in this browser. Recommendation logic has not been connected yet, and nothing was sent to Birdhouse.'
-    );
+    setDone(true);
+    window.requestAnimationFrame(() => {
+      document.getElementById('assessment-results-heading')?.focus();
+    });
   };
+
+  const downloadResults = async () => {
+    if (!resultsCardRef.current || isDownloading) return;
+
+    setIsDownloading(true);
+    setDownloadError('');
+
+    try {
+      await document.fonts?.ready;
+      await Promise.all(
+        Array.from(resultsCardRef.current.querySelectorAll('img')).map((image) => {
+          if (image.complete) return Promise.resolve();
+
+          return new Promise<void>((resolve) => {
+            image.addEventListener('load', () => resolve(), { once: true });
+            image.addEventListener('error', () => resolve(), { once: true });
+          });
+        })
+      );
+
+      const dataUrl = await toPng(resultsCardRef.current, {
+        backgroundColor: '#17191b',
+        cacheBust: true,
+        pixelRatio: 2
+      });
+      const anchor = document.createElement('a');
+      anchor.href = dataUrl;
+      anchor.download = 'birdhouse-business-assessment-results.png';
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+    } catch (error) {
+      console.error('Unable to create assessment results image.', error);
+      setDownloadError('We couldn\'t create your image. Please try again.');
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  if (done) {
+    const firstName = contact.name.split(' ')[0];
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        aria-live="polite">
+
+        <div className="-m-6 sm:-m-10 lg:-m-12">
+          <div
+            ref={resultsCardRef}
+            className="rounded-3xl bg-[#17191b] p-6 text-white sm:p-10 lg:p-12">
+          <img
+            src="/images/logo/logo-white.png"
+            alt="Birdhouse Group"
+            className="h-auto w-40"
+          />
+          <p className="mt-9 text-xs font-bold uppercase tracking-[0.2em] text-emerald-300">
+            Your Next Steps
+          </p>
+          <h3
+            id="assessment-results-heading"
+            tabIndex={-1}
+            className="mt-9 text-3xl font-bold tracking-[-0.03em] text-white outline-none sm:text-4xl">
+
+            A clearer path forward, {firstName}.
+          </h3>
+          <p className="mt-6 max-w-4xl leading-7 text-zinc-400">
+            Based on your answers, these are the areas we suggest exploring first. This is a starting point, not a
+            technical audit.
+          </p>
+
+          <div className="mt-5">
+            {recommendations.map((recommendation, index) =>
+            <article
+              key={recommendation.name}
+              className="border-t border-zinc-700 py-7">
+
+                <p className="text-xs font-bold uppercase text-emerald-300">
+                  Priority {String(index + 1).padStart(2, '0')}
+                </p>
+                <h4 className="mt-3 text-2xl font-bold text-white">{recommendation.name}</h4>
+                <p className="mt-3 leading-7 text-zinc-400">{REASONS[recommendation.name]}</p>
+              </article>
+            )}
+          </div>
+
+            <p className="mt-4 text-sm leading-6 text-zinc-400">
+              Your results are ready locally. Download them and share them with Birdhouse when you request a
+              consultation. Nothing has been sent.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Link
+            to="/contact"
+            className="inline-flex justify-center rounded-full bg-[#13a866] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300/30">
+
+            Request a consultation
+          </Link>
+          <button
+            type="button"
+            onClick={downloadResults}
+            disabled={isDownloading}
+            className="rounded-full bg-zinc-800 px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-zinc-700 focus:outline-none focus:ring-4 focus:ring-zinc-500/40 disabled:cursor-wait disabled:opacity-70">
+
+            {isDownloading ? 'Preparing image...' : 'Download my results'}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setDone(false);
+              moveToStep(0);
+            }}
+            className="rounded-full bg-transparent px-7 py-4 text-sm font-bold text-white transition-colors hover:text-emerald-300 focus:outline-none focus:ring-4 focus:ring-emerald-300/30">
+
+            Review answers
+          </button>
+        </div>
+        {downloadError &&
+        <p role="alert" className="mt-4 text-sm text-red-300">
+          {downloadError}
+        </p>
+        }
+      </motion.div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -250,8 +466,8 @@ export function AssessmentForm() {
                   <input
                   required
                   autoComplete="name"
-                  value={details.fullName}
-                  onChange={(event) => setDetails((current) => ({ ...current, fullName: event.target.value }))}
+                  value={contact.name}
+                  onChange={(event) => setContact((current) => ({ ...current, name: event.target.value }))}
                   className={controlClass} />
                 </label>
                 <label className="block">
@@ -260,8 +476,8 @@ export function AssessmentForm() {
                   required
                   type="email"
                   autoComplete="email"
-                  value={details.workEmail}
-                  onChange={(event) => setDetails((current) => ({ ...current, workEmail: event.target.value }))}
+                  value={contact.email}
+                  onChange={(event) => setContact((current) => ({ ...current, email: event.target.value }))}
                   className={controlClass} />
                 </label>
                 <label className="block">
@@ -269,8 +485,8 @@ export function AssessmentForm() {
                   <input
                   required
                   autoComplete="organization"
-                  value={details.companyName}
-                  onChange={(event) => setDetails((current) => ({ ...current, companyName: event.target.value }))}
+                  value={contact.company}
+                  onChange={(event) => setContact((current) => ({ ...current, company: event.target.value }))}
                   className={controlClass} />
                 </label>
                 <label className="block sm:max-w-md">
@@ -278,8 +494,8 @@ export function AssessmentForm() {
                   <input
                   type="tel"
                   autoComplete="tel"
-                  value={details.phone}
-                  onChange={(event) => setDetails((current) => ({ ...current, phone: event.target.value }))}
+                  value={contact.phone}
+                  onChange={(event) => setContact((current) => ({ ...current, phone: event.target.value }))}
                   className={controlClass} />
                 </label>
               </div>
@@ -321,11 +537,6 @@ export function AssessmentForm() {
         </button>
       </div>
 
-      {statusMessage &&
-      <p role="status" className="mt-6 rounded-xl border border-emerald-700/50 bg-emerald-900/20 p-4 text-sm leading-6 text-emerald-200">
-          {statusMessage}
-        </p>
-      }
     </form>
   );
 }
