@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
@@ -10,6 +10,7 @@ import { ContactPage } from './pages/ContactPage';
 import { CareersPage } from './pages/CareersPage';
 import { JobApplicationPage } from './pages/JobApplicationPage';
 import { GetStartedPage } from './pages/GetStartedPage';
+import { BusinessAssessmentPage } from './pages/BusinessAssessmentPage';
 import { ThemeProvider } from './theme/ThemeContext';
 
 // Reset scroll to top whenever the route changes.
@@ -38,6 +39,7 @@ export function App() {
             <Route path="/careers" element={<CareersPage />} />
             <Route path="/careers/apply" element={<JobApplicationPage />} />
             <Route path="/get-started" element={<GetStartedPage />} />
+            <Route path="/business-assessment" element={<BusinessAssessmentPage />} />
           </Routes>
 
           <Footer />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
@@ -16,6 +16,7 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const campaignNavIsTransparent = pathname === '/business-assessment' && !scrolled && !menuOpen;
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     handleScroll();
@@ -50,6 +51,12 @@ export function Navbar() {
           className={`flex items-center justify-between rounded-2xl px-4 sm:px-6 md:px-8 py-4 transition-all duration-500 ${scrolled || menuOpen ? 'glass-panel' : 'bg-transparent'}`}>
 
           <Link to="/" className="flex items-center" onClick={() => setMenuOpen(false)}>
+            {campaignNavIsTransparent ?
+            <img
+              src="/images/logo/logo-white.png"
+              alt="Birdhouse"
+              className="h-8 w-auto" /> :
+            <>
             <img
               src="/images/logo/logo-black.png"
               alt="Birdhouse"
@@ -59,15 +66,16 @@ export function Navbar() {
               src="/images/logo/logo-white.png"
               alt="Birdhouse"
               className="h-8 w-auto hidden dark:block" />
-
+            </>
+            }
           </Link>
 
-          <div className="hidden md:flex items-center gap-10 text-sm font-medium text-text-secondary">
+          <div className={`hidden md:flex items-center gap-10 text-sm font-medium ${campaignNavIsTransparent ? 'text-zinc-300' : 'text-text-secondary'}`}>
             {NAV_LINKS.map((link) =>
             <Link
               key={link.to}
               to={link.to}
-              className={`transition-colors ${isActive(link.to) ? 'text-brand-green' : 'hover:text-text-primary'}`}>
+              className={`transition-colors ${isActive(link.to) ? 'text-brand-green' : campaignNavIsTransparent ? 'hover:text-white' : 'hover:text-text-primary'}`}>
 
                 {link.label}
               </Link>
