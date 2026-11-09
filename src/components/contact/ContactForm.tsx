@@ -3,7 +3,11 @@ import { motion } from 'framer-motion';
 import { Mail, Clock, CheckCircle2 } from 'lucide-react';
 import { Input } from '../ui/Input';
 import { Button } from '../ui/Button';
-import { submitForm } from '../../lib/submitForm';
+import { FormSubmissionError, submitForm } from '../../lib/submitForm';
+import {
+  clearAssessmentConsultationHandoff,
+  readAssessmentConsultationHandoff
+} from '../../lib/assessmentConsultation';
 
 const INFO = [
 {
@@ -17,12 +21,30 @@ const INFO = [
   value: 'Within 24 hours'
 }];
 
+const UNKNOWN_DELIVERY_KEY = 'birdhouse-contact-delivery-unknown-v1';
+
+function restoreUnknownDelivery(form: Record<string, string>) {
+  try {
+    return window.sessionStorage.getItem(UNKNOWN_DELIVERY_KEY) === JSON.stringify(form);
+  } catch {
+    return false;
+  }
+}
 
 export const ContactForm = () => {
+  const [assessmentHandoff] = useState(readAssessmentConsultationHandoff);
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [form, setForm] = useState(() => ({
+    name: assessmentHandoff?.name || '',
+    email: assessmentHandoff?.email || '',
+    company: assessmentHandoff?.company || '',
+    phone: assessmentHandoff?.phone || '',
+    subject: assessmentHandoff?.subject || '',
+    message: assessmentHandoff?.message || ''
+  }));
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [deliveryUnknown, setDeliveryUnknown] = useState(() => restoreUnknownDelivery(form));
 
   const handleChange = (
   field: keyof typeof form) =>
@@ -36,8 +58,22 @@ export const ContactForm = () => {
     setIsSubmitting(true);
     try {
       await submitForm('contact', form);
+      clearAssessmentConsultationHandoff();
+      try {
+        window.sessionStorage.removeItem(UNKNOWN_DELIVERY_KEY);
+      } catch {
+        // The confirmed success state is still shown if browser storage is unavailable.
+      }
       setSubmitted(true);
     } catch (err) {
+      if (err instanceof FormSubmissionError && err.deliveryStatus === 'unknown') {
+        setDeliveryUnknown(true);
+        try {
+          window.sessionStorage.setItem(UNKNOWN_DELIVERY_KEY, JSON.stringify(form));
+        } catch {
+          // The in-memory lock still prevents an immediate duplicate submission.
+        }
+      }
       setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -67,6 +103,28 @@ export const ContactForm = () => {
             </div> :
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+              {assessmentHandoff &&
+            <div className={`rounded-2xl border p-4 text-sm leading-6 ${assessmentHandoff.includesAssessment ?
+              'border-emerald-300 bg-emerald-50 text-emerald-950 dark:border-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-100' :
+              'border-surface-200 bg-surface-secondary text-text-secondary dark:border-surface-700'}`}>
+
+                  {assessmentHandoff.includesAssessment ?
+              <>
+                      <p className="font-semibold">Your assessment summary is included below.</p>
+                      <p className="mt-1">
+                        Review, edit or remove any details before submitting. Your eight answers and ranked
+                        recommendations are not shared until you press Send Message.
+                      </p>
+                    </> :
+              <>
+                      <p className="font-semibold text-text-primary">Only your contact details were carried over.</p>
+                      <p className="mt-1">
+                        Your assessment answers and recommendations are not included in this message.
+                      </p>
+                    </>
+              }
+                </div>
+            }
               <div className="grid sm:grid-cols-2 gap-6">
                 <Input
                 label="Name"
@@ -84,6 +142,21 @@ export const ContactForm = () => {
                 required />
 
               </div>
+              <div className="grid sm:grid-cols-2 gap-6">
+                <Input
+                label="Company"
+                value={form.company}
+                onChange={handleChange('company')}
+                placeholder="Company name" />
+
+                <Input
+                label="Phone Number"
+                type="tel"
+                value={form.phone}
+                onChange={handleChange('phone')}
+                placeholder="+1 (555) 000-0000" />
+
+              </div>
               <Input
               label="Subject"
               value={form.subject}
@@ -98,17 +171,19 @@ export const ContactForm = () => {
                 <textarea
                 value={form.message}
                 onChange={handleChange('message')}
-                rows={5}
+                rows={assessmentHandoff?.includesAssessment ? 18 : 5}
                 required
                 placeholder="Tell us a bit about your project..."
                 className="w-full px-5 py-4 rounded-xl bg-surface-secondary border border-transparent focus:bg-white dark:focus:bg-surface-800 focus:border-brand-green focus:ring-4 focus:ring-brand-green/10 transition-all outline-none text-text-primary placeholder:text-text-tertiary resize-none" />
 
               </div>
               {submitError &&
-            <p className="text-sm text-red-500">{submitError}</p>
+            <p role="alert" className={`text-sm ${deliveryUnknown ? 'text-amber-700 dark:text-amber-300' : 'text-red-500'}`}>
+                  {submitError}
+                </p>
             }
-              <Button type="submit" size="lg" disabled={isSubmitting} className="self-start">
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+              <Button type="submit" size="lg" disabled={isSubmitting || deliveryUnknown} className="self-start">
+                {isSubmitting ? 'Sending...' : deliveryUnknown ? 'Delivery status unknown' : 'Send Message'}
               </Button>
             </form>
           }

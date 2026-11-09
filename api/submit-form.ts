@@ -194,9 +194,11 @@ export const config = {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     if (req.method !== 'POST') {
-      res.status(405).json({ error: 'Method not allowed' });
+      res.status(405).json({ error: 'Method not allowed', deliveryStatus: 'not-sent' });
       return;
     }
+
+    res.setHeader('Cache-Control', 'no-store');
 
     const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com';
     const smtpPort = Number(process.env.SMTP_PORT || 465);
@@ -206,14 +208,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const fromAddress = process.env.NOTIFY_EMAIL_FROM || smtpUser;
 
     if (!smtpUser || !smtpPass || !notifyTo) {
-      res.status(500).json({ error: 'Email notifications are not configured on the server.' });
+      res.status(500).json({
+        error: 'Email notifications are not configured on the server.',
+        deliveryStatus: 'not-sent'
+      });
       return;
     }
 
     const { formType, fields, fileUrls } = (req.body || {}) as Partial<SubmissionPayload>;
 
     if (!formType || !fields || !VALID_FORM_TYPES.includes(formType)) {
-      res.status(400).json({ error: 'Missing or invalid form data.' });
+      res.status(400).json({ error: 'Missing or invalid form data.', deliveryStatus: 'not-sent' });
       return;
     }
 
@@ -222,6 +227,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       port: smtpPort,
       secure: smtpPort === 465,
       auth: { user: smtpUser, pass: smtpPass },
+      pool: true,
+      maxConnections: 1,
+      maxMessages: 2,
       connectionTimeout: 8000,
       greetingTimeout: 8000,
       socketTimeout: 8000
@@ -231,7 +239,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const { subject, html } = buildNotificationEmail(formType, fields, fileUrls);
       await transporter.sendMail({ from: fromAddress, to: notifyTo, subject, html });
     } catch (err) {
-      res.status(502).json({ error: err instanceof Error ? err.message : 'Failed to send notification email.' });
+      transporter.close();
+      res.status(502).json({
+        error: 'We could not confirm whether the notification email was delivered.',
+        deliveryStatus: 'unknown'
+      });
+      console.error('Failed to send notification email:', err);
       return;
     }
 
@@ -246,9 +259,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
     }
 
-    res.status(200).json({ success: true });
+    transporter.close();
+    res.status(200).json({ success: true, deliveryStatus: 'sent' });
   } catch (err) {
     console.error('Unhandled error in submit-form:', err);
-    res.status(500).json({ error: err instanceof Error ? err.message : 'Unexpected server error.' });
+    res.status(500).json({
+      error: 'We could not confirm whether the submission was delivered.',
+      deliveryStatus: 'unknown'
+    });
   }
 }

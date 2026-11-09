@@ -1,9 +1,13 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { toPng } from 'html-to-image';
 import { ChevronDown } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import {
+  clearAssessmentConsultationHandoff,
+  saveAssessmentConsultationHandoff
+} from '../../lib/assessmentConsultation';
 
 type AnswerKey =
   'industry' |
@@ -149,6 +153,46 @@ const INITIAL_CONTACT = {
   phone: ''
 };
 
+interface StoredAssessmentState {
+  currentStep: number;
+  answers: Record<AnswerKey, string>;
+  contact: typeof INITIAL_CONTACT;
+  consent: boolean;
+  done: boolean;
+}
+
+const ASSESSMENT_STORAGE_KEY = 'birdhouse-business-assessment-state-v1';
+
+const INITIAL_ASSESSMENT_STATE: StoredAssessmentState = {
+  currentStep: 0,
+  answers: INITIAL_ANSWERS,
+  contact: INITIAL_CONTACT,
+  consent: false,
+  done: false
+};
+
+function restoreAssessmentState(): StoredAssessmentState {
+  try {
+    const stored = window.sessionStorage.getItem(ASSESSMENT_STORAGE_KEY);
+    if (!stored) return INITIAL_ASSESSMENT_STATE;
+
+    const parsed = JSON.parse(stored) as Partial<StoredAssessmentState>;
+    const currentStep = Number.isInteger(parsed.currentStep) ?
+    Math.min(Math.max(parsed.currentStep as number, 0), STEPS.length - 1) :
+    0;
+
+    return {
+      currentStep,
+      answers: { ...INITIAL_ANSWERS, ...parsed.answers },
+      contact: { ...INITIAL_CONTACT, ...parsed.contact },
+      consent: parsed.consent === true,
+      done: parsed.done === true
+    };
+  } catch {
+    return INITIAL_ASSESSMENT_STATE;
+  }
+}
+
 const SERVICES = [
   'Business Process Automation',
   'Custom Software Development',
@@ -234,14 +278,34 @@ const controlClass =
   'w-full rounded-xl border border-zinc-700 bg-[#0a0c0d] px-5 py-4 font-semibold text-zinc-100 outline-none transition-colors placeholder:text-zinc-600 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10';
 
 export function AssessmentForm() {
+  const navigate = useNavigate();
   const resultsCardRef = useRef<HTMLDivElement>(null);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [answers, setAnswers] = useState(INITIAL_ANSWERS);
-  const [contact, setContact] = useState(INITIAL_CONTACT);
-  const [consent, setConsent] = useState(false);
-  const [done, setDone] = useState(false);
+  const skipNextSaveRef = useRef(false);
+  const [restoredState] = useState(restoreAssessmentState);
+  const [currentStep, setCurrentStep] = useState(restoredState.currentStep);
+  const [answers, setAnswers] = useState(restoredState.answers);
+  const [contact, setContact] = useState(restoredState.contact);
+  const [consent, setConsent] = useState(restoredState.consent);
+  const [done, setDone] = useState(restoredState.done);
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadError, setDownloadError] = useState('');
+  const [showShareChoice, setShowShareChoice] = useState(false);
+
+  useEffect(() => {
+    if (skipNextSaveRef.current) {
+      skipNextSaveRef.current = false;
+      return;
+    }
+
+    try {
+      window.sessionStorage.setItem(
+        ASSESSMENT_STORAGE_KEY,
+        JSON.stringify({ currentStep, answers, contact, consent, done })
+      );
+    } catch {
+      // The assessment remains usable if browser storage is unavailable.
+    }
+  }, [answers, consent, contact, currentStep, done]);
 
   const step = STEPS[currentStep];
   const isDetailsStep = currentStep === STEPS.length - 1;
@@ -274,6 +338,70 @@ export function AssessmentForm() {
     window.requestAnimationFrame(() => {
       document.getElementById('assessment-results-heading')?.focus();
     });
+  };
+
+  const startNewAssessment = () => {
+    skipNextSaveRef.current = true;
+    try {
+      window.sessionStorage.removeItem(ASSESSMENT_STORAGE_KEY);
+    } catch {
+      // State still resets in memory if browser storage is unavailable.
+    }
+    setCurrentStep(0);
+    setAnswers(INITIAL_ANSWERS);
+    setContact(INITIAL_CONTACT);
+    setConsent(false);
+    setDone(false);
+    setDownloadError('');
+    setShowShareChoice(false);
+    clearAssessmentConsultationHandoff();
+    window.requestAnimationFrame(() => {
+      document.getElementById('assessment-step-heading')?.focus();
+    });
+  };
+
+  const requestConsultation = (includeAssessment: boolean) => {
+    const answerSummary = [
+      ['Business type', answers.industry],
+      ['Team size', answers.size],
+      ['Operational challenge', answers.challenge],
+      ['Website status', answers.website],
+      ['Customer and sales tools', answers.sales],
+      ['HR processes', answers.hr],
+      ['Biggest time bottleneck', answers.time],
+      ['Desired improvement', answers.improve]
+    ].map(([label, value]) => `- ${label}: ${value}`).join('\n');
+    const recommendationSummary = recommendations.map(
+      (recommendation, index) =>
+      `${index + 1}. ${recommendation.name}\n   ${REASONS[recommendation.name]}`
+    ).join('\n');
+
+    const message = includeAssessment ?
+    `I'd like to request a consultation based on my Birdhouse Business Assessment.
+
+ASSESSMENT ANSWERS
+${answerSummary}
+
+RANKED RECOMMENDATIONS
+${recommendationSummary}
+
+Additional notes:
+` :
+    `I'd like to request a consultation about my business.
+
+Additional notes:
+`;
+
+    saveAssessmentConsultationHandoff({
+      name: contact.name,
+      email: contact.email,
+      company: contact.company,
+      phone: contact.phone,
+      subject: 'Business assessment consultation',
+      message,
+      includesAssessment: includeAssessment
+    });
+    navigate('/contact');
   };
 
   const downloadResults = async () => {
@@ -371,12 +499,15 @@ export function AssessmentForm() {
         </div>
 
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <Link
-            to="/contact"
+          <button
+            type="button"
+            aria-expanded={showShareChoice}
+            aria-controls="assessment-share-choice"
+            onClick={() => setShowShareChoice((current) => !current)}
             className="inline-flex justify-center rounded-full bg-[#13a866] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300/30">
 
             Request a consultation
-          </Link>
+          </button>
           <button
             type="button"
             onClick={downloadResults}
@@ -395,7 +526,46 @@ export function AssessmentForm() {
 
             Review answers
           </button>
+          <button
+            type="button"
+            onClick={startNewAssessment}
+            className="rounded-full bg-transparent px-7 py-4 text-sm font-bold text-zinc-400 transition-colors hover:text-emerald-300 focus:outline-none focus:ring-4 focus:ring-emerald-300/30">
+
+            Start a new assessment
+          </button>
         </div>
+        {showShareChoice &&
+        <div
+          id="assessment-share-choice"
+          className="mt-6 rounded-2xl border border-emerald-500/30 bg-emerald-950/20 p-5 sm:p-6">
+
+          <h4 className="text-lg font-bold text-white">Choose what to share</h4>
+          <p className="mt-3 text-sm leading-6 text-zinc-300">
+            Your name, email, company and phone number will prefill the Contact form. Nothing is sent until you
+            review and submit that form.
+          </p>
+          <p className="mt-3 text-sm leading-6 text-zinc-400">
+            You can also include all eight assessment answers and your three ranked recommendations. The summary
+            will be fully editable before submission.
+          </p>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <button
+              type="button"
+              onClick={() => requestConsultation(true)}
+              className="rounded-full bg-[#13a866] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300/30">
+
+              Include my assessment summary
+            </button>
+            <button
+              type="button"
+              onClick={() => requestConsultation(false)}
+              className="rounded-full border border-zinc-600 px-6 py-3 text-sm font-bold text-white transition-colors hover:border-zinc-400 focus:outline-none focus:ring-4 focus:ring-zinc-500/40">
+
+              Continue without assessment details
+            </button>
+          </div>
+        </div>
+        }
         {downloadError &&
         <p role="alert" className="mt-4 text-sm text-red-300">
           {downloadError}
