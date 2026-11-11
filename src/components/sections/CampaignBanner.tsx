@@ -17,9 +17,9 @@ export function CampaignBanner() {
 
           <img
             src="/images/business-assessment-banner.webp"
-            alt="60% off software development plus a free business assessment. Offer ends 24 December 2026."
-            width="2508"
-            height="1412"
+            alt="60% off software development plus a free business assessment. Get your free assessment by 24 December 2026."
+            width="3117"
+            height="1136"
             decoding="async"
             className="block h-auto w-full object-contain" />
         </Link>
