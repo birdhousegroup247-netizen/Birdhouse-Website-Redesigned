@@ -49,7 +49,7 @@ export function CampaignNavbar() {
               event.preventDefault();
               navigateToSection(link.target);
             }}
-            className="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary focus:outline-none focus:ring-2 focus:ring-emerald-300/70">
+            className="text-sm font-medium text-text-secondary transition-colors hover:text-brand-green focus:text-brand-green focus:outline-none focus:ring-2 focus:ring-emerald-300/70">
 
               {link.label}
             </a>
@@ -101,7 +101,7 @@ export function CampaignNavbar() {
                 event.preventDefault();
                 navigateToSection(link.target);
               }}
-              className="text-base font-semibold text-text-primary transition-colors hover:text-brand-green focus:outline-none focus:ring-2 focus:ring-emerald-300/70 dark:hover:text-emerald-300">
+              className="text-base font-semibold text-text-primary transition-colors hover:text-brand-green focus:text-brand-green focus:outline-none focus:ring-2 focus:ring-emerald-300/70">
 
                 {link.label}
               </a>

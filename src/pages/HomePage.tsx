@@ -6,6 +6,7 @@ import { Testimonials } from '../components/sections/Testimonials';
 import { FinalCTA } from '../components/sections/FinalCTA';
 import { PromotionalPopup } from '../components/sections/PromotionalPopup';
 import { CampaignBanner } from '../components/sections/CampaignBanner';
+import { Partners } from '../components/sections/Partners';
 export function HomePage() {
   return (
     <main className="bg-surface-primary">
@@ -17,6 +18,7 @@ export function HomePage() {
       <Process />
       <Testimonials />
       <FinalCTA />
+      <Partners />
     </main>);
 
 }
