@@ -2,12 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { toPng } from 'html-to-image';
-import { ChevronDown } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import {
-  clearAssessmentConsultationHandoff,
-  saveAssessmentConsultationHandoff
-} from '../../lib/assessmentConsultation';
+import { CheckCircle2, ChevronDown, X } from 'lucide-react';
+import { clearAssessmentConsultationHandoff } from '../../lib/assessmentConsultation';
+import { FormSubmissionError, submitForm } from '../../lib/submitForm';
 
 type AnswerKey =
   'industry' |
@@ -159,7 +156,10 @@ interface StoredAssessmentState {
   contact: typeof INITIAL_CONTACT;
   consent: boolean;
   done: boolean;
+  consultationStatus: ConsultationStatus;
 }
+
+type ConsultationStatus = 'idle' | 'submitting' | 'success' | 'unknown';
 
 const ASSESSMENT_STORAGE_KEY = 'birdhouse-business-assessment-state-v1';
 
@@ -168,7 +168,8 @@ const INITIAL_ASSESSMENT_STATE: StoredAssessmentState = {
   answers: INITIAL_ANSWERS,
   contact: INITIAL_CONTACT,
   consent: false,
-  done: false
+  done: false,
+  consultationStatus: 'idle'
 };
 
 function restoreAssessmentState(): StoredAssessmentState {
@@ -186,7 +187,10 @@ function restoreAssessmentState(): StoredAssessmentState {
       answers: { ...INITIAL_ANSWERS, ...parsed.answers },
       contact: { ...INITIAL_CONTACT, ...parsed.contact },
       consent: parsed.consent === true,
-      done: parsed.done === true
+      done: parsed.done === true,
+      consultationStatus: parsed.consultationStatus === 'success' || parsed.consultationStatus === 'unknown' ?
+      parsed.consultationStatus :
+      'idle'
     };
   } catch {
     return INITIAL_ASSESSMENT_STATE;
@@ -278,7 +282,6 @@ const controlClass =
   'w-full rounded-xl border border-zinc-700 bg-[#0a0c0d] px-5 py-4 font-semibold text-zinc-100 outline-none transition-colors placeholder:text-zinc-600 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-400/10';
 
 export function AssessmentForm() {
-  const navigate = useNavigate();
   const resultsCardRef = useRef<HTMLDivElement>(null);
   const skipNextSaveRef = useRef(false);
   const [restoredState] = useState(restoreAssessmentState);
@@ -289,7 +292,9 @@ export function AssessmentForm() {
   const [done, setDone] = useState(restoredState.done);
   const [isDownloading, setIsDownloading] = useState(false);
   const [downloadError, setDownloadError] = useState('');
-  const [showShareChoice, setShowShareChoice] = useState(false);
+  const [consultationStatus, setConsultationStatus] = useState<ConsultationStatus>(restoredState.consultationStatus);
+  const [consultationError, setConsultationError] = useState('');
+  const [showSuccessToast, setShowSuccessToast] = useState(restoredState.consultationStatus === 'success');
 
   useEffect(() => {
     if (skipNextSaveRef.current) {
@@ -300,12 +305,19 @@ export function AssessmentForm() {
     try {
       window.sessionStorage.setItem(
         ASSESSMENT_STORAGE_KEY,
-        JSON.stringify({ currentStep, answers, contact, consent, done })
+        JSON.stringify({
+          currentStep,
+          answers,
+          contact,
+          consent,
+          done,
+          consultationStatus: consultationStatus === 'submitting' ? 'unknown' : consultationStatus
+        })
       );
     } catch {
       // The assessment remains usable if browser storage is unavailable.
     }
-  }, [answers, consent, contact, currentStep, done]);
+  }, [answers, consent, consultationStatus, contact, currentStep, done]);
 
   const step = STEPS[currentStep];
   const isDetailsStep = currentStep === STEPS.length - 1;
@@ -353,14 +365,20 @@ export function AssessmentForm() {
     setConsent(false);
     setDone(false);
     setDownloadError('');
-    setShowShareChoice(false);
+    setConsultationStatus('idle');
+    setConsultationError('');
+    setShowSuccessToast(false);
     clearAssessmentConsultationHandoff();
     window.requestAnimationFrame(() => {
       document.getElementById('assessment-step-heading')?.focus();
     });
   };
 
-  const requestConsultation = (includeAssessment: boolean) => {
+  const requestConsultation = async () => {
+    if (consultationStatus === 'submitting' || consultationStatus === 'success' || consultationStatus === 'unknown') {
+      return;
+    }
+
     const answerSummary = [
       ['Business type', answers.industry],
       ['Team size', answers.size],
@@ -376,32 +394,31 @@ export function AssessmentForm() {
       `${index + 1}. ${recommendation.name}\n   ${REASONS[recommendation.name]}`
     ).join('\n');
 
-    const message = includeAssessment ?
-    `I'd like to request a consultation based on my Birdhouse Business Assessment.
+    setConsultationStatus('submitting');
+    setConsultationError('');
+    setShowSuccessToast(false);
 
-ASSESSMENT ANSWERS
-${answerSummary}
-
-RANKED RECOMMENDATIONS
-${recommendationSummary}
-
-Additional notes:
-` :
-    `I'd like to request a consultation about my business.
-
-Additional notes:
-`;
-
-    saveAssessmentConsultationHandoff({
-      name: contact.name,
-      email: contact.email,
-      company: contact.company,
-      phone: contact.phone,
-      subject: 'Business assessment consultation',
-      message,
-      includesAssessment: includeAssessment
-    });
-    navigate('/contact');
+    try {
+      await submitForm('contact', {
+        name: contact.name,
+        email: contact.email,
+        company: contact.company,
+        phone: contact.phone,
+        subject: 'Business assessment consultation',
+        message: 'The visitor explicitly requested a consultation from their completed Business Assessment results.',
+        'Assessment answers': answerSummary,
+        'Ranked recommendations': recommendationSummary
+      });
+      clearAssessmentConsultationHandoff();
+      setConsultationStatus('success');
+      setShowSuccessToast(true);
+    } catch (error) {
+      const deliveryUnknown = error instanceof FormSubmissionError && error.deliveryStatus === 'unknown';
+      setConsultationStatus(deliveryUnknown ? 'unknown' : 'idle');
+      setConsultationError(
+        error instanceof Error ? error.message : 'We could not send your consultation request. Please try again.'
+      );
+    }
   };
 
   const downloadResults = async () => {
@@ -492,8 +509,8 @@ Additional notes:
           </div>
 
             <p className="mt-4 text-sm leading-6 text-zinc-400">
-              Your results are ready locally. Download them and share them with Birdhouse when you request a
-              consultation. Nothing has been sent.
+              Your results are ready locally. Nothing has been sent. Choosing Request a consultation will email
+              your contact details, answers and ranked recommendations to Birdhouse.
             </p>
           </div>
         </div>
@@ -501,12 +518,14 @@ Additional notes:
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <button
             type="button"
-            aria-expanded={showShareChoice}
-            aria-controls="assessment-share-choice"
-            onClick={() => setShowShareChoice((current) => !current)}
-            className="inline-flex justify-center rounded-full bg-[#13a866] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300/30">
+            onClick={requestConsultation}
+            disabled={consultationStatus !== 'idle'}
+            className="inline-flex justify-center rounded-full bg-[#13a866] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300/30 disabled:cursor-not-allowed disabled:bg-[#0d7148] disabled:text-white/70">
 
-            Request a consultation
+            {consultationStatus === 'submitting' ? 'Sending request...' :
+            consultationStatus === 'success' ? 'Consultation requested' :
+            consultationStatus === 'unknown' ? 'Delivery status unknown' :
+            'Request a consultation'}
           </button>
           <button
             type="button"
@@ -519,6 +538,9 @@ Additional notes:
           <button
             type="button"
             onClick={() => {
+              if (consultationStatus === 'success') setConsultationStatus('idle');
+              setConsultationError('');
+              setShowSuccessToast(false);
               setDone(false);
               moveToStep(0);
             }}
@@ -534,42 +556,37 @@ Additional notes:
             Start a new assessment
           </button>
         </div>
-        {showShareChoice &&
-        <div
-          id="assessment-share-choice"
-          className="mt-6 rounded-2xl border border-emerald-500/30 bg-emerald-950/20 p-5 sm:p-6">
-
-          <h4 className="text-lg font-bold text-white">Choose what to share</h4>
-          <p className="mt-3 text-sm leading-6 text-zinc-300">
-            Your name, email, company and phone number will prefill the Contact form. Nothing is sent until you
-            review and submit that form.
-          </p>
-          <p className="mt-3 text-sm leading-6 text-zinc-400">
-            You can also include all eight assessment answers and your three ranked recommendations. The summary
-            will be fully editable before submission.
-          </p>
-          <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <button
-              type="button"
-              onClick={() => requestConsultation(true)}
-              className="rounded-full bg-[#13a866] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300/30">
-
-              Include my assessment summary
-            </button>
-            <button
-              type="button"
-              onClick={() => requestConsultation(false)}
-              className="rounded-full border border-zinc-600 px-6 py-3 text-sm font-bold text-white transition-colors hover:border-zinc-400 focus:outline-none focus:ring-4 focus:ring-zinc-500/40">
-
-              Continue without assessment details
-            </button>
-          </div>
-        </div>
+        {consultationError &&
+        <p role="alert" className="mt-5 rounded-xl border border-red-500/30 bg-red-950/20 p-4 text-sm leading-6 text-red-200">
+          {consultationError}
+        </p>
         }
         {downloadError &&
         <p role="alert" className="mt-4 text-sm text-red-300">
           {downloadError}
         </p>
+        }
+        {showSuccessToast &&
+        <div
+          role="status"
+          className="fixed bottom-5 left-5 right-5 z-[70] flex items-start gap-3 rounded-2xl border border-emerald-400/30 bg-[#17191b] p-4 text-white shadow-2xl shadow-black/40 sm:left-auto sm:right-6 sm:max-w-md">
+
+          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-300" />
+          <div className="min-w-0 flex-1">
+            <p className="font-bold">Consultation request sent</p>
+            <p className="mt-1 text-sm leading-6 text-zinc-300">
+              Birdhouse has received your assessment. We&apos;ll be in touch shortly.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setShowSuccessToast(false)}
+            aria-label="Dismiss success message"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-300/70">
+
+            <X className="h-4 w-4" />
+          </button>
+        </div>
         }
       </motion.div>
     );
@@ -678,8 +695,9 @@ Additional notes:
                 onChange={(event) => setConsent(event.target.checked)}
                 className="mt-1 h-4 w-4 shrink-0 accent-[#13a866]" />
                 <span>
-                  I understand my details and answers are used to generate these results in my browser. I can
-                  choose to share them with Birdhouse.
+                  I understand my details and answers are used to generate these results in my browser. Nothing is
+                  sent when I get my recommendations. If I choose &ldquo;Request a consultation,&rdquo; my contact
+                  details, all eight answers and ranked recommendations will be emailed to Birdhouse.
                 </span>
               </label>
             </div>

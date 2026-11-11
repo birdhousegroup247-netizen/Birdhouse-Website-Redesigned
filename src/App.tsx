@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/layout/Navbar';
+import { CampaignNavbar } from './components/business-assessment/CampaignNavbar';
 import { Footer } from './components/layout/Footer';
 import { HomePage } from './pages/HomePage';
 import { WorkPage } from './pages/WorkPage';
@@ -26,9 +27,21 @@ export function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
-        <ScrollToTop />
-        <div className="min-h-screen bg-surface-primary selection:bg-brand-green selection:text-white">
-          <Navbar />
+        <AppContent />
+      </BrowserRouter>
+    </ThemeProvider>);
+
+}
+
+function AppContent() {
+  const { pathname } = useLocation();
+  const isCampaignPage = pathname === '/business-assessment';
+
+  return (
+    <>
+      <ScrollToTop />
+      <div className="min-h-screen bg-surface-primary selection:bg-brand-green selection:text-white">
+          {isCampaignPage ? <CampaignNavbar /> : <Navbar />}
 
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -44,7 +57,6 @@ export function App() {
 
           <Footer />
         </div>
-      </BrowserRouter>
-    </ThemeProvider>);
-
+    </>
+  );
 }

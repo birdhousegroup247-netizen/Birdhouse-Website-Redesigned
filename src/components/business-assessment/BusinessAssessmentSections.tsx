@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { AssessmentForm } from './AssessmentForm';
 
 const revealTransition = { duration: 0.65, ease: [0.16, 1, 0.3, 1] } as const;
@@ -189,7 +188,7 @@ export function CampaignHero() {
 
 export function BusinessChallenges() {
   return (
-    <section className="bg-[#16181a] px-6 py-20 text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+    <section id="challenges" className="scroll-mt-24 bg-[#16181a] px-6 py-20 text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
       <div className="mx-auto max-w-[1104px]">
         <Reveal>
           <SectionLabel>01 / The Cost of Standing Still</SectionLabel>
@@ -247,7 +246,7 @@ export function AssessmentSection() {
 
 export function CampaignServices() {
   return (
-    <section className="bg-[#16181a] px-6 py-20 text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+    <section id="solutions" className="scroll-mt-24 bg-[#16181a] px-6 py-20 text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
       <div className="mx-auto max-w-[1104px]">
         <Reveal>
           <SectionLabel>03 / The Right Solution, Not More Software</SectionLabel>
@@ -327,13 +326,14 @@ export function ConsultationSection() {
           Bring your assessment results. We&apos;ll discuss your priorities, explore the right approach and agree on
           a practical next step. No pressure to commit.
         </p>
-        <Link
-          to="/contact"
+        <button
+          type="button"
+          onClick={scrollToAssessment}
           className="mt-10 inline-flex rounded-full bg-[#13a866] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300/30">
 
-          Request a Consultation
-        </Link>
-        <p className="mt-10 text-sm text-zinc-500">Continue to Birdhouse Group to arrange your conversation.</p>
+          Start Your Assessment
+        </button>
+        <p className="mt-10 text-sm text-zinc-500">Complete the assessment to request your consultation.</p>
       </Reveal>
     </section>
   );
