@@ -10,7 +10,7 @@ import {
 
 export function BusinessAssessmentPage() {
   return (
-    <main className="bg-[#090b0c] font-sans">
+    <main className="bg-surface-primary font-sans text-text-primary transition-colors duration-300 dark:bg-[#090b0c]">
       <CampaignHero />
       <BusinessChallenges />
       <AssessmentSection />

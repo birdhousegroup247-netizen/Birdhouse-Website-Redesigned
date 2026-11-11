@@ -26,7 +26,7 @@ function Reveal({
 
 function SectionLabel({ children }: {children: ReactNode;}) {
   return (
-    <p className="mb-10 text-xs font-bold uppercase tracking-tight text-emerald-300 sm:mb-12">
+    <p className="mb-10 text-xs font-bold uppercase tracking-tight text-brand-green dark:text-emerald-300 sm:mb-12">
       {children}
     </p>
   );
@@ -126,13 +126,13 @@ function scrollToAssessment() {
 
 export function CampaignHero() {
   return (
-    <section className="bg-[#090b0c] px-6 pb-20 pt-40 text-white sm:px-8 sm:pb-24 sm:pt-44 lg:px-12 lg:pb-20">
+    <section className="bg-surface-primary px-6 pb-20 pt-40 text-text-primary transition-colors duration-300 dark:bg-[#090b0c] dark:text-white sm:px-8 sm:pb-24 sm:pt-44 lg:px-12 lg:pb-20">
       <div className="mx-auto max-w-[1104px] text-center">
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={revealTransition}
-          className="mb-8 text-xs font-bold uppercase text-emerald-300">
+          className="mb-8 text-xs font-bold uppercase text-brand-green dark:text-emerald-300">
 
           The 2027 Business Reset
         </motion.p>
@@ -140,7 +140,7 @@ export function CampaignHero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...revealTransition, delay: 0.08 }}
-          className="mx-auto max-w-5xl text-4xl font-bold leading-[1.08] tracking-[-0.045em] text-white sm:text-6xl lg:text-[72px]">
+          className="mx-auto max-w-5xl text-4xl font-bold leading-[1.08] tracking-[-0.045em] text-text-primary dark:text-white sm:text-6xl lg:text-[72px]">
 
           Don&apos;t Carry 2026&apos;s Business Problems Into{' '}
           <span className="text-emerald-300">2027.</span>
@@ -149,7 +149,7 @@ export function CampaignHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...revealTransition, delay: 0.16 }}
-          className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-zinc-400 sm:text-xl">
+          className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-text-secondary sm:text-xl">
 
           Your business may be losing time, money and opportunities to outdated systems and inefficient
           processes. Discover what&apos;s holding you back and find the right solutions before 2027.
@@ -163,21 +163,21 @@ export function CampaignHero() {
           <button
             type="button"
             onClick={scrollToAssessment}
-            className="w-full rounded-full bg-[#13a866] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300/30 sm:w-auto sm:px-10">
+            className="w-full rounded-full bg-brand-green px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-brand-greenDark focus:outline-none focus:ring-4 focus:ring-emerald-300/30 dark:bg-[#13a866] dark:hover:bg-emerald-400 sm:w-auto sm:px-10">
 
             Get Your Free Business Assessment
           </button>
-          <p className="mt-6 text-sm text-zinc-500">
+          <p className="mt-6 text-sm text-text-tertiary">
             Free assessment. Practical recommendations. No obligation.
           </p>
         </motion.div>
 
-        <Reveal className="mt-12 grid gap-8 rounded-3xl border border-zinc-800 px-6 py-8 text-left sm:grid-cols-3 sm:px-8">
+        <Reveal className="mt-12 grid gap-8 rounded-3xl border border-gray-200 bg-surface-secondary px-6 py-8 text-left dark:border-zinc-800 dark:bg-transparent sm:grid-cols-3 sm:px-8">
           {heroSteps.map((step) =>
           <div key={step.number}>
-              <p className="mb-3 text-sm font-bold text-emerald-300">{step.number}</p>
-              <h2 className="font-bold text-white">{step.title}</h2>
-              <p className="mt-3 text-sm leading-6 text-zinc-500">{step.description}</p>
+              <p className="mb-3 text-sm font-bold text-brand-green dark:text-emerald-300">{step.number}</p>
+              <h2 className="font-bold text-text-primary dark:text-white">{step.title}</h2>
+              <p className="mt-3 text-sm leading-6 text-text-tertiary">{step.description}</p>
             </div>
           )}
         </Reveal>
@@ -188,14 +188,14 @@ export function CampaignHero() {
 
 export function BusinessChallenges() {
   return (
-    <section id="challenges" className="scroll-mt-24 bg-[#16181a] px-6 py-20 text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+    <section id="challenges" className="scroll-mt-24 bg-surface-secondary px-6 py-20 text-text-primary transition-colors duration-300 dark:text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
       <div className="mx-auto max-w-[1104px]">
         <Reveal>
           <SectionLabel>01 / The Cost of Standing Still</SectionLabel>
-          <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-[-0.035em] text-white sm:text-5xl">
+          <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-[-0.035em] text-text-primary dark:text-white sm:text-5xl">
             A new year won&apos;t fix old systems.
           </h2>
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-text-secondary">
             The small workarounds you live with today can become the biggest barriers to tomorrow&apos;s growth.
           </p>
         </Reveal>
@@ -208,11 +208,11 @@ export function BusinessChallenges() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ ...revealTransition, delay: index % 3 * 0.06 }}
-            className="min-h-[238px] rounded-3xl bg-[#202224] p-7 sm:p-8">
+            className="min-h-[238px] rounded-3xl border border-gray-100 bg-surface-primary p-7 shadow-soft transition-colors duration-300 dark:border-transparent dark:bg-[#202224] dark:shadow-none sm:p-8">
 
-              <p className="text-sm font-bold text-emerald-300">{challenge.number}</p>
-              <h3 className="mt-7 text-2xl font-bold leading-snug text-white">{challenge.title}</h3>
-              <p className="mt-6 text-lg leading-7 text-zinc-400">{challenge.description}</p>
+              <p className="text-sm font-bold text-brand-green dark:text-emerald-300">{challenge.number}</p>
+              <h3 className="mt-7 text-2xl font-bold leading-snug text-text-primary dark:text-white">{challenge.title}</h3>
+              <p className="mt-6 text-lg leading-7 text-text-secondary">{challenge.description}</p>
             </motion.article>
           )}
         </div>
@@ -223,20 +223,20 @@ export function BusinessChallenges() {
 
 export function AssessmentSection() {
   return (
-    <section id="assessment" className="scroll-mt-24 bg-[#090b0c] px-6 py-20 text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+    <section id="assessment" className="scroll-mt-24 bg-surface-primary px-6 py-20 text-text-primary transition-colors duration-300 dark:bg-[#090b0c] dark:text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
       <div className="mx-auto max-w-[1104px]">
         <Reveal>
           <SectionLabel>02 / A Clearer Picture</SectionLabel>
-          <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-[-0.035em] text-white sm:text-5xl">
+          <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-[-0.035em] text-text-primary dark:text-white sm:text-5xl">
             Let&apos;s find what&apos;s holding you back.
           </h2>
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-text-secondary">
             A few focused questions. A more useful starting point. Get recommendations shaped around your
             business, not a one-size-fits-all pitch.
           </p>
         </Reveal>
 
-        <Reveal className="mt-12 rounded-3xl border border-zinc-800 bg-[#17191b] p-6 sm:p-10 lg:p-12">
+        <Reveal className="mt-12 rounded-3xl border border-gray-200 bg-surface-secondary p-6 shadow-soft transition-colors duration-300 dark:border-zinc-800 dark:bg-[#17191b] dark:shadow-none sm:p-10 lg:p-12">
           <AssessmentForm />
         </Reveal>
       </div>
@@ -246,14 +246,14 @@ export function AssessmentSection() {
 
 export function CampaignServices() {
   return (
-    <section id="solutions" className="scroll-mt-24 bg-[#16181a] px-6 py-20 text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+    <section id="solutions" className="scroll-mt-24 bg-surface-secondary px-6 py-20 text-text-primary transition-colors duration-300 dark:text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
       <div className="mx-auto max-w-[1104px]">
         <Reveal>
           <SectionLabel>03 / The Right Solution, Not More Software</SectionLabel>
-          <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-[-0.035em] text-white sm:text-5xl">
+          <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-[-0.035em] text-text-primary dark:text-white sm:text-5xl">
             Better systems. Stronger business.
           </h2>
-          <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
+          <p className="mt-8 max-w-3xl text-lg leading-8 text-text-secondary">
             From the first customer interaction to the way your team works behind the scenes, we connect design
             and technology to real business needs.
           </p>
@@ -267,13 +267,13 @@ export function CampaignServices() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ ...revealTransition, delay: index % 3 * 0.06 }}
-            className={`min-h-[265px] rounded-3xl p-7 sm:p-8 ${service.featured ? 'bg-[#13a866]' : 'bg-[#202224]'}`}>
+            className={`min-h-[265px] rounded-3xl p-7 transition-colors duration-300 sm:p-8 ${service.featured ? 'bg-brand-green dark:bg-[#13a866]' : 'border border-gray-100 bg-surface-primary shadow-soft dark:border-transparent dark:bg-[#202224] dark:shadow-none'}`}>
 
-              <p className={`text-sm font-bold ${service.featured ? 'text-white' : 'text-emerald-300'}`}>
+              <p className={`text-sm font-bold ${service.featured ? 'text-white' : 'text-brand-green dark:text-emerald-300'}`}>
                 {service.number}
               </p>
-              <h3 className="mt-7 text-2xl font-bold leading-snug text-white">{service.title}</h3>
-              <p className={`mt-6 text-lg leading-7 ${service.featured ? 'font-medium text-white' : 'text-zinc-400'}`}>
+              <h3 className={`mt-7 text-2xl font-bold leading-snug ${service.featured ? 'text-white' : 'text-text-primary dark:text-white'}`}>{service.title}</h3>
+              <p className={`mt-6 text-lg leading-7 ${service.featured ? 'font-medium text-white' : 'text-text-secondary'}`}>
                 {service.description}
               </p>
             </motion.article>
@@ -286,11 +286,11 @@ export function CampaignServices() {
 
 export function WhyBirdhouse() {
   return (
-    <section className="bg-[#090b0c] px-6 py-20 text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+    <section className="bg-surface-primary px-6 py-20 text-text-primary transition-colors duration-300 dark:bg-[#090b0c] dark:text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
       <div className="mx-auto max-w-[1104px]">
         <Reveal>
           <SectionLabel>04 / Why Birdhouse Group</SectionLabel>
-          <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-[-0.035em] text-white sm:text-5xl">
+          <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-[-0.035em] text-text-primary dark:text-white sm:text-5xl">
             We start with your business. Not the technology.
           </h2>
         </Reveal>
@@ -302,10 +302,10 @@ export function WhyBirdhouse() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ ...revealTransition, delay: index * 0.07 }}
-            className="border-t border-zinc-800 px-4 pt-7 sm:min-h-[220px]">
+            className="border-t border-gray-200 px-4 pt-7 dark:border-zinc-800 sm:min-h-[220px]">
 
-              <h3 className="text-2xl font-bold leading-snug text-white">{reason.title}</h3>
-              <p className="mt-5 text-lg leading-7 text-zinc-400">{reason.description}</p>
+              <h3 className="text-2xl font-bold leading-snug text-text-primary dark:text-white">{reason.title}</h3>
+              <p className="mt-5 text-lg leading-7 text-text-secondary">{reason.description}</p>
             </motion.article>
           )}
         </div>
@@ -316,24 +316,24 @@ export function WhyBirdhouse() {
 
 export function ConsultationSection() {
   return (
-    <section className="bg-[#16181a] px-6 py-20 text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+    <section className="bg-surface-secondary px-6 py-20 text-text-primary transition-colors duration-300 dark:text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
       <Reveal className="mx-auto max-w-[1104px]">
         <SectionLabel>05 / Turn Insight Into Action</SectionLabel>
-        <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-[-0.035em] text-white sm:text-5xl">
+        <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-[-0.035em] text-text-primary dark:text-white sm:text-5xl">
           Let&apos;s talk about your 2027.
         </h2>
-        <p className="mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
+        <p className="mt-8 max-w-3xl text-lg leading-8 text-text-secondary">
           Bring your assessment results. We&apos;ll discuss your priorities, explore the right approach and agree on
           a practical next step. No pressure to commit.
         </p>
         <button
           type="button"
           onClick={scrollToAssessment}
-          className="mt-10 inline-flex rounded-full bg-[#13a866] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300/30">
+          className="mt-10 inline-flex rounded-full bg-brand-green px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-brand-greenDark focus:outline-none focus:ring-4 focus:ring-emerald-300/30 dark:bg-[#13a866] dark:hover:bg-emerald-400">
 
           Start Your Assessment
         </button>
-        <p className="mt-10 text-sm text-zinc-500">Complete the assessment to request your consultation.</p>
+        <p className="mt-10 text-sm text-text-tertiary">Complete the assessment to request your consultation.</p>
       </Reveal>
     </section>
   );
@@ -341,20 +341,20 @@ export function ConsultationSection() {
 
 export function ClosingSection() {
   return (
-    <section className="bg-[#090b0c] px-6 py-20 text-center text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+    <section className="bg-surface-primary px-6 py-20 text-center text-text-primary transition-colors duration-300 dark:bg-[#090b0c] dark:text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
       <Reveal className="mx-auto max-w-3xl">
-        <p className="text-xs font-bold uppercase text-emerald-300">New Year. Better Ways of Working.</p>
-        <h2 className="mt-10 text-3xl font-bold leading-tight tracking-[-0.035em] text-white sm:text-5xl">
+        <p className="text-xs font-bold uppercase text-brand-green dark:text-emerald-300">New Year. Better Ways of Working.</p>
+        <h2 className="mt-10 text-3xl font-bold leading-tight tracking-[-0.035em] text-text-primary dark:text-white sm:text-5xl">
           Leave the bottlenecks behind.
         </h2>
-        <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-zinc-400">
+        <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-text-secondary">
           You don&apos;t have to carry the same problems into another year. Start with a clearer picture of what your
           business needs.
         </p>
         <button
           type="button"
           onClick={scrollToAssessment}
-          className="mt-10 w-full rounded-full bg-[#13a866] px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300/30 sm:w-auto sm:px-10">
+          className="mt-10 w-full rounded-full bg-brand-green px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-brand-greenDark focus:outline-none focus:ring-4 focus:ring-emerald-300/30 dark:bg-[#13a866] dark:hover:bg-emerald-400 sm:w-auto sm:px-10">
 
           Get Your Free Business Assessment
         </button>
