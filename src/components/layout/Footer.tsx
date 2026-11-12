@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Mail, Linkedin, Dribbble, Instagram } from 'lucide-react';
 interface FooterLink {
   label: string;
@@ -63,12 +62,28 @@ function FooterLinkItem({ link }: {link: FooterLink;}) {
 
 }
 export function Footer() {
+  const { pathname } = useLocation();
+  const isCampaignPage = pathname === '/business-assessment';
+
   return (
-    <footer className="bg-surface-primary border-t border-gray-100 dark:border-surface-800 py-14 sm:py-20">
+    <footer className={`border-t py-14 transition-colors duration-300 sm:py-20 ${isCampaignPage ? 'border-gray-100 bg-surface-primary text-text-primary dark:border-zinc-800 dark:bg-[#090b0c] dark:text-white' : 'border-gray-100 bg-surface-primary dark:border-surface-800'}`}>
       <div className="max-w-desktop mx-auto px-6 md:px-12">
         <div className="grid grid-cols-2 sm:grid-cols-12 gap-x-6 gap-y-10 sm:gap-12 mb-14 sm:mb-20">
           <div className="col-span-2 sm:col-span-4">
             <Link to="/" className="flex items-center mb-8">
+              {isCampaignPage ?
+              <>
+              <img
+                src="/images/logo/logo-black.png"
+                alt="Birdhouse"
+                className="h-8 w-auto dark:hidden" />
+
+              <img
+                src="/images/logo/logo-white.png"
+                alt="Birdhouse"
+                className="hidden h-8 w-auto dark:block" />
+              </> :
+              <>
               <img
                 src="/images/logo/logo-black.png"
                 alt="Birdhouse"
@@ -78,9 +93,10 @@ export function Footer() {
                 src="/images/logo/logo-white.png"
                 alt="Birdhouse"
                 className="h-8 w-auto hidden dark:block" />
-
+              </>
+              }
             </Link>
-            <p className="text-text-secondary mb-8 max-w-sm">
+            <p className="mb-8 max-w-sm text-text-secondary">
               A premium digital product design and software development studio
               based in Lagos, Nigeria.
             </p>
@@ -88,7 +104,7 @@ export function Footer() {
               <a
                 href="mailto:birdhousegroup247@gmail.com"
                 aria-label="Email us"
-                className="w-10 h-10 rounded-full bg-surface-secondary flex items-center justify-center text-text-secondary hover:bg-brand-green hover:text-white transition-colors">
+                className="w-10 h-10 rounded-full flex items-center justify-center bg-surface-secondary text-text-secondary hover:bg-brand-green hover:text-white transition-colors">
 
                 <Mail className="w-4 h-4" />
               </a>
@@ -100,7 +116,7 @@ export function Footer() {
             key={col.heading}
             className={`col-span-1 sm:col-span-2 ${idx === 0 ? 'sm:col-start-7' : ''}`}>
 
-              <h4 className="font-semibold mb-6">{col.heading}</h4>
+              <h4 className={`font-semibold mb-6 ${isCampaignPage ? 'text-text-primary dark:text-white' : ''}`}>{col.heading}</h4>
               <ul className="space-y-4 text-text-secondary">
                 {col.links.map((link) =>
               <li key={link.label}>
@@ -112,14 +128,14 @@ export function Footer() {
           )}
 
           <div className="col-span-2 sm:col-span-2">
-            <h4 className="font-semibold mb-6">Social</h4>
+            <h4 className={`font-semibold mb-6 ${isCampaignPage ? 'text-text-primary dark:text-white' : ''}`}>Social</h4>
             <div className="flex items-center gap-3">
               {SOCIAL_LINKS.map(({ label, icon: Icon, href }) =>
               <a
                 key={label}
                 href={href}
                 aria-label={label}
-                className="w-10 h-10 rounded-full border border-gray-200 dark:border-surface-700 flex items-center justify-center text-text-secondary hover:text-brand-green hover:border-brand-green transition-colors">
+                className={`w-10 h-10 rounded-full border flex items-center justify-center hover:text-brand-green hover:border-brand-green transition-colors ${isCampaignPage ? 'border-gray-200 text-text-secondary dark:border-surface-700' : 'border-gray-200 dark:border-surface-700 text-text-secondary'}`}>
 
                   <Icon className="w-4 h-4" />
                 </a>
@@ -128,7 +144,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-0 sm:justify-between pt-8 border-t border-gray-100 dark:border-surface-800 text-sm text-text-tertiary text-center sm:text-left">
+        <div className={`flex flex-col sm:flex-row items-center gap-4 sm:gap-0 sm:justify-between pt-8 border-t text-sm text-center sm:text-left ${isCampaignPage ? 'border-gray-100 text-text-tertiary dark:border-surface-800' : 'border-gray-100 dark:border-surface-800 text-text-tertiary'}`}>
           <p>© {new Date().getFullYear()} Birdhouse Group. All rights reserved.</p>
           <div className="flex gap-6 sm:gap-8">
             <a href="#" className="hover:text-text-primary transition-colors">

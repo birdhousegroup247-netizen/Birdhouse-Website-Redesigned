@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
 
@@ -136,7 +136,7 @@ export function PromotionalPopup() {
             aria-label="Birdhouse business management promotion">
 
             <img
-              src="/images/Smarter Business, Simplified-pop-up.png"
+              src="/images/smarter-business-popup.webp"
               alt="Still running your business from your DMs? Birdhouse has a smarter way to simplify orders, payments, and customer details."
               className="block h-auto max-h-[calc(100dvh-2rem)] w-auto max-w-full object-contain" />
 

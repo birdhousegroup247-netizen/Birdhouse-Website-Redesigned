@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { PortfolioCard } from '../ui/PortfolioCard';
@@ -14,7 +13,7 @@ const [featuredLarge, featuredSmall, featuredThird] = FEATURED_SLUGS.map(
 export function FeaturedWork() {
   const navigate = useNavigate();
   return (
-    <section className="py-32 max-w-desktop mx-auto px-6 md:px-12">
+    <section className="mx-auto max-w-desktop px-6 pb-32 pt-4 sm:pt-7 md:px-12 lg:pt-10">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-8 mb-14 sm:mb-20">
         <motion.div
           initial={{
