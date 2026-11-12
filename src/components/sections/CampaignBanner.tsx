@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export function CampaignBanner() {
   return (
-    <section className="px-0 pb-10 sm:px-6 md:px-12 md:pb-16" aria-label="Business assessment promotion">
+    <section className="px-0 pb-4 sm:px-6 sm:pb-5 md:px-12 md:pb-6" aria-label="Business assessment promotion">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
