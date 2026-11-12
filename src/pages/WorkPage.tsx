@@ -1,4 +1,3 @@
-import React from 'react';
 import { WorkHero } from '../components/work/WorkHero';
 import { ProjectCase } from '../components/work/ProjectCase';
 import { CtaSection } from '../components/shared/CtaSection';
@@ -10,7 +9,7 @@ export function WorkPage() {
       {PROJECTS.map((project, i) =>
       <ProjectCase key={project.slug} project={project} reverse={i % 2 === 1} />
       )}
-      <CtaSection />
+      <CtaSection showVideo />
     </main>);
 
 }
