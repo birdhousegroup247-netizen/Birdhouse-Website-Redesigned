@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { AssessmentForm } from './AssessmentForm';
+import { YouTubeShortEmbed } from '../shared/YouTubeShortEmbed';
 
 const revealTransition = { duration: 0.65, ease: [0.16, 1, 0.3, 1] } as const;
 
@@ -318,22 +319,28 @@ export function ConsultationSection() {
   return (
     <section className="bg-surface-secondary px-6 py-20 text-text-primary transition-colors duration-300 dark:text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
       <Reveal className="mx-auto max-w-[1104px]">
-        <SectionLabel>05 / Turn Insight Into Action</SectionLabel>
-        <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-[-0.035em] text-text-primary dark:text-white sm:text-5xl">
-          Let&apos;s talk about your 2027.
-        </h2>
-        <p className="mt-8 max-w-3xl text-lg leading-8 text-text-secondary">
-          Bring your assessment results. We&apos;ll discuss your priorities, explore the right approach and agree on
-          a practical next step. No pressure to commit.
-        </p>
-        <button
-          type="button"
-          onClick={scrollToAssessment}
-          className="mt-10 inline-flex rounded-full bg-brand-green px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-brand-greenDark focus:outline-none focus:ring-4 focus:ring-emerald-300/30 dark:bg-[#13a866] dark:hover:bg-emerald-400">
+        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:gap-16">
+          <div>
+            <SectionLabel>05 / Turn Insight Into Action</SectionLabel>
+            <h2 className="max-w-3xl text-3xl font-bold leading-tight tracking-[-0.035em] text-text-primary dark:text-white sm:text-5xl">
+              Let&apos;s talk about your 2027.
+            </h2>
+            <p className="mt-8 max-w-3xl text-lg leading-8 text-text-secondary">
+              Bring your assessment results. We&apos;ll discuss your priorities, explore the right approach and agree on
+              a practical next step. No pressure to commit.
+            </p>
+            <button
+              type="button"
+              onClick={scrollToAssessment}
+              className="mt-10 inline-flex rounded-full bg-brand-green px-7 py-4 text-sm font-bold text-white transition-colors hover:bg-brand-greenDark focus:outline-none focus:ring-4 focus:ring-emerald-300/30 dark:bg-[#13a866] dark:hover:bg-emerald-400">
 
-          Start Your Assessment
-        </button>
-        <p className="mt-10 text-sm text-text-tertiary">Complete the assessment to request your consultation.</p>
+              Start Your Assessment
+            </button>
+            <p className="mt-10 text-sm text-text-tertiary">Complete the assessment to request your consultation.</p>
+          </div>
+
+          <YouTubeShortEmbed className="mx-auto lg:mr-0" />
+        </div>
       </Reveal>
     </section>
   );
