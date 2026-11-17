@@ -143,8 +143,7 @@ export function CampaignHero() {
           transition={{ ...revealTransition, delay: 0.08 }}
           className="mx-auto max-w-5xl text-4xl font-bold leading-[1.08] tracking-[-0.045em] text-text-primary dark:text-white sm:text-6xl lg:text-[72px]">
 
-          Don&apos;t Carry 2026&apos;s Business Problems Into{' '}
-          <span className="text-emerald-300">2027.</span>
+          Fix your number 1 bottleneck before <span className="text-emerald-300">2027</span> finds it for you.
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
